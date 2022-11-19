@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from "react-native";
 export default function Footer() {
     return (
         <View style={styles.container}>
-            <Text>Footer</Text>
+            <Text style={styles.footerTitle}>Footer</Text>
         </View>
     )
 }
@@ -16,4 +16,7 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0
     },
+    footerTitle: {
+        color: '#ffffff'
+    }
 });

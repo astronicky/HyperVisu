@@ -4,10 +4,10 @@
     "slug": "hypervisu",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/myicon.png",
+    "icon": "./assets/images/myicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/mysplash.png",
+      "image": "./assets/images/mysplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/favicon.png"
     }
   }
 }

@@ -15,8 +15,7 @@ export default function Layout({ children, header, footer }) {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 50,
-        color: '#ffffff',
-        backgroud: '#000000'
+        backgroundColor: '#000000',
+        height: '100%'
     },
 });

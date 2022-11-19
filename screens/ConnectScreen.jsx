@@ -1,23 +1,32 @@
 import React from "react";
-import { Text, Button, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Layout from "../components/Layout/Layout";
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
-import { LOGIN } from "../Constant";
+import { LOGIN, CONNECT } from "../Constant";
 
 export default function ConnectScreen({ navigation }) {
     return (
-        <Layout header={true} footer={true}>
-            <Text style={styles.bodyTitle}>Connect Page</Text>
-            <Button title="Go to Login page" onPress={() => navigation.navigate(LOGIN)} />
-            <Logo />
-            <MainButton title={LOGIN} {...{ navigation, path: LOGIN }} />
+        <Layout>
+            <View style={styles.container}>
+                <Logo />
+                <MainButton style={styles.mainButton} title={CONNECT} {...{ navigation, path: LOGIN }} />
+            </View>
         </Layout>
     )
 }
 
 const styles = StyleSheet.create({
-    bodyTitle: {
-        color: '#ffffff'
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '90%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    mainButton: {
+        position: 'absolute',
+        bottom: 80,
+        width: '90%'
     }
 });

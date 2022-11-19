@@ -1,11 +1,13 @@
 import React from "react";
-import { StyleSheet, Pressable, Text } from "react-native";
+import { StyleSheet, Pressable, Text, View } from "react-native";
 
-export default function MainButton({ title, path, navigation }) {
+export default function MainButton({ title, path, navigation, style }) {
     return (
-        <Pressable style={styles.button} onPress={() => navigation.navigate(path)}>
-            <Text style={styles.text}>{title}</Text>
-        </Pressable>
+        <View {...{ style }}>
+            <Pressable style={styles.button} onPress={() => navigation.navigate(path)}>
+                <Text style={styles.text}>{title}</Text>
+            </Pressable>
+        </View>
     )
 }
 

@@ -16,6 +16,7 @@ export default function Layout({ children, header, footer }) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#000000',
-        height: '100%'
+        height: '100%',
+        alignItems: 'center'
     },
 });

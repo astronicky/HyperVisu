@@ -5,7 +5,7 @@ import { CONNECT } from "../Constant";
 
 export default function LoginScreen({ navigation }) {
     return (
-        <Layout>
+        <Layout header={true} footer={true}>
             <Text style={styles.bodyTitle}>Login Page</Text>
             <Button title="Go to Connect page" onPress={() => navigation.navigate(CONNECT)} />
         </Layout>

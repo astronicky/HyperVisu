@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, Button } from "react-native";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 
 export default function ConnectScreen({ navigation }) {
     return (

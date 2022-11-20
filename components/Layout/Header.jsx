@@ -1,18 +1,31 @@
 import React from "react";
+import LogoIcon from "../Common/LogoIcon";
+import LogoTitle from "../Common/LogoTitle";
 import { View, StyleSheet, Text } from "react-native";
 
 export default function Header({ children }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.headerTitle}>Header</Text>
+            <LogoIcon color={'white'} header />
+            <LogoTitle color={'white'} header />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 10,
-        paddingBottom: 10
+        paddingTop: 22,
+        paddingBottom: 6,
+        paddingLeft: 17,
+        paddingRight: 17,
+        position: 'absolute',
+        borderWidth: 2,
+        borderBottomColor: '#F1580C',
+        width: '100%',
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     headerTitle: {
         color: '#ffffff'

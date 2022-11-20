@@ -21,7 +21,7 @@ export const FORGOT_PASSWORD_DESCRIPTION = "Please enter your information to rec
 export const SEND_EMAIL = "Send by email";
 export const EMAIL = "Email";
 
-export const HIDE_FOOTER_SCREENS = [LOGIN, FORGOT_PASSWORD];
+export const HIDE_FOOTER_SCREENS = [];
 
 export const FOOTER_NAV_BAR = {
     [CONNECT]: {

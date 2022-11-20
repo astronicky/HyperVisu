@@ -1,19 +1,27 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-export default function LogoIcon({ color }) {
-    if (color === 'white') {
+export default function LogoIcon({ color, header }) {
+    if (header) {
         return (
-            <View style={styles.iconOutLineWhite}>
-                <View style={styles.iconInnerLineWhite} />
+            <View style={styles.iconOutLineHeader}>
+                <View style={styles.iconInnerLineHeader} />
             </View>
         )
     } else {
-        return (
-            <View style={styles.iconOutLine}>
-                <View style={styles.iconInnerLine} />
-            </View>
-        )
+        if (color === 'white') {
+            return (
+                <View style={styles.iconOutLineWhite}>
+                    <View style={styles.iconInnerLineWhite} />
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.iconOutLine}>
+                    <View style={styles.iconInnerLine} />
+                </View>
+            )
+        }
     }
 }
 
@@ -51,5 +59,22 @@ const styles = StyleSheet.create({
         width: 42,
         height: 30,
         borderRadius: 10
-    }
+    },
+    iconOutLineHeader: {
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        width: 50,
+        height: 50,
+        borderRadius: 50 / 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    iconInnerLineHeader: {
+        borderColor: '#ffffff',
+        borderWidth: 3,
+        width: 23,
+        height: 16,
+        borderRadius: 8
+    },
 });

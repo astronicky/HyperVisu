@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1C1C1E',
-        marginTop: 16
+        marginTop: 16,
+        marginLeft: 8,
+        marginRight: 8
     },
     forgotPasswordDescription: {
         fontSize: 17,

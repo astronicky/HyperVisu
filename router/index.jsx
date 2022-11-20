@@ -6,7 +6,8 @@ import { Pressable, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ConnectScreen from '../screens/ConnectScreen';
 import LoginScreen from '../screens/LoginScreen';
-import { LOGIN, CONNECT, CANCEL } from '../Constant';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD } from '../Constant';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +22,7 @@ export default function Router({ navigation }) {
                     headerRight: () => (
                         <Pressable
                             onPress={() => {
-                                navigation.navigate(CONNECT);
+                                navigation.navigate(FORGOT_PASSWORD);
                             }}
                         >
                             <Icon name="angle-right" size={17} color="#FF9500" style={styles.nextArrowButton} />
@@ -31,6 +32,28 @@ export default function Router({ navigation }) {
                         <Pressable
                             onPress={() => {
                                 navigation.navigate(CONNECT);
+                            }}
+                        >
+                            <Text style={styles.headTitle}>{CANCEL}</Text>
+                        </Pressable>
+                    ),
+                })} />
+                <Stack.Screen name={FORGOT_PASSWORD} component={ForgotPasswordScreen} options={({ navigation }) => ({
+                    headerTitle: '',
+                    headerStyle: { backgroundColor: '#000000' },
+                    headerRight: () => (
+                        <Pressable
+                            onPress={() => {
+                                navigation.navigate(CONNECT);
+                            }}
+                        >
+                            <Icon name="angle-right" size={17} color="#FF9500" style={styles.nextArrowButton} />
+                        </Pressable>
+                    ),
+                    headerLeft: () => (
+                        <Pressable
+                            onPress={() => {
+                                navigation.navigate(LOGIN);
                             }}
                         >
                             <Text style={styles.headTitle}>{CANCEL}</Text>

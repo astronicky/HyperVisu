@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     mainButton: {
         width: '100%',
-        marginTop: 80,
+        marginTop: 58,
         width: 375
     },
     forgotPasswordLabel: {

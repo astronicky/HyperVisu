@@ -1,14 +1,12 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Header from "./Header";
-import Footer from "./Footer";
 
-export default function Layout({ children, header, footer }) {
+export default function Layout({ children, header }) {
     return (
         <View style={styles.container}>
             {(header) && <Header />}
             {children}
-            {(footer) && <Footer />}
         </View>
     )
 }

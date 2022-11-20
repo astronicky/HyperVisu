@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
 import MainInput from "../components/Common/MainInput";
-import { CONNECT, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN } from "../Constant";
+import { CONNECT, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
 
 export default function LoginScreen({ navigation }) {
     return (
@@ -17,7 +17,7 @@ export default function LoginScreen({ navigation }) {
                     <MainInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
                     <MainInput style={styles.input} secureTextEntry={true} placeholder={PLACEFOLDER_PASSWORD} label={PASSWORD_LABEL} />
                 </View>
-                <Pressable onPress={() => navigation.navigate(LOGIN)}>
+                <Pressable onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
                     <Text style={styles.passwordForgotten}>{PASSWORD_FORGOTTEN}</Text>
                 </Pressable>
                 <MainButton style={styles.mainButton} title={LOGIN} {...{ navigation, path: CONNECT }} />

@@ -16,11 +16,10 @@ export default function Router() {
     return (
         <NavigationContainer>
             <Tab.Navigator tabBar={props => <Footer {...props} />}>
-                <Tab.Screen name={CONNECT} component={ConnectScreen} options={{ headerShown: false, tabBarStyle: styles.tabBarVisible }} />
+                <Tab.Screen name={CONNECT} component={ConnectScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={LOGIN} component={LoginScreen} options={({ navigation }) => ({
                     headerTitle: '',
                     headerStyle: styles.headerStyle,
-                    tabBarStyle: styles.tabBarHide,
                     headerRight: () => (
                         <Pressable
                             onPress={() => {
@@ -43,7 +42,6 @@ export default function Router() {
                 <Tab.Screen name={FORGOT_PASSWORD} component={ForgotPasswordScreen} options={({ navigation }) => ({
                     headerTitle: '',
                     headerStyle: styles.headerStyle,
-                    tabBarStyle: styles.tabBarHide,
                     headerRight: () => (
                         <Pressable
                             onPress={() => {

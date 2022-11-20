@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#000000',
         height: '100%',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10
     },
 });

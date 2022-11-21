@@ -153,7 +153,7 @@ export default function ActionButton({ name, style, active, handleClick }) {
             break;
         case ACTION_REC_SWITCH_BUTTON:
             return (
-                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => handleClick()}>
+                <Pressable onPress={() => { setClickFlag(!clickFlag); handleClick() }}>
                     <View style={clickFlag ? { ...{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', backgroundColor: '#F1580C', borderRadius: 7, padding: 5 }, ...style } : { ...{ display: 'flex', flexDirection: 'row', backgroundColor: '#6A6A6B', borderRadius: 7, padding: 5 }, ...style }}>
                         <View style={clickFlag ? { flex: 0.5, backgroundColor: '#ffffff', borderRadius: 3 } : { flex: 0.5, backgroundColor: '#ffffff', borderRadius: 3 }} />
                     </View>
@@ -162,7 +162,7 @@ export default function ActionButton({ name, style, active, handleClick }) {
             break;
         case ACTION_CIR_SWITCH_BUTTON:
             return (
-                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => handleClick()}>
+                <Pressable onPress={() => { setClickFlag(!clickFlag); handleClick() }}>
                     <View style={clickFlag ? { ...{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', backgroundColor: '#4CD964', borderRadius: style.height / 2, padding: 3 }, ...style } : { ...{ display: 'flex', flexDirection: 'row', backgroundColor: '#6A6A6B', borderRadius: style.height / 2, padding: 3 }, ...style }}>
                         <View style={clickFlag ? { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (style.height - 6) / 2 } : { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (style.height - 6) / 2 }} />
                     </View>

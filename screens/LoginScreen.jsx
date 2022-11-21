@@ -20,7 +20,7 @@ export default function LoginScreen({ navigation }) {
                 <Pressable onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
                     <Text style={styles.passwordForgotten}>{PASSWORD_FORGOTTEN}</Text>
                 </Pressable>
-                <MainButton style={styles.mainButton} title={LOGIN} {...{ navigation, path: CONNECT }} />
+                <MainButton {...{ style: styles.mainButton, title: LOGIN, path: CONNECT, navigation }} />
             </View>
         </Layout>
     )

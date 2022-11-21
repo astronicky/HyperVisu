@@ -10,7 +10,7 @@ export default function ConnectScreen({ navigation }) {
         <Layout>
             <View style={styles.container}>
                 <Logo />
-                <MainButton style={styles.mainButton} title={CONNECT} {...{ navigation, path: LOGIN }} />
+                <MainButton {...{ style: styles.mainButton, title: CONNECT, path: LOGIN, navigation }} />
             </View>
         </Layout>
     )

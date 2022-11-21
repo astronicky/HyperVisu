@@ -14,10 +14,10 @@ export default function ForgotPasswordScreen({ navigation }) {
                 <Text style={styles.forgotPasswordLabel}>{FORGOT_PASSWORD_LABEL}</Text>
                 <View style={styles.bodyContainer}>
                     <Text style={styles.forgotPasswordDescription}>{FORGOT_PASSWORD_DESCRIPTION}</Text>
-                    <MainInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
-                    <MainInput style={styles.input} placeholder={PLACEFOLDER_USEREMAIL} label={EMAIL} />
+                    <MainInput placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
+                    <MainInput placeholder={PLACEFOLDER_USEREMAIL} label={EMAIL} />
                 </View>
-                <MainButton style={styles.mainButton} title={SEND_EMAIL} {...{ navigation, path: LOGIN }} />
+                <MainButton {...{ style: styles.mainButton, title: SEND_EMAIL, path: LOGIN, navigation }} />
             </View>
         </Layout>
     )

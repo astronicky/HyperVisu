@@ -1,6 +1,5 @@
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import { color } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {
     ACTION_TURN_OFF,

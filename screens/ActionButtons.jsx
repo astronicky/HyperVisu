@@ -130,8 +130,8 @@ const styles = StyleSheet.create({
         height: 30
     },
     [ACTION_TALK_BUTTON]: {
-        width: 30,
-        height: 30
+        width: 74,
+        height: 38
     },
     [ACTION_OPTION_BUTTON]: {
         width: 30,

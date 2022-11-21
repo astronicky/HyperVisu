@@ -18,6 +18,7 @@ export const SINGIN_LABEL = "Sign In";
 export const SINGIN_DESCIPTION = "Sign in by your ID to access the application.";
 export const PASSWORD_FORGOTTEN = "Password Forgotten ?";
 export const FORGOT_PASSWORD_LABEL = "Forgot Password";
+export const TALK_LABEL = "Talk";
 export const FORGOT_PASSWORD_DESCRIPTION = "Please enter your information to receive your password by email.";
 export const SEND_EMAIL = "Send by email";
 export const EMAIL = "Email";

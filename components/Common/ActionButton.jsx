@@ -21,7 +21,8 @@ import {
     ACTION_TALK_BUTTON,
     ACTION_OPTION_BUTTON,
     ACTION_REC_SWITCH_BUTTON,
-    ACTION_CIR_SWITCH_BUTTON
+    ACTION_CIR_SWITCH_BUTTON,
+    TALK_LABEL
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
@@ -135,8 +136,11 @@ export default function ActionButton({ name, style, active, handleClick }) {
             break;
         case ACTION_TALK_BUTTON:
             return (
-                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => handleClick()}>
-                    <Icon name="angle-down" size={style.width ? style.width : 30} color={clickFlag ? '#4CD964' : '#ffffff'} {...{ style }} />
+                <Pressable onPress={() => { setClickFlag(!clickFlag); handleClick() }}>
+                    <View style={clickFlag ? { ...{ display: 'flex', flexDirection: 'row', padding: 10, backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: 7 }, ...style } : { ...{ display: 'flex', flexDirection: 'row', padding: 10, justifyContent: 'center', backgroundColor: '#F1580C', alignItems: 'center', borderRadius: 7 }, ...style }}>
+                        <Icon name="microphone" size={17} color={clickFlag ? "#ffffff" : "#000000"} />
+                        <Text style={clickFlag ? { color: '#ffffff', fontSize: 15, lineHeight: 20, marginLeft: 7 } : { color: '#000000', fontSize: 15, lineHeight: 20, marginLeft: 7 }}>{TALK_LABEL}</Text>
+                    </View>
                 </Pressable>
             );
             break;

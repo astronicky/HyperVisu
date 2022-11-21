@@ -7,7 +7,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ConnectScreen from '../screens/ConnectScreen';
 import LoginScreen from '../screens/LoginScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, HOME, ROOM, CATEGORIES, SETTING } from '../Constant';
+import ActionButtons from '../screens/ActionButtons';
+import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, ACTION_BUTTONS } from '../Constant';
 import Footer from '../components/Layout/Footer';
 
 const Tab = createBottomTabNavigator();
@@ -45,7 +46,7 @@ export default function Router() {
                     headerRight: () => (
                         <Pressable
                             onPress={() => {
-                                navigation.navigate(CONNECT);
+                                navigation.navigate(ACTION_BUTTONS);
                             }}
                         >
                             <Icon name="angle-right" size={17} color="#FF9500" style={styles.nextArrowButton} />
@@ -61,6 +62,7 @@ export default function Router() {
                         </Pressable>
                     ),
                 })} />
+                <Tab.Screen name={ACTION_BUTTONS} component={ActionButtons} options={{ headerShown: false }} />
             </Tab.Navigator>
         </NavigationContainer>
     );

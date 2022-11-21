@@ -7,7 +7,7 @@ import { LOGIN, CONNECT } from "../Constant";
 
 export default function ConnectScreen({ navigation }) {
     return (
-        <Layout header={true}>
+        <Layout>
             <View style={styles.container}>
                 <Logo />
                 <MainButton style={styles.mainButton} title={CONNECT} {...{ navigation, path: LOGIN }} />

@@ -25,7 +25,6 @@ import {
 } from "../Constant";
 
 export default function ActionButtons({ navigation }) {
-    const [count, setCount] = React.useState(0);
     const handleClick = () => {
         console.log("clicked");
     }

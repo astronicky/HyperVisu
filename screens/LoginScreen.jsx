@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView } from "react-native";
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
 import MainInput from "../components/Common/MainInput";
@@ -8,25 +8,38 @@ import { CONNECT, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWO
 
 export default function LoginScreen({ navigation }) {
     return (
-        <Layout>
-            <View style={styles.container}>
-                <Logo />
-                <Text style={styles.signinLabel}>{SINGIN_LABEL}</Text>
-                <View style={styles.bodyContainer}>
-                    <Text style={styles.signinDescription}>{SINGIN_DESCIPTION}</Text>
-                    <MainInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
-                    <MainInput style={styles.input} secureTextEntry={true} placeholder={PLACEFOLDER_PASSWORD} label={PASSWORD_LABEL} />
-                </View>
-                <Pressable onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
-                    <Text style={styles.passwordForgotten}>{PASSWORD_FORGOTTEN}</Text>
-                </Pressable>
-                <MainButton {...{ style: styles.mainButton, title: LOGIN, path: CONNECT, navigation }} />
-            </View>
-        </Layout>
+        <SafeAreaView style={styles.containerScroll}>
+            <ScrollView style={styles.scrollView}>
+                <Layout>
+                    <View style={styles.container}>
+                        <Logo />
+                        <Text style={styles.signinLabel}>{SINGIN_LABEL}</Text>
+                        <View style={styles.bodyContainer}>
+                            <Text style={styles.signinDescription}>{SINGIN_DESCIPTION}</Text>
+                            <MainInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
+                            <MainInput style={styles.input} secureTextEntry={true} placeholder={PLACEFOLDER_PASSWORD} label={PASSWORD_LABEL} />
+                        </View>
+                        <Pressable onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
+                            <Text style={styles.passwordForgotten}>{PASSWORD_FORGOTTEN}</Text>
+                        </Pressable>
+                        <MainButton {...{ style: styles.mainButton, title: LOGIN, path: CONNECT, navigation }} />
+                    </View>
+                </Layout>
+            </ScrollView>
+        </SafeAreaView >
     )
 }
 
 const styles = StyleSheet.create({
+    containerScroll: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        height: '100%',
+        backgroundColor: 'black'
+    },
+    scrollView: {
+        backgroundColor: 'black'
+    },
     container: {
         display: 'flex',
         flexDirection: 'column',

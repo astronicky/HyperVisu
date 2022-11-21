@@ -24,7 +24,7 @@ export const EMAIL = "Email";
 
 export const ACTION_TURN_OFF = "TurnOff";
 export const ACTION_ARROW_DOWN = "ArrowDown";
-export const ACTION_ARROW_UP = "ArrowDown";
+export const ACTION_ARROW_UP = "ArrowUp";
 export const ACTION_MINUS = "Minus";
 export const ACTION_PLUS = "Plus";
 export const ACTION_ARROW_LEFT = "ArrowLeft";
@@ -50,7 +50,7 @@ export const FOOTER_NAV_BAR = {
         tab: CONNECT
     },
     [LOGIN]: {
-        icon: "cubes",
+        icon: "cube",
         tab: LOGIN
     },
     [FORGOT_PASSWORD]: {

@@ -1,3 +1,5 @@
+
+// Screen Name
 export const HOME = "Home";
 export const ROOM = "Room";
 export const CATEGORIES = "Categories";
@@ -6,6 +8,8 @@ export const LOGIN = "Login";
 export const CONNECT = "Connect";
 export const FORGOT_PASSWORD = "Forgot";
 export const ACTION_BUTTONS = "Buttons";
+
+// Page Content Constant variable
 export const LOGO_TITLE = "HYPERVISU";
 export const LOGO_SUB_TITLE = "BY ELAUSYS";
 export const CANCEL = "Cancel";
@@ -23,6 +27,7 @@ export const FORGOT_PASSWORD_DESCRIPTION = "Please enter your information to rec
 export const SEND_EMAIL = "Send by email";
 export const EMAIL = "Email";
 
+// Common Component Name
 export const ACTION_TURN_OFF = "TurnOff";
 export const ACTION_ARROW_DOWN = "ArrowDown";
 export const ACTION_ARROW_UP = "ArrowUp";
@@ -43,8 +48,12 @@ export const ACTION_OPTION_BUTTON = "OptionButton";
 export const ACTION_REC_SWITCH_BUTTON = "RecSwithButton";
 export const ACTION_CIR_SWITCH_BUTTON = "CirSwithButton";
 
+
+// Screen Names for unavailable Footer
 export const HIDE_FOOTER_SCREENS = [CONNECT, LOGIN];
 
+
+//Footer Information
 export const FOOTER_NAV_BAR = {
     [CONNECT]: {
         icon: "home",

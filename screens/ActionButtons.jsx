@@ -31,7 +31,7 @@ export default function ActionButtons({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                <Layout>
+                <Layout header={true}>
                     <ActionButton name={ACTION_TURN_OFF} style={styles[ACTION_TURN_OFF]} handleClick={handleClick} />
                     <ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} handleClick={handleClick} />
                     <ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} handleClick={handleClick} />
@@ -59,8 +59,7 @@ export default function ActionButtons({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: 30
+        flex: 1
     },
     scrollView: {
         backgroundColor: 'black',

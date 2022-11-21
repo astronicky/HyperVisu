@@ -25,7 +25,7 @@ export default function ActionButton({ name, style, active }) {
     switch (name) {
         case ACTION_TURN_OFF:
             return (
-                <View {...{ style }} />
+                <View style={active ? { ...style, ...{ borderWidth: 2, borderColor: '#F1580C', borderRadius: style.width / 2 } } : { ...style, ...{ borderWidth: 2, borderColor: '#ffffff', borderRadius: style.width / 2 } }} />
             );
             break;
         case ACTION_ARROW_DOWN:

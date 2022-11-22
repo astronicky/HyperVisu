@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         paddingBottom: 6,
         paddingLeft: 17,
         paddingRight: 17,
+        position: 'absolute',
         borderWidth: 2,
         borderBottomColor: '#F1580C',
         width: '100%',

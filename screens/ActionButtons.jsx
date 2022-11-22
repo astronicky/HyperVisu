@@ -31,26 +31,26 @@ export default function ActionButtons({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                <Layout header={true}>
-                    <ActionButton name={ACTION_TURN_OFF} style={styles[ACTION_TURN_OFF]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_MINUS} style={styles[ACTION_MINUS]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_PLUS} style={styles[ACTION_PLUS]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_ARROW_LEFT} style={styles[ACTION_ARROW_LEFT]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_HEART} style={styles[ACTION_HEART]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_CLOCK} style={styles[ACTION_CLOCK]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_MENU_LIST} style={styles[ACTION_MENU_LIST]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_MORE_DETAIL} style={styles[ACTION_MORE_DETAIL]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_EDIT_BUTTON} style={styles[ACTION_EDIT_BUTTON]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_CIRECLE_PLUS} style={styles[ACTION_CIRECLE_PLUS]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_SOUND_VOLUME} style={styles[ACTION_SOUND_VOLUME]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_PAUSE_BUTTON} style={styles[ACTION_PAUSE_BUTTON]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_LOGOUT_BUTTON} style={styles[ACTION_LOGOUT_BUTTON]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_TALK_BUTTON} style={styles[ACTION_TALK_BUTTON]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_OPTION_BUTTON} style={styles[ACTION_OPTION_BUTTON]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_REC_SWITCH_BUTTON} style={styles[ACTION_REC_SWITCH_BUTTON]} handleClick={handleClick} />
-                    <ActionButton name={ACTION_CIR_SWITCH_BUTTON} style={styles[ACTION_CIR_SWITCH_BUTTON]} handleClick={handleClick} />
+                <Layout>
+                    <ActionButton name={ACTION_TURN_OFF} style={styles[ACTION_TURN_OFF]} onClick={handleClick} />
+                    <ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} onClick={handleClick} />
+                    <ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} onClick={handleClick} />
+                    <ActionButton name={ACTION_MINUS} style={styles[ACTION_MINUS]} onClick={handleClick} />
+                    <ActionButton name={ACTION_PLUS} style={styles[ACTION_PLUS]} onClick={handleClick} />
+                    <ActionButton name={ACTION_ARROW_LEFT} style={styles[ACTION_ARROW_LEFT]} onClick={handleClick} />
+                    <ActionButton name={ACTION_HEART} style={styles[ACTION_HEART]} onClick={handleClick} />
+                    <ActionButton name={ACTION_CLOCK} style={styles[ACTION_CLOCK]} onClick={handleClick} />
+                    <ActionButton name={ACTION_MENU_LIST} style={styles[ACTION_MENU_LIST]} onClick={handleClick} />
+                    <ActionButton name={ACTION_MORE_DETAIL} style={styles[ACTION_MORE_DETAIL]} onClick={handleClick} />
+                    <ActionButton name={ACTION_EDIT_BUTTON} style={styles[ACTION_EDIT_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_CIRECLE_PLUS} style={styles[ACTION_CIRECLE_PLUS]} onClick={handleClick} />
+                    <ActionButton name={ACTION_SOUND_VOLUME} style={styles[ACTION_SOUND_VOLUME]} onClick={handleClick} />
+                    <ActionButton name={ACTION_PAUSE_BUTTON} style={styles[ACTION_PAUSE_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_LOGOUT_BUTTON} style={styles[ACTION_LOGOUT_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_TALK_BUTTON} style={styles[ACTION_TALK_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_OPTION_BUTTON} style={styles[ACTION_OPTION_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_REC_SWITCH_BUTTON} style={styles[ACTION_REC_SWITCH_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_CIR_SWITCH_BUTTON} style={styles[ACTION_CIR_SWITCH_BUTTON]} onClick={handleClick} />
                 </Layout>
             </ScrollView>
         </SafeAreaView >
@@ -59,7 +59,8 @@ export default function ActionButtons({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        paddingTop: 30
     },
     scrollView: {
         backgroundColor: 'black',
@@ -67,73 +68,89 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     [ACTION_TURN_OFF]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_ARROW_DOWN]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_ARROW_UP]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_MINUS]: {
+        marginTop: 10,
         width: 50,
         height: 50
     },
     [ACTION_PLUS]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_ARROW_LEFT]: {
+        marginTop: 10,
         width: 38,
-        height: 38,
-        fontWeight: 'thin'
+        height: 38
     },
     [ACTION_HEART]: {
+        marginTop: 10,
         width: 22,
         height: 22
     },
     [ACTION_CLOCK]: {
+        marginTop: 10,
         width: 18,
         height: 20
     },
     [ACTION_MENU_LIST]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_MORE_DETAIL]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_EDIT_BUTTON]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_CIRECLE_PLUS]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_SOUND_VOLUME]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_PAUSE_BUTTON]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_LOGOUT_BUTTON]: {
+        marginTop: 10,
         width: 30,
         height: 30
     },
     [ACTION_TALK_BUTTON]: {
+        marginTop: 10,
         width: 74,
         height: 38
     },
     [ACTION_OPTION_BUTTON]: {
-        width: 30,
-        height: 30
+        marginTop: 10,
+        width: 59,
+        height: 59
     },
     [ACTION_REC_SWITCH_BUTTON]: {
         marginTop: 10,
@@ -144,5 +161,5 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: 52,
         height: 32,
-    }
+    },
 });

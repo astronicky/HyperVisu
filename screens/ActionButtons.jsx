@@ -17,7 +17,7 @@ import {
     ACTION_EDIT_BUTTON,
     ACTION_CIRECLE_PLUS,
     ACTION_SOUND_VOLUME,
-    ACTION_PAUSE_BUTTON,
+    ACTION_CATEGORIES_BUTTON,
     ACTION_LOGOUT_BUTTON,
     ACTION_TALK_BUTTON,
     ACTION_OPTION_BUTTON,
@@ -47,7 +47,7 @@ export default function ActionButtons({ navigation }) {
                     <ActionButton name={ACTION_EDIT_BUTTON} style={styles[ACTION_EDIT_BUTTON]} onClick={handleClick} />
                     <ActionButton name={ACTION_CIRECLE_PLUS} style={styles[ACTION_CIRECLE_PLUS]} onClick={handleClick} />
                     <ActionButton name={ACTION_SOUND_VOLUME} style={styles[ACTION_SOUND_VOLUME]} onClick={handleClick} />
-                    <ActionButton name={ACTION_PAUSE_BUTTON} style={styles[ACTION_PAUSE_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_CATEGORIES_BUTTON} style={styles[ACTION_CATEGORIES_BUTTON]} onClick={handleClick} />
                     <ActionButton name={ACTION_LOGOUT_BUTTON} style={styles[ACTION_LOGOUT_BUTTON]} onClick={handleClick} />
                     <ActionButton name={ACTION_TALK_BUTTON} style={styles[ACTION_TALK_BUTTON]} onClick={handleClick} />
                     <ActionButton name={ACTION_OPTION_BUTTON} style={styles[ACTION_OPTION_BUTTON]} onClick={handleClick} />
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     },
     [ACTION_EDIT_BUTTON]: {
         marginTop: 10,
-        width: 30,
-        height: 30
+        width: 62,
+        height: 24
     },
     [ACTION_CIRECLE_PLUS]: {
         marginTop: 10,
@@ -130,18 +130,18 @@ const styles = StyleSheet.create({
     },
     [ACTION_SOUND_VOLUME]: {
         marginTop: 10,
-        width: 30,
-        height: 30
+        width: 43,
+        height: 43
     },
-    [ACTION_PAUSE_BUTTON]: {
+    [ACTION_CATEGORIES_BUTTON]: {
         marginTop: 10,
-        width: 30,
-        height: 30
+        width: 40,
+        height: 40
     },
     [ACTION_LOGOUT_BUTTON]: {
         marginTop: 10,
-        width: 30,
-        height: 30
+        width: 40,
+        height: 40
     },
     [ACTION_TALK_BUTTON]: {
         marginTop: 10,

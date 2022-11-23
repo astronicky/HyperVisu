@@ -16,13 +16,14 @@ import {
     ACTION_EDIT_BUTTON,
     ACTION_CIRECLE_PLUS,
     ACTION_SOUND_VOLUME,
-    ACTION_PAUSE_BUTTON,
+    ACTION_CATEGORIES_BUTTON,
     ACTION_LOGOUT_BUTTON,
     ACTION_TALK_BUTTON,
     ACTION_OPTION_BUTTON,
     ACTION_REC_SWITCH_BUTTON,
     ACTION_CIR_SWITCH_BUTTON,
-    TALK_LABEL
+    TALK_LABEL,
+    EDIT_LABEL
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
@@ -30,7 +31,7 @@ import ImgClockActive from "../../assets/action_buttons/clock_active.png";
 
 export default function ActionButton({ name, style, active, onClick }) {
     const [clickFlag, setClickFlag] = React.useState((active));
-    let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, fontWeight, lineHeight, stock;
+    let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, lineHeight, stock;
     switch (name) {
         case ACTION_TURN_ON:
             height = style ? style.height ? style.height : 30 : 30;
@@ -54,10 +55,11 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_ARROW_DOWN:
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+            fontSize = style ? style.fontSize ? style.fontSize : width : width;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <Icon name="angle-down" size={fontSize} color={clickFlag ? '#4CD964' : '#ffffff'} />
                     </Pressable>
                 </View>
             );
@@ -65,10 +67,11 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_ARROW_UP:
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+            fontSize = style ? style.fontSize ? style.fontSize : width : width;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-up" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <Icon name="angle-up" size={fontSize} color={clickFlag ? '#4CD964' : '#ffffff'} />
                     </Pressable>
                 </View>
             );
@@ -156,10 +159,18 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_EDIT_BUTTON:
             width = style ? style.width ? style.width : 62 : 62;
             height = style ? style.height ? style.height : 24 : 24;
+            paddingTop = style ? style.paddingTop ? style.paddingTop : 2 : 2;
+            paddingBottom = style ? style.paddingBottom ? style.paddingBottom : 2 : 2;
+            paddingLeft = style ? style.paddingLeft ? style.paddingLeft : 15 : 15;
+            paddingRight = style ? style.paddingRight ? style.paddingRight : 15 : 15;
+            fontSize = style ? style.fontSize ? style.fontSize : 15 : 15;
+            lineHeight = style ? style.lineHeight ? style.lineHeight : 20 : 20;
             return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                <View style={{ ...{ alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
+                        <View style={clickFlag ? { display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2 } : { display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2 }}>
+                            <Text style={{ color: '#ffffff', fontSize: fontSize, lineHeight: lineHeight }}>{EDIT_LABEL}</Text>
+                        </View>
                     </Pressable>
                 </View>
             );
@@ -167,10 +178,13 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_CIRECLE_PLUS:
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <View style={clickFlag ? { display: 'flex', flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
+                            <Text style={{ color: '#ffffff', fontSize: fontSize }}>+</Text>
+                        </View>
                     </Pressable>
                 </View>
             );
@@ -178,21 +192,27 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_SOUND_VOLUME:
             width = style ? style.width ? style.width : 43 : 43;
             height = style ? style.height ? style.height : 43 : 43;
+            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <View style={clickFlag ? { display: 'flex', flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
+                            <Icon name="volume-down" size={fontSize} color='#ffffff' />
+                        </View>
                     </Pressable>
                 </View>
             );
             break;
-        case ACTION_PAUSE_BUTTON:
+        case ACTION_CATEGORIES_BUTTON:
             width = style ? style.width ? style.width : 40 : 40;
             height = style ? style.height ? style.height : 40 : 40;
+            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
+                        <View style={clickFlag ? { display: 'flex', flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
+                            <Icon name="th-large" size={fontSize} color={clickFlag ? '#ffffff' : '#6A6A6B'} />
+                        </View>
                     </Pressable>
                 </View>
             );
@@ -200,10 +220,13 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_LOGOUT_BUTTON:
             width = style ? style.width ? style.width : 40 : 40;
             height = style ? style.height ? style.height : 40 : 40;
+            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <View style={clickFlag ? { display: 'flex', flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
+                            <Icon name="sign-out" size={fontSize} color={clickFlag ? '#ffffff' : '#6A6A6B'} />
+                        </View>
                     </Pressable>
                 </View>
             );
@@ -211,17 +234,16 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_TALK_BUTTON:
             width = style ? style.width ? style.width : 73 : 73;
             height = style ? style.height ? style.height : 38 : 38;
-            paddingTop = style.paddingTop ? style.paddingTop : 9;
-            paddingBottom = style.paddingBottom ? style.paddingBottom : 9;
-            paddingLeft = style.paddingLeft ? style.paddingLeft : 12;
-            paddingRight = style.paddingRight ? style.paddingRight : 12;
-            fontSize = style.fontSize ? style.fontSize : 15;
-            fontWeight = style.fontWeight ? style.fontWeight : 600;
-            lineHeight = style.lineHeight ? style.lineHeight : 20
+            paddingTop = style ? style.paddingTop ? style.paddingTop : 9 : 9;
+            paddingBottom = style ? style.paddingBottom ? style.paddingBottom : 9 : 9;
+            paddingLeft = style ? style.paddingLeft ? style.paddingLeft : 12 : 12;
+            paddingRight = style ? style.paddingRight ? style.paddingRight : 12 : 12;
+            fontSize = style ? style.fontSize ? style.fontSize : 15 : 15;
+            lineHeight = style ? style.lineHeight ? style.lineHeight : 20 : 20;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { ...{ display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: 7 }, ...style } : { ...{ display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, justifyContent: 'center', backgroundColor: '#F1580C', alignItems: 'center', borderRadius: 7 }, ...style }}>
+                        <View style={clickFlag ? { display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height * 0.18 } : { display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, justifyContent: 'center', backgroundColor: '#F1580C', alignItems: 'center', borderRadius: height * 0.18 }}>
                             <Icon name="microphone" size={fontSize} color={clickFlag ? "#ffffff" : "#000000"} />
                             <Text style={clickFlag ? { color: '#ffffff', fontSize: fontSize, lineHeight: lineHeight, marginLeft: paddingLeft * 0.6 } : { color: '#000000', fontSize: fontSize, lineHeight: lineHeight, marginLeft: paddingLeft * 0.6 }}>{TALK_LABEL}</Text>
                         </View>

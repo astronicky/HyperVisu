@@ -26,6 +26,14 @@ import {
 
 import ImgClock from "../../assets/action_buttons/clock.png";
 import ImgClockActive from "../../assets/action_buttons/clock_active.png";
+import ImgArrowLeft from "../../assets/action_buttons/arrow_left.png";
+import ImgArrowLeftActive from "../../assets/action_buttons/arrow_left_active.png";
+import ImgMinus from "../../assets/action_buttons/minus_button.png";
+import ImgMinusActive from "../../assets/action_buttons/minus_button_active.png";
+import ImgPlus from "../../assets/action_buttons/plus_button.png";
+import ImgPlusActive from "../../assets/action_buttons/plus_button_active.png";
+import ImgMoreDetail from "../../assets/action_buttons/detail.png";
+import ImgMoreDetailActive from "../../assets/action_buttons/detail_active.png";
 
 export default function ActionButton({ name, style, active, onClick }) {
     const [clickFlag, setClickFlag] = React.useState((active));
@@ -69,7 +77,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Text style={clickFlag ? { color: '#4CD964', fontSize: width } : { color: '#ffffff', fontSize: width }}>-</Text>
+                        <Image source={clickFlag ? ImgMinusActive : ImgMinus} style={{ width: width }} />
                     </Pressable>
                 </View>
             );
@@ -80,7 +88,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Text style={clickFlag ? { color: '#4CD964', fontSize: width } : { color: '#ffffff', fontSize: width }}>+</Text>
+                        <Image source={clickFlag ? ImgPlusActive : ImgPlus} style={{ width: width, height: height }} />
                     </Pressable>
                 </View>
             );
@@ -91,7 +99,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="arrow-left" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <Image source={clickFlag ? ImgArrowLeftActive : ImgArrowLeft} style={{ width: width, height: height }} />
                     </Pressable>
                 </View>
             );
@@ -102,7 +110,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <Icon name="heart" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <Icon name="heart" size={width} color={clickFlag ? '#4CD964' : '#6A6A6B'} />
                     </Pressable>
                 </View>
             );
@@ -124,7 +132,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <Icon name="bars" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
                     </Pressable>
                 </View>
             );
@@ -135,7 +143,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Icon name="angle-down" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
+                        <Image source={clickFlag ? ImgMoreDetailActive : ImgMoreDetail} style={{ width: width }} />
                     </Pressable>
                 </View>
             );

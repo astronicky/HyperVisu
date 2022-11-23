@@ -80,9 +80,11 @@ export default function ActionButton({ name, style, active, onClick }) {
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.width * 0.18 : 5.24 : 5.24;
             return (
-                <View style={{ ...{ width: height, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: height / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: height / 2, width: width, height: height }} onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} />
-                </View>
+                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                    <View style={{ ...{ width: height, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: height / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: height / 2, width: width, height: height }} />
+                    </View>
+                </Pressable>
             );
             break;
         case ACTION_PLUS:
@@ -90,12 +92,12 @@ export default function ActionButton({ name, style, active, onClick }) {
             height = style ? style.height ? style.height : 30 : 30;
             stock = width * 0.18;
             return (
-                <View style={{ ...{ width: height, height: height, display: 'flex', position: 'relative' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                    <View style={{ ...{ width: height, height: height, display: 'flex', position: 'relative' }, ...style }}>
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 }} />
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: stock, height: height, position: 'absolute', left: (height - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: stock, height: height, position: 'absolute', left: (height - stock) / 2 }} />
-                    </Pressable>
-                </View>
+                    </View>
+                </Pressable>
             );
             break;
         case ACTION_ARROW_LEFT:

@@ -54,6 +54,11 @@ export const ACTION_TALK_BUTTON = "TalkButton";
 export const ACTION_OPTION_BUTTON = "OptionButton";
 export const ACTION_REC_SWITCH_BUTTON = "RecSwithButton";
 export const ACTION_CIR_SWITCH_BUTTON = "CirSwithButton";
+export const ACTION_LAMP_STATUS = "LampStatus";
+export const ACTION_SHUTTER_STATUS = "ShutterStatus";
+export const ACTION_LIGHT_STATUS = "LightStatus";
+export const ACTION_DISPLAY_STATUS = "DisplayStatus";
+export const ACTION_ANALOGUE_VALUE_STATUS = "AnalogueValueStatus";
 
 // Temp data
 

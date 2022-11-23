@@ -22,14 +22,28 @@ import {
     ACTION_OPTION_BUTTON,
     ACTION_REC_SWITCH_BUTTON,
     ACTION_CIR_SWITCH_BUTTON,
+    ACTION_LAMP_STATUS,
+    ACTION_SHUTTER_STATUS,
+    ACTION_LIGHT_STATUS,
+    ACTION_DISPLAY_STATUS,
+    ACTION_ANALOGUE_VALUE_STATUS,
     TALK_LABEL,
     EDIT_LABEL
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
 import ImgClockActive from "../../assets/action_buttons/clock_active.png";
+import ImgLampDisabled from "../../assets/action_buttons/lamp_disable.png";
+import ImgLamp from "../../assets/action_buttons/lamp_normal.png";
+import ImgLampActive from "../../assets/action_buttons/lamp_active.png";
+import ImgShutterDisabled from "../../assets/action_buttons/shutter_disable.png";
+import ImgShutter from "../../assets/action_buttons/shutter.png";
+import ImgLightDisable from "../../assets/action_buttons/light_disable.png";
+import ImgLight from "../../assets/action_buttons/light.png";
+import ImgDisplay from "../../assets/action_buttons/display.png";
+import ImgAnalogue from "../../assets/action_buttons/analogue.png";
 
-export default function ActionButton({ name, style, active, onClick }) {
+export default function ActionButton({ name, style, active, onClick, disabled }) {
     const [clickFlag, setClickFlag] = React.useState((active));
     let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, lineHeight, stock;
     switch (name) {
@@ -133,7 +147,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <Image source={clickFlag ? ImgClockActive : ImgClock} style={{ width: width, height: height }} />
+                        <Image source={clickFlag ? ImgClockActive : ImgClock} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
                     </Pressable>
                 </View>
             );
@@ -297,6 +311,81 @@ export default function ActionButton({ name, style, active, onClick }) {
                         <View style={clickFlag ? { display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', backgroundColor: '#4CD964', borderRadius: height / 2, padding: padding, width: width, height: height } : { display: 'flex', flexDirection: 'row', backgroundColor: '#6A6A6B', borderRadius: height / 2, padding: padding, width: width, height: height }}>
                             <View style={clickFlag ? { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (height * 0.8) / 2 } : { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (height * 0.8) / 2 }} />
                         </View>
+                    </Pressable>
+                </View>
+            );
+            break;
+        case ACTION_LAMP_STATUS:
+            width = style ? style.width ? style.width : 32 : 32;
+            height = style ? style.height ? style.height : 32 : 32;
+            if (disabled) {
+                return (
+                    <View style={{ ...style, ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' } }}>
+                        <Pressable onPress={() => { (onClick) && onClick() }}>
+                            <Image source={ImgLampDisabled} style={{ flex: 1, resizeMode: 'contain' }} />
+                        </Pressable>
+                    </View>
+                );
+            } else {
+                if (active) {
+                    return (
+                        <View style={{ ...style, ...{ width: width + 6, height: height + 6, alignItems: 'center', display: 'flex', justifyContent: 'center' } }}>
+                            <Pressable onPress={() => { (onClick) && onClick() }}>
+                                <Image source={ImgLampActive} width={width + 6} height={height + 6} style={{ flex: 1, resizeMode: 'contain' }} />
+                            </Pressable>
+                        </View>
+                    )
+                } else {
+                    return (
+                        <View style={{ ...style, ...{ width: width + 2, height: height + 2, alignItems: 'center', display: 'flex', justifyContent: 'center' } }}>
+                            <Pressable onPress={() => { (onClick) && onClick() }}>
+                                <Image source={ImgLamp} width={width + 2} height={height + 2} style={{ flex: 1, resizeMode: 'contain' }} />
+                            </Pressable>
+                        </View>
+                    );
+                }
+            }
+            break;
+        case ACTION_SHUTTER_STATUS:
+            width = style ? style.width ? style.width : 34 : 34;
+            height = style ? style.height ? style.height : 34 : 34;
+            return (
+                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable onPress={() => { (onClick) && onClick() }}>
+                        <Image source={disabled ? ImgShutterDisabled : ImgShutter} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
+                    </Pressable>
+                </View>
+            );
+            break;
+        case ACTION_LIGHT_STATUS:
+            width = style ? style.width ? style.width : 36 : 36;
+            height = style ? style.height ? style.height : 36 : 36;
+            return (
+                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable onPress={() => { (onClick) && onClick() }}>
+                        <Image source={disabled ? ImgLightDisable : ImgLight} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
+                    </Pressable>
+                </View>
+            );
+            break;
+        case ACTION_DISPLAY_STATUS:
+            width = style ? style.width ? style.width : 15.5 : 24;
+            height = style ? style.height ? style.height : 15.5 : 24;
+            return (
+                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable onPress={() => { (onClick) && onClick() }}>
+                        <Image source={ImgDisplay} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
+                    </Pressable>
+                </View>
+            );
+            break;
+        case ACTION_ANALOGUE_VALUE_STATUS:
+            width = style ? style.width ? style.width : 24 : 24;
+            height = style ? style.height ? style.height : 24 : 24;
+            return (
+                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable onPress={() => { (onClick) && onClick() }}>
+                        <Image source={ImgAnalogue} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
                     </Pressable>
                 </View>
             );

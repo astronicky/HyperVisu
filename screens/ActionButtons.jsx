@@ -22,7 +22,12 @@ import {
     ACTION_TALK_BUTTON,
     ACTION_OPTION_BUTTON,
     ACTION_REC_SWITCH_BUTTON,
-    ACTION_CIR_SWITCH_BUTTON
+    ACTION_CIR_SWITCH_BUTTON,
+    ACTION_LAMP_STATUS,
+    ACTION_SHUTTER_STATUS,
+    ACTION_LIGHT_STATUS,
+    ACTION_DISPLAY_STATUS,
+    ACTION_ANALOGUE_VALUE_STATUS
 } from "../Constant";
 
 export default function ActionButtons({ navigation }) {
@@ -41,7 +46,7 @@ export default function ActionButtons({ navigation }) {
                     <ActionButton name={ACTION_PLUS} style={styles[ACTION_PLUS]} onClick={handleClick} />
                     <ActionButton name={ACTION_ARROW_LEFT} style={styles[ACTION_ARROW_LEFT]} onClick={handleClick} />
                     <ActionButton name={ACTION_HEART} style={styles[ACTION_HEART]} onClick={handleClick} />
-                    <ActionButton name={ACTION_CLOCK} style={styles[ACTION_CLOCK]} onClick={handleClick} />
+                    <ActionButton name={ACTION_CLOCK} style={styles[ACTION_CLOCK]} />
                     <ActionButton name={ACTION_MENU_LIST} style={styles[ACTION_MENU_LIST]} onClick={handleClick} />
                     <ActionButton name={ACTION_MORE_DETAIL} style={styles[ACTION_MORE_DETAIL]} onClick={handleClick} />
                     <ActionButton name={ACTION_EDIT_BUTTON} style={styles[ACTION_EDIT_BUTTON]} onClick={handleClick} />
@@ -53,6 +58,14 @@ export default function ActionButtons({ navigation }) {
                     <ActionButton name={ACTION_OPTION_BUTTON} style={styles[ACTION_OPTION_BUTTON]} onClick={handleClick} />
                     <ActionButton name={ACTION_REC_SWITCH_BUTTON} style={styles[ACTION_REC_SWITCH_BUTTON]} onClick={handleClick} />
                     <ActionButton name={ACTION_CIR_SWITCH_BUTTON} style={styles[ACTION_CIR_SWITCH_BUTTON]} onClick={handleClick} />
+                    <ActionButton name={ACTION_LAMP_STATUS} style={styles[ACTION_LAMP_STATUS]} />
+                    {/* status disabled, [normal], active */}
+                    <ActionButton name={ACTION_SHUTTER_STATUS} style={styles[ACTION_SHUTTER_STATUS]} />
+                    {/* status disabled, [normal] */}
+                    <ActionButton name={ACTION_LIGHT_STATUS} style={styles[ACTION_LIGHT_STATUS]} />
+                    {/* status disabled, [normal] */}
+                    <ActionButton name={ACTION_DISPLAY_STATUS} style={styles[ACTION_DISPLAY_STATUS]} />
+                    <ActionButton name={ACTION_ANALOGUE_VALUE_STATUS} style={styles[ACTION_ANALOGUE_VALUE_STATUS]} />
                 </Layout>
             </ScrollView>
         </SafeAreaView >
@@ -163,4 +176,29 @@ const styles = StyleSheet.create({
         width: 52,
         height: 32,
     },
+    [ACTION_LAMP_STATUS]: {
+        marginTop: 10,
+        width: 32,
+        height: 32,
+    },
+    [ACTION_SHUTTER_STATUS]: {
+        marginTop: 10,
+        width: 34,
+        height: 34,
+    },
+    [ACTION_LIGHT_STATUS]: {
+        marginTop: 10,
+        width: 36,
+        height: 36,
+    },
+    [ACTION_DISPLAY_STATUS]: {
+        marginTop: 10,
+        width: 15.5,
+        height: 24,
+    },
+    [ACTION_ANALOGUE_VALUE_STATUS]: {
+        marginTop: 10,
+        width: 24,
+        height: 24,
+    }
 });

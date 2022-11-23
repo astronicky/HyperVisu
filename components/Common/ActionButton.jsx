@@ -107,13 +107,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             height = style ? style.height ? style.height : 38 : 38;
             stock = width * 0.1;
             return (
-                <View style={{ ...{ width: height, height: height, display: 'flex', position: 'relative' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                    <View style={{ ...{ width: height, height: height, display: 'flex', position: 'relative' }, ...style }}>
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 }} />
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height * 0.8 / 2 - stock, transform: [{ rotate: '-45deg' }] } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height * 0.8 / 2 - stock, transform: [{ rotate: '-45deg' }] }} />
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height / 2 + stock, transform: [{ rotate: '45deg' }] } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height / 2 + stock, transform: [{ rotate: '45deg' }] }} />
-                    </Pressable>
-                </View>
+                    </View>
+                </Pressable>
             );
             break;
         case ACTION_HEART:

@@ -21,8 +21,7 @@ import {
     ACTION_OPTION_BUTTON,
     ACTION_REC_SWITCH_BUTTON,
     ACTION_CIR_SWITCH_BUTTON,
-    TALK_LABEL,
-    ACTION_CIR_OPTION_BUTTON
+    TALK_LABEL
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";

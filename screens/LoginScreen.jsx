@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView } from "rea
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
 import MainInput from "../components/Common/MainInput";
-import { CONNECT, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
+import { CONNECT, HOME, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
 
 export default function LoginScreen({ navigation }) {
     return (
@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
                         <Pressable onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
                             <Text style={styles.passwordForgotten}>{PASSWORD_FORGOTTEN}</Text>
                         </Pressable>
-                        <MainButton {...{ style: styles.mainButton, title: LOGIN, path: CONNECT, navigation }} />
+                        <MainButton {...{ style: styles.mainButton, title: LOGIN, path: HOME, navigation }} />
                     </View>
                 </Layout>
             </ScrollView>

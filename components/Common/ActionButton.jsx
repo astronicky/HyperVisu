@@ -40,8 +40,13 @@ export default function ActionButton({ name, style, active, onClick }) {
     let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, fontWeight, lineHeight;
     switch (name) {
         case ACTION_TURN_OFF:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             borderWidth = width / 8;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center', borderRadius: width / 2 }, ...style }}>
@@ -50,8 +55,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_ARROW_DOWN:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -61,8 +71,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_ARROW_UP:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -72,8 +87,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_MINUS:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -83,8 +103,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_PLUS:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -94,8 +119,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_ARROW_LEFT:
+<<<<<<< HEAD
+            width = style.width ? style.width : 38;
+            height = style.height ? style.height : 38;
+=======
             width = style ? style.width ? style.width : 38 : 38;
             height = style ? style.height ? style.height : 38 : 38;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -105,8 +135,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_HEART:
+<<<<<<< HEAD
+            width = style.width ? style.width : 22;
+            height = style.height ? style.height : 22;
+=======
             width = style ? style.width ? style.width : 22 : 22;
             height = style ? style.height ? style.height : 22 : 22;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
@@ -116,8 +151,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_CLOCK:
+<<<<<<< HEAD
+            width = style.width ? style.width : 20;
+            height = style.height ? style.height : 20;
+=======
             width = style ? style.width ? style.width : 20 : 20;
             height = style ? style.height ? style.height : 20 : 20;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
@@ -127,8 +167,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_MENU_LIST:
+<<<<<<< HEAD
+            width = style.width ? style.width : 39;
+            height = style.height ? style.height : 39;
+=======
             width = style ? style.width ? style.width : 39 : 39;
             height = style ? style.height ? style.height : 39 : 39;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -138,8 +183,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_MORE_DETAIL:
+<<<<<<< HEAD
+            width = style.width ? style.width : 33;
+            height = style.height ? style.height : 33;
+=======
             width = style ? style.width ? style.width : 33 : 33;
             height = style ? style.height ? style.height : 33 : 33;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -149,8 +199,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_EDIT_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 62;
+            height = style.height ? style.height : 24;
+=======
             width = style ? style.width ? style.width : 62 : 62;
             height = style ? style.height ? style.height : 24 : 24;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -160,8 +215,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_CIRECLE_PLUS:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -171,8 +231,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_SOUND_VOLUME:
+<<<<<<< HEAD
+            width = style.width ? style.width : 43;
+            height = style.height ? style.height : 43;
+=======
             width = style ? style.width ? style.width : 43 : 43;
             height = style ? style.height ? style.height : 43 : 43;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -182,8 +247,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_PAUSE_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 40;
+            height = style.height ? style.height : 40;
+=======
             width = style ? style.width ? style.width : 40 : 40;
             height = style ? style.height ? style.height : 40 : 40;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -193,8 +263,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_LOGOUT_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 40;
+            height = style.height ? style.height : 40;
+=======
             width = style ? style.width ? style.width : 40 : 40;
             height = style ? style.height ? style.height : 40 : 40;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
@@ -204,8 +279,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_TALK_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 73;
+            height = style.height ? style.height : 38;
+=======
             width = style ? style.width ? style.width : 73 : 73;
             height = style ? style.height ? style.height : 38 : 38;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             paddingTop = style.paddingTop ? style.paddingTop : 9;
             paddingBottom = style.paddingBottom ? style.paddingBottom : 9;
             paddingLeft = style.paddingLeft ? style.paddingLeft : 12;
@@ -225,8 +305,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_OPTION_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 59;
+            height = style.height ? style.height : 59;
+=======
             width = style ? style.width ? style.width : 59 : 59;
             height = style ? style.height ? style.height : 59 : 59;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             innerWidth = width / 2;
             innerHeight = width / 2;
             borderWidth = width / 8;
@@ -242,8 +327,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_REC_SWITCH_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 42;
+            height = style.height ? style.height : 36;
+=======
             width = style ? style.width ? style.width : 42 : 42;
             height = style ? style.height ? style.height : 36 : 36;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             padding = height / 10;
             borderRadius = height * 0.2;
             return (
@@ -257,8 +347,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         case ACTION_CIR_SWITCH_BUTTON:
+<<<<<<< HEAD
+            width = style.width ? style.width : 52;
+            height = style.height ? style.height : 32;
+=======
             width = style ? style.width ? style.width : 52 : 52;
             height = style ? style.height ? style.height : 32 : 32;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             padding = height / 10;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
@@ -271,8 +366,13 @@ export default function ActionButton({ name, style, active, onClick }) {
             );
             break;
         default:
+<<<<<<< HEAD
+            width = style.width ? style.width : 30;
+            height = style.height ? style.height : 30;
+=======
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+>>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
             borderWidth = width / 8;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center', borderRadius: width / 2 }, ...style }}>

@@ -53,7 +53,6 @@ export const ACTION_OPTION_BUTTON = "OptionButton";
 export const ACTION_REC_SWITCH_BUTTON = "RecSwithButton";
 export const ACTION_CIR_SWITCH_BUTTON = "CirSwithButton";
 
-<<<<<<< HEAD
 // Temp data
 
 export const SETTING_DATA = [
@@ -88,7 +87,7 @@ export const ACCESS = "Access";
 export const AUDIO = "Audio";
 export const CONTROL = "Control";
 export const ENERGY = "Energy";
-export const LIGHTING= "Lighting";
+export const LIGHTING = "Lighting";
 export const CLIMATE = "Climate";
 export const CAMERA_MONITORING = "Camera/Monitoring";
 export const ALARM_CLOCK = "Alarm Clock";
@@ -322,7 +321,7 @@ export const SHUTTER_DAMON = [
 
 export const LIGHT_DAMONROOM = [
     {
-        title: 'On/Off Switch', 
+        title: 'On/Off Switch',
         imgMainUrl: require('./assets/images/room/lamp.png'),
         flagButton: 'on/off',
         flagSlider: false
@@ -341,10 +340,10 @@ export const LIGHT_DAMONROOM = [
         flagSlider: true
     }
 ];
-  
+
 export const LIGHT_BATHROOM = [
     {
-        title: 'Push Button', 
+        title: 'Push Button',
         imgMainUrl: require('./assets/images/room/dimmer.png'),
         flagButton: 'push',
         flagSlider: false
@@ -393,22 +392,19 @@ export const FAVORITE_DATA = [
         imgDownUrl: require('./assets/images/room/downarrow.png')
     }
 ];
-  
+
 export const SHUTTER_BLINDS_DATA = [
-{
-    title: 'Shutter/Blind',
-    percentValue: '60',
-    imgMainUrl: require('./assets/images/room/shutter.png'), 
-    imgLeftUrl: require('./assets/images/room/uparrow.png'),
-    imgRightUrl: require('./assets/images/room/downarrow.png'),
-    imgCenterUrl: require('./assets/images/room/checkbox.png')
-}
+    {
+        title: 'Shutter/Blind',
+        percentValue: '60',
+        imgMainUrl: require('./assets/images/room/shutter.png'),
+        imgLeftUrl: require('./assets/images/room/uparrow.png'),
+        imgRightUrl: require('./assets/images/room/downarrow.png'),
+        imgCenterUrl: require('./assets/images/room/checkbox.png')
+    }
 ];
 
-
 // Screen Names for unavailable Footer
-=======
->>>>>>> 904b0a2bc86282dea9b7fc48e44068474e147597
 export const HIDE_FOOTER_SCREENS = [CONNECT, LOGIN];
 
 export const FOOTER_NAV_BAR = {

@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {
+    ACTION_TURN_ON,
     ACTION_TURN_OFF,
     ACTION_ARROW_DOWN,
     ACTION_ARROW_UP,
@@ -26,25 +27,26 @@ import {
 
 import ImgClock from "../../assets/action_buttons/clock.png";
 import ImgClockActive from "../../assets/action_buttons/clock_active.png";
-import ImgArrowLeft from "../../assets/action_buttons/arrow_left.png";
-import ImgArrowLeftActive from "../../assets/action_buttons/arrow_left_active.png";
-import ImgMinus from "../../assets/action_buttons/minus_button.png";
-import ImgMinusActive from "../../assets/action_buttons/minus_button_active.png";
-import ImgPlus from "../../assets/action_buttons/plus_button.png";
-import ImgPlusActive from "../../assets/action_buttons/plus_button_active.png";
-import ImgMoreDetail from "../../assets/action_buttons/detail.png";
-import ImgMoreDetailActive from "../../assets/action_buttons/detail_active.png";
 
 export default function ActionButton({ name, style, active, onClick }) {
     const [clickFlag, setClickFlag] = React.useState((active));
-    let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, fontWeight, lineHeight;
+    let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, fontWeight, lineHeight, stock;
     switch (name) {
+        case ACTION_TURN_ON:
+            height = style ? style.height ? style.height : 30 : 30;
+            width = style ? style.width ? style.height * 0.18 : 5.24 : 5.24;
+            return (
+                <View style={{ ...{ width: height, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: width / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: width / 2, width: width, height: height }} onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }} />
+                </View>
+            );
+            break;
         case ACTION_TURN_OFF:
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
             borderWidth = width / 8;
             return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center', borderRadius: width / 2 }, ...style }}>
+                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable style={clickFlag ? { borderWidth: borderWidth, borderColor: '#4CD964', borderRadius: width / 2, width: width, height: height } : { borderWidth: borderWidth, borderColor: '#ffffff', borderRadius: width / 2, width: width, height: height }} onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }} />
                 </View>
             );
@@ -73,22 +75,22 @@ export default function ActionButton({ name, style, active, onClick }) {
             break;
         case ACTION_MINUS:
             width = style ? style.width ? style.width : 30 : 30;
-            height = style ? style.height ? style.height : 30 : 30;
+            height = style ? style.height ? style.width * 0.18 : 5.24 : 5.24;
             return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Image source={clickFlag ? ImgMinusActive : ImgMinus} style={{ width: width }} />
-                    </Pressable>
+                <View style={{ ...{ width: height, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: height / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: height / 2, width: width, height: height }} onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} />
                 </View>
             );
             break;
         case ACTION_PLUS:
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
+            stock = width * 0.18;
             return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Image source={clickFlag ? ImgPlusActive : ImgPlus} style={{ width: width, height: height }} />
+                <View style={{ ...{ width: height, height: height, display: 'flex', position: 'relative' }, ...style }}>
+                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 }} />
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: stock, height: height, position: 'absolute', left: (height - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: stock, height: height, position: 'absolute', left: (height - stock) / 2 }} />
                     </Pressable>
                 </View>
             );
@@ -96,10 +98,13 @@ export default function ActionButton({ name, style, active, onClick }) {
         case ACTION_ARROW_LEFT:
             width = style ? style.width ? style.width : 38 : 38;
             height = style ? style.height ? style.height : 38 : 38;
+            stock = width * 0.1;
             return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Image source={clickFlag ? ImgArrowLeftActive : ImgArrowLeft} style={{ width: width, height: height }} />
+                <View style={{ ...{ width: height, height: height, display: 'flex', position: 'relative' }, ...style }}>
+                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 }} />
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height * 0.8 / 2 - stock, transform: [{ rotate: '-45deg' }] } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height * 0.8 / 2 - stock, transform: [{ rotate: '-45deg' }] }} />
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height / 2 + stock, transform: [{ rotate: '45deg' }] } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width / 2, height: stock, position: 'absolute', left: -height * 0.1, top: height / 2 + stock, transform: [{ rotate: '45deg' }] }} />
                     </Pressable>
                 </View>
             );
@@ -131,7 +136,7 @@ export default function ActionButton({ name, style, active, onClick }) {
             height = style ? style.height ? style.height : 39 : 39;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
+                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
                         <Icon name="bars" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
                     </Pressable>
                 </View>
@@ -142,8 +147,8 @@ export default function ActionButton({ name, style, active, onClick }) {
             height = style ? style.height ? style.height : 33 : 33;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <Image source={clickFlag ? ImgMoreDetailActive : ImgMoreDetail} style={{ width: width }} />
+                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
+                        <Icon name="ellipsis-h" size={width} color={clickFlag ? '#4CD964' : '#ffffff'} />
                     </Pressable>
                 </View>
             );

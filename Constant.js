@@ -33,6 +33,7 @@ export const OPEN_CONFIGURATION = "Open Configuration";
 export const SERVER = "Server";
 export const CONFIGURATION = "Configuration";
 
+export const ACTION_TURN_ON = "TurnOn";
 export const ACTION_TURN_OFF = "TurnOff";
 export const ACTION_ARROW_DOWN = "ArrowDown";
 export const ACTION_ARROW_UP = "ArrowUp";

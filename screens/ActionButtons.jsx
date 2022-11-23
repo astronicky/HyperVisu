@@ -3,6 +3,7 @@ import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import Layout from "../components/Layout/Layout";
 import ActionButton from "../components/Common/ActionButton";
 import {
+    ACTION_TURN_ON,
     ACTION_TURN_OFF,
     ACTION_ARROW_DOWN,
     ACTION_ARROW_UP,
@@ -32,6 +33,7 @@ export default function ActionButtons({ navigation }) {
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
                 <Layout>
+                    <ActionButton name={ACTION_TURN_ON} style={styles[ACTION_TURN_ON]} onClick={handleClick} />
                     <ActionButton name={ACTION_TURN_OFF} style={styles[ACTION_TURN_OFF]} onClick={handleClick} />
                     <ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} onClick={handleClick} />
                     <ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} onClick={handleClick} />
@@ -83,8 +85,8 @@ const styles = StyleSheet.create({
     },
     [ACTION_MINUS]: {
         marginTop: 10,
-        width: 50,
-        height: 50
+        width: 30,
+        height: 30
     },
     [ACTION_PLUS]: {
         marginTop: 10,

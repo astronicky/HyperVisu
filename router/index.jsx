@@ -71,15 +71,37 @@ export default function Router() {
                         </Pressable>
                     ),
                 })} />
+                <Tab.Screen name={ACTION_BUTTONS} component={ActionButtons} options={({ navigation }) => ({
+                    headerTitle: '',
+                    headerStyle: styles.headerStyle,
+                    headerRight: () => (
+                        <Pressable
+                            onPress={() => {
+                                navigation.navigate(LOGIN);
+                            }}
+                        >
+                            <Icon name="angle-right" size={17} color="#FF9500" style={styles.nextArrowButton} />
+                        </Pressable>
+                    ),
+                    headerLeft: () => (
+                        <Pressable
+                            onPress={() => {
+                                navigation.navigate(FORGOT_PASSWORD);
+                            }}
+                        >
+                            <Text style={styles.headTitle}>{CANCEL}</Text>
+                        </Pressable>
+                    ),
+                })} />
                 <Tab.Screen name={HOME} component={SmartHOmeScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={ROOMS} component={RoomsScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={CATEGORIES} component={CategoriesScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={SETTING} component={SettingScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={CONFIG} component={ConfigScreen} options={{ headerShown: false }} />    
-                <Tab.Screen name={SHUTTER} component={ShutterScreen} options={{ headerShown: false }} />  
-                <Tab.Screen name={LIGHT} component={LightScreen} options={{ headerShown: false }} />   
-                <Tab.Screen name={CAMERA} component={CameraScreen} options={{ headerShown: false }} /> 
-                <Tab.Screen name={ROOM} component={RoomScreen} options={{ headerShown: false }} />  
+                <Tab.Screen name={CONFIG} component={ConfigScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={SHUTTER} component={ShutterScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={LIGHT} component={LightScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={CAMERA} component={CameraScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={ROOM} component={RoomScreen} options={{ headerShown: false }} />
             </Tab.Navigator>
         </NavigationContainer>
     );

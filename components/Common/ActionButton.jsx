@@ -37,9 +37,11 @@ export default function ActionButton({ name, style, active, onClick }) {
             height = style ? style.height ? style.height : 30 : 30;
             width = style ? style.width ? style.height * 0.18 : 5.24 : 5.24;
             return (
-                <View style={{ ...{ width: height, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
-                    <Pressable style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: width / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: width / 2, width: width, height: height }} onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }} />
-                </View>
+                <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }} >
+                    <View style={{ ...{ width: height, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: width / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: width / 2, width: width, height: height }} />
+                    </View>
+                </Pressable>
             );
             break;
         case ACTION_TURN_OFF:

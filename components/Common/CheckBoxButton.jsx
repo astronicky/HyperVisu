@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import ActionButton from './ActionButton';
-import { ACTION_MINUS, ACTION_PLUS } from '../../Constant';
+import { ACTION_ARROW_UP, ACTION_ARROW_DOWN, ACTION_MINUS, ACTION_PLUS } from '../../Constant';
 
 const backgroundImg = require('../../assets/images/room/ellipse.png');
 
@@ -9,7 +9,8 @@ const handleClick = () => {
     console.log("okay");
 }
 
-const CheckBoxButton = ({title, bottomTitle, imgMainUrl, style, path, navigation, imgLeftUrl, imgCenterUrl, imgRightUrl, textBottom}) => {
+const CheckBoxButton = ({ flagButton, title, bottomTitle, imgMainUrl, style, path, navigation, imgCenterUrl, textBottom }) => {
+
   return (
     <View {...{ style }}>
       <View style={styles.container}>
@@ -26,11 +27,12 @@ const CheckBoxButton = ({title, bottomTitle, imgMainUrl, style, path, navigation
               </View>
             </View>
             <View style={styles.btnGroup}>
-              {/* <ActionButton name={ACTION_PLUS} style={styles[ACTION_PLUS]} onClick={handleClick} /> */}
-              {imgLeftUrl !==undefined && <Image source={imgLeftUrl}></Image>}
+              {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_PLUS} style={styles[ACTION_PLUS]} onClick={handleClick} />) :
+                            (<ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} onClick={handleClick} />))}
               {imgCenterUrl !== undefined && <Image source={imgCenterUrl}></Image>}
-              {textBottom !== undefined && <Text  style={{ color: '#FFFFFF' }}>{textBottom}</Text>}
-              {imgRightUrl !== undefined && <Image source={imgRightUrl}></Image>}
+              {textBottom !== undefined && <Text style={{ color: '#FFFFFF', opacity: 0.5 }}>{textBottom}</Text>}
+              {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_MINUS} style={styles[ACTION_MINUS]} onClick={handleClick} />) :
+                            (<ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} onClick={handleClick} />))}
             </View>  
           </Pressable> 
         </TouchableOpacity>           
@@ -41,12 +43,20 @@ const CheckBoxButton = ({title, bottomTitle, imgMainUrl, style, path, navigation
 
 const styles = StyleSheet.create({
     [ACTION_MINUS]: {
-        width: 50,
-        height: 50
+        width: 20,
+        height: 20
     },
     [ACTION_PLUS]: {
-        width: 30,
-        height: 30
+        width: 20,
+        height: 20
+    },
+    [ACTION_ARROW_DOWN]: {
+      width: 40,
+      height: 40
+    },
+    [ACTION_ARROW_UP]: {
+        width: 40,
+        height: 40
     },
     container: {
         borderWidth: 1,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
+import DateBar from '../components/Common/DateBar';
 import CheckBoxButton from '../components/Common/CheckBoxButton';
 import { SHUTTER_AMAND, SHUTTER_DAMON } from '../Constant';
 
@@ -10,13 +11,7 @@ const ShutterScreen = ({ navigation }) => {
         <Layout header={true}>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.categoryTitle}>
-                    <View style={styles.topTitle}>
-                        <Text style={styles.dateTitle}>Tues, 27 Sept 2022 | 10:59 Pm</Text>
-                        {/* <View style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image source={require('../assets/images/plusbackground.png')} style={{ width: 30, height: 30 }}></Image>
-                        <Text style={{ color: 'white', fontSize: 20, fontWeight: '500', position: 'absolute' }}>+</Text>
-                        </View>   */}
-                    </View>
+                    <DateBar flagButton={false}></DateBar>
                     <Text style={styles.mainTitle}>Shutter</Text>
                     <Text style={styles.subTitle}>Control your house</Text>
                 </View>
@@ -27,12 +22,11 @@ const ShutterScreen = ({ navigation }) => {
                     {SHUTTER_AMAND?.map((data, index) => {
                         return (
                         <CheckBoxButton key={index} 
+                                        flagButton={false}
                                         title={data.title} 
                                         bottomTitle={data.bottomTitle + "%"}
                                         imgMainUrl={data.imgMainUrl}
-                                        imgLeftUrl={data.imgLeftUrl}
-                                        imgCenterUrl={data.imgCenterUrl}
-                                        imgRightUrl={data.imgRightUrl}></CheckBoxButton>
+                                        imgCenterUrl={data.imgCenterUrl}></CheckBoxButton>
                         );
                     })}
                 </View>
@@ -43,12 +37,11 @@ const ShutterScreen = ({ navigation }) => {
                 {SHUTTER_DAMON?.map((data, index) => {
                     return (
                     <CheckBoxButton key={index} 
+                                    flagButton={false}
                                     title={data.title} 
                                     bottomTitle={data.bottomTitle + "%"}
                                     imgMainUrl={data.imgMainUrl}
-                                    imgLeftUrl={data.imgLeftUrl}
-                                    imgCenterUrl={data.imgCenterUrl}
-                                    imgRightUrl={data.imgRightUrl}></CheckBoxButton>
+                                    imgCenterUrl={data.imgCenterUrl}></CheckBoxButton>
                     );
                 })}
                 </View>

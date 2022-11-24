@@ -1,37 +1,21 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text, ImageBackground, Image, SafeAreaView } from 'react-native';
+import * as Progress from 'react-native-progress';
+import { View, StyleSheet, ScrollView, Text, SafeAreaView, ProgressBarAndroid } from 'react-native';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
-import { CAMERA_IMAGE, CAMERA_RED, CAMERA_GREEN } from '../Constant';
+import { BABYROOM_TITLE, CLIMATE } from '../Constant';
 
-const CameraScreen = ({ navigation }) => {
+const BabyRoomScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.containerScroll}>
         <Layout header={true}>
             <ScrollView style={styles.scrollView}>
-            <View style={styles.categoryTitle}>
-                <DateBar flagButton={false}></DateBar>
-                <Text style={styles.mainTitle}>Camera</Text>
-                <Text style={styles.subTitle}>Control your house</Text>
-            </View>
-            <View style={styles.categoryContainer}>
-                <View style={styles.cameraItem}>
-                <View style={styles.cameraTitle}>
-                    <Text style={styles.cameraText}>Dinning Room</Text>
-                    <Image source={CAMERA_GREEN}></Image>
-                </View>          
-                <ImageBackground style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
-                </View>
-            </View>
-            <View style={styles.categoryContainer}>
-                <View style={styles.cameraItem}>
-                <View style={styles.cameraTitle}>
-                    <Text style={styles.cameraText}>Kitchen</Text>
-                    <Image source={CAMERA_RED}></Image>
-                </View>          
-                <ImageBackground style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
-                </View>
-            </View>
+                <View style={styles.categoryTitle}>
+                    <DateBar flagButton={false}></DateBar>
+                    <Text style={styles.mainTitle}>{BABYROOM_TITLE}</Text>
+                    <Text style={styles.subTitle}>{CLIMATE}</Text>
+                </View>      
+                {/* <Progress.Circle size={100} thickness={50} />    */}
             </ScrollView>
         </Layout>
     </SafeAreaView>
@@ -114,4 +98,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CameraScreen;
+export default BabyRoomScreen;

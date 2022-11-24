@@ -1,45 +1,48 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, ImageBackground, Pressable, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
+import DateBar from '../components/Common/DateBar';
 import FavoriteCategory from '../components/Common/FavoriteCategory';
 import CheckBoxButton from '../components/Common/CheckBoxButton';
 import ToggleButton from '../components/Common/ToggleButton';
 import { STAIRE, NUMBER08, NUMBER69, RECT, LAMP_WHITE, 
-        ELLIPSE, UPARROW, DOWNARROW, BLINDS_WHITE, 
-        DIMMER, 
+        ELLIPSE, UPARROW, DOWNARROW, BLINDS_WHITE,
         ROOMS, CATEGORIES, FAVORITE_DATA, SHUTTER_BLINDS_DATA } from "../Constant";
 
-const rectImgBigOne = require('../assets/images/room/rectangle-big-1.png');
-const rectImgBigTwo = require('../assets/images/room/rectangle-big-2.png');
 const dimmerImg = require('../assets/images/room/dimmer.png');
-const ellipseBigImg = require('../assets/images/room/ellispe-big.png');
 const number24Img = require('../assets/images/room/24.png');
-const plusImg = require('../assets/images/room/plus.png');
-const minusImg = require('../assets/images/room/minus.png');
 const filmImg = require('../assets/images/room/film.png');
 const doorImg = require('../assets/images/room/door.png');
 
 const RoomScreen = ({ navigation }) => {
 
-    const [sliderValue, setSliderValue] = useState();
+    const [dimmerValue, setDimmerValue] = useState();
+    const [whiteDimmerValue, setWhiteDimmerValue] = useState();
+    const [analogueInputValue, setAnalogueInputValue] = useState();
+    const [analogueDisplayVaule, setAnalogueDisplayValue] = useState();
 
-    // const changeSliderValue = (value) => {       
-    //     setSliderValue(value);
-    //     console("parent value", sliderValue);
-    // };
+    const changeDimmerValue = (value) => {
+        setDimmerValue(value);
+    };
+
+    const changeWhiteDimmerValue = (value) => {
+        setWhiteDimmerValue(value);
+    };
+
+    const changeAnalogueInputValue = (value) => {
+        setAnalogueInputValue(value);
+    };
+
+    const changeAnalogueDisplayValue = (value) => {
+        setAnalogueDisplayValue(value);
+    }
     
     return (
         <SafeAreaView style={styles.containerScroll}>
             <Layout header={true}>
                 <ScrollView style={styles.scrollView}>
                 <View style={styles.smartHomeTitle}>
-                    <View style={styles.topTitle}>
-                    <Text style={styles.dateTitle}>Tues, 27 Sept 2022 | 10:59 Pm</Text>
-                    <View style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image source={require('../assets/images/ellipse.png')} style={{ width: 30, height: 30 }}></Image>
-                        <Text style={{ color: 'white', fontSize: 20, fontWeight: '500', position: 'absolute' }}>+</Text>
-                    </View>  
-                    </View>
+                    <DateBar flagButton={true}></DateBar>
                     <Text style={styles.mainTitle}>Living Room</Text>
                     <Text style={styles.subTitle}>Control your house</Text>
                 </View>
@@ -90,12 +93,11 @@ const RoomScreen = ({ navigation }) => {
                     <View style={styles.favoriteTilte}>
                     <Text style={styles.favoriteText}>Shutter/Blind</Text>
                     </View>
-                    {SHUTTER_BLINDS_DATA !== undefined && <CheckBoxButton title={SHUTTER_BLINDS_DATA[0].title} 
+                    {SHUTTER_BLINDS_DATA !== undefined && <CheckBoxButton flagButton={false}
+                                                                    title={SHUTTER_BLINDS_DATA[0].title} 
                                                                     bottomTitle={SHUTTER_BLINDS_DATA[0].percentValue + "%"} 
                                                                     imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl} 
-                                                                    imgLeftUrl={SHUTTER_BLINDS_DATA[0].imgLeftUrl} 
                                                                     imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}
-                                                                    imgRightUrl={SHUTTER_BLINDS_DATA[0].imgRightUrl}
                                                                     {...{ navigation, path: ROOMS }}></CheckBoxButton>}
                 </View>
                 <View style={styles.favoriteCategory}>
@@ -106,13 +108,13 @@ const RoomScreen = ({ navigation }) => {
                                 imgMainUrl={LAMP_WHITE}
                                 flagButton="on/off"
                                 flagSlider={false}
-                                // changeSliderValue={changeSliderValue}
                                 {...{ navigation, path: ROOMS }}></ToggleButton>
                     <ToggleButton title="Dimmer01" 
                                 imgMainUrl={dimmerImg}
                                 flagButton="on/off"
-                                bottomTitle="70"
+                                bottomTitle={dimmerValue}
                                 flagSlider={true}
+                                changeSliderValue={changeDimmerValue}
                                 {...{ navigation, path: ROOMS }}>
                     </ToggleButton>
                     <ToggleButton title="Push Button" 
@@ -122,31 +124,33 @@ const RoomScreen = ({ navigation }) => {
                                 {...{ navigation, path: ROOMS }}></ToggleButton>
                     <CheckBoxButton title="Status Display"
                                 bottomTitle="On" 
-                                imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl}
-                                {...{ navigation, path: ROOMS }}></CheckBoxButton>
+                                imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl}>
+                                </CheckBoxButton>
                     <ToggleButton title="Tunable White Dimmer" 
                                 imgMainUrl={dimmerImg}
                                 flagButton="on/off"
-                                bottomTitle="70"
+                                bottomTitle={whiteDimmerValue}
                                 flagSlider={true}
+                                changeSliderValue={changeWhiteDimmerValue}
                                 {...{ navigation, path: ROOMS }}>
                     </ToggleButton>
                     <ToggleButton title="Analogue Value Input" 
                                 imgMainUrl={dimmerImg}
-                                bottomTitle="70"
+                                bottomTitle={analogueInputValue}
                                 flagSlider={true}
+                                changeSliderValue={changeAnalogueInputValue}
                                 {...{ navigation, path: ROOMS }}>
                     </ToggleButton>
                     <ToggleButton title="Analogue Value Display" 
                                 imgMainUrl={dimmerImg}
-                                bottomTitle="70"
+                                bottomTitle={analogueDisplayVaule}
                                 flagSlider={true}
+                                changeSliderValue={changeAnalogueDisplayValue}
                                 {...{ navigation, path: ROOMS }}>
                     </ToggleButton>
-                    <CheckBoxButton title="Climate" 
-                                imgMainUrl={number24Img} 
-                                imgLeftUrl={plusImg}
-                                imgRightUrl={minusImg}
+                    <CheckBoxButton flagButton={true}
+                                title="Climate" 
+                                imgMainUrl={number24Img}
                                 textBottom="Temp"
                                 {...{ navigation, path: ROOMS }}></CheckBoxButton>
                 </View>
@@ -192,17 +196,6 @@ const styles = StyleSheet.create({
     },
     smartHomeTitle: {
         padding: 27,
-    },
-    dateTitle: {
-        color: 'white',
-        fontWeight: '400',
-        fontSize: 14
-    },
-    topTitle: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     mainTitle: {
         color: 'white',

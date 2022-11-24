@@ -1,3 +1,4 @@
+// screen
 export const HOME = "Home";
 export const ROOM = "Room";
 export const SETTING = "Setting";
@@ -11,7 +12,9 @@ export const CAMERA = "Camera";
 export const LOGIN = "Login";
 export const CONNECT = "Connect";
 export const FORGOT_PASSWORD = "Forgot";
+export const BABYROOM = "Babyroom";
 export const ACTION_BUTTONS = "Buttons";
+// common
 export const LOGO_TITLE = "HYPERVISU";
 export const LOGO_SUB_TITLE = "BY ELAUSYS";
 export const CANCEL = "Cancel";
@@ -33,7 +36,18 @@ export const DONE = "Done";
 export const OPEN_CONFIGURATION = "Open Configuration";
 export const SERVER = "Server";
 export const CONFIGURATION = "Configuration";
-
+export const BABYROOM_TITLE = "Baby Room";
+export const ACCESS = "Access";
+export const AUDIO = "Audio";
+export const CONTROL = "Control";
+export const ENERGY = "Energy";
+export const LIGHTING = "Lighting";
+export const CLIMATE = "Climate";
+export const CAMERA_MONITORING = "Camera/Monitoring";
+export const ALARM_CLOCK = "Alarm Clock";
+export const SAFETY_SECURITY = "Safety&Security";
+export const NEWS = "News";
+// action button
 export const ACTION_TURN_ON = "TurnOn";
 export const ACTION_TURN_OFF = "TurnOff";
 export const ACTION_ARROW_DOWN = "ArrowDown";
@@ -90,22 +104,11 @@ export const CONFIG_DATA = [
     }
 ];
 
-export const ACCESS = "Access";
-export const AUDIO = "Audio";
-export const CONTROL = "Control";
-export const ENERGY = "Energy";
-export const LIGHTING = "Lighting";
-export const CLIMATE = "Climate";
-export const CAMERA_MONITORING = "Camera/Monitoring";
-export const ALARM_CLOCK = "Alarm Clock";
-export const SAFETY_SECURITY = "Safety&Security";
-export const NEWS = "News";
-
 export const CATEGORY_DATA = [
     {
         title: 'Access',
         imgUrl: require('./assets/images/categories/access.png'),
-        category: SHUTTER
+        path: BABYROOM
     },
     {
         title: 'Audio',
@@ -277,17 +280,13 @@ export const SHUTTER_AMAND = [
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png')
+        imgCenterUrl: require('./assets/images/room/checkbox.png')
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png')
+        imgCenterUrl: require('./assets/images/room/checkbox.png')
     }
 ];
 
@@ -296,33 +295,25 @@ export const SHUTTER_DAMON = [
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png')
+        imgCenterUrl: require('./assets/images/room/checkbox.png')
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png')
+        imgCenterUrl: require('./assets/images/room/checkbox.png')
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
         imgCenterUrl: require('./assets/images/room/checkbox.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png')
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png')
+        imgCenterUrl: require('./assets/images/room/checkbox.png')
     }
 ];
 
@@ -405,8 +396,6 @@ export const SHUTTER_BLINDS_DATA = [
         title: 'Shutter/Blind',
         percentValue: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgLeftUrl: require('./assets/images/room/uparrow.png'),
-        imgRightUrl: require('./assets/images/room/downarrow.png'),
         imgCenterUrl: require('./assets/images/room/checkbox.png')
     }
 ];

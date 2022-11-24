@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import Slider from '@react-native-community/slider';
 import ActionButton from './ActionButton';
@@ -10,9 +10,7 @@ function handleClick() {
     console.log("ToggleButton");
 }
 
-const ToggleButton = ({title, bottomTitle, imgMainUrl, style, path, navigation, flagButton, flagSlider }) => {
-
-    const [sliderValue, setSliderValue] = useState();
+const ToggleButton = ({title, bottomTitle, imgMainUrl, style, path, navigation, flagButton, flagSlider, changeSliderValue }) => {
 
     return (
         <View {...{ style }}>
@@ -45,11 +43,10 @@ const ToggleButton = ({title, bottomTitle, imgMainUrl, style, path, navigation, 
                     minimumValue={0}
                     maximumValue={100}
                     step={1}
-                    value={sliderValue}
                     minimumTrackTintColor="#F1580C"
                     maximumTrackTintColor="#FFFFFF"
                     thumbTintColor="#FFFFFF"
-                    onValueChange={sliderValue => { setSliderValue(sliderValue); }}
+                    onValueChange={changeSliderValue}
                 />}    
             </View>
         </View> 

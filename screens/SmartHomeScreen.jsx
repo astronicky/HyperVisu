@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, ImageBackground, Pressable, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
+import DateBar from '../components/Common/DateBar';
 import FavoriteRoom from '../components/Common/FavoriteRoom';
 import FavoriteCategory from '../components/Common/FavoriteCategory';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,14 +15,7 @@ const SmartHomeScreen = ({ navigation }) => {
         <Layout header={true}>
             <ScrollView style={styles.scrollView}>
             <View style={styles.smartHomeTitle}>
-                <View style={styles.topTitle}>
-                    <Text style={styles.dateTitle}>Tues, 27 Sept 2022 | 10:59 Pm</Text>
-                    {/* <Icon name='plus' size={12} color="#FFFFFF" style={{ backgroundColor: '#2F2F31'}} /> */}
-                    <View style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image source={require('../assets/images/ellipse.png')} style={{ width: 30, height: 30 }}></Image>
-                        <Text style={{ color: 'white', fontSize: 20, fontWeight: '400', position: 'absolute' }}>+</Text>
-                    </View>  
-                </View>
+                <DateBar flagButton={true}></DateBar>
                 <Text style={styles.mainTitle}>Smart Home</Text>
                 <Text style={styles.subTitle}>You can control all your Smart Home{"\n"}and enjoy Smart life</Text>
             </View>
@@ -101,18 +95,6 @@ const styles = StyleSheet.create({
     },
     smartHomeTitle: {
         padding: 25,
-    },
-    dateTitle: {
-        color: 'white',
-        fontWeight: '400',
-        fontSize: 14,
-        opacity: 0.6
-    },
-    topTitle: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     mainTitle: {
         color: 'white',

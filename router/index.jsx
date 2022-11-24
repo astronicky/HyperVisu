@@ -17,7 +17,11 @@ import ShutterScreen from '../screens/ShutterScreen';
 import LightScreen from '../screens/LightScreen';
 import CameraScreen from '../screens/CameraScreen';
 import RoomScreen from '../screens/RoomScreen';
-import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, ACTION_BUTTONS, SETTING, CONFIG, CATEGORIES, ROOMS, HOME, SHUTTER, LIGHT, CAMERA, ROOM } from '../Constant';
+import BabyRoomScreen from '../screens/BabyRoomScreen';
+import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, 
+        ACTION_BUTTONS, SETTING, CONFIG, CATEGORIES, 
+        ROOMS, HOME, SHUTTER, LIGHT, CAMERA, ROOM,
+        BABYROOM } from '../Constant';
 import Footer from '../components/Layout/Footer';
 
 const Tab = createBottomTabNavigator();
@@ -102,6 +106,7 @@ export default function Router() {
                 <Tab.Screen name={LIGHT} component={LightScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={CAMERA} component={CameraScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={ROOM} component={RoomScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={BABYROOM} component={BabyRoomScreen} options={{ headerShown: false }} />
             </Tab.Navigator>
         </NavigationContainer>
     );

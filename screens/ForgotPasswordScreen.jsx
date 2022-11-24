@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
-import { Text, ScrollView, SafeAreaView, View, StyleSheet, Pressable } from "react-native";
+import { Text, ScrollView, SafeAreaView, View, StyleSheet } from "react-native";
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
 import MainInput from "../components/Common/MainInput";

@@ -73,6 +73,7 @@ export const ACTION_SHUTTER_STATUS = "ShutterStatus";
 export const ACTION_LIGHT_STATUS = "LightStatus";
 export const ACTION_DISPLAY_STATUS = "DisplayStatus";
 export const ACTION_ANALOGUE_VALUE_STATUS = "AnalogueValueStatus";
+export const ACTION_CLOSE_BUTTON = "CloseButton";
 
 // Temp data
 

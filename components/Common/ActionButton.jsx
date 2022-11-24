@@ -27,6 +27,7 @@ import {
     ACTION_LIGHT_STATUS,
     ACTION_DISPLAY_STATUS,
     ACTION_ANALOGUE_VALUE_STATUS,
+    ACTION_CLOSE_BUTTON,
     TALK_LABEL,
     EDIT_LABEL
 } from "../../Constant";
@@ -42,6 +43,8 @@ import ImgLightDisable from "../../assets/action_buttons/light_disable.png";
 import ImgLight from "../../assets/action_buttons/light.png";
 import ImgDisplay from "../../assets/action_buttons/display.png";
 import ImgAnalogue from "../../assets/action_buttons/analogue.png";
+import ImgClose from "../../assets/action_buttons/close.png";
+import ImgCloseActive from "../../assets/action_buttons/close_active.png";
 
 export default function ActionButton({ name, style, active, onClick, disabled }) {
     const [clickFlag, setClickFlag] = React.useState((active));
@@ -386,6 +389,17 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { (onClick) && onClick() }}>
                         <Image source={ImgAnalogue} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
+                    </Pressable>
+                </View>
+            );
+            break;
+        case ACTION_CLOSE_BUTTON:
+            width = style ? style.width ? style.width : 20 : 20;
+            height = style ? style.height ? style.height : 20 : 20;
+            return (
+                <View style={{ ...{ width: width, height: height, alignItems: 'center', display: 'flex', justifyContent: 'center' }, ...style }}>
+                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
+                        <Image source={clickFlag ? ImgCloseActive : ImgClose} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
                     </Pressable>
                 </View>
             );

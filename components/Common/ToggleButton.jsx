@@ -10,13 +10,13 @@ function handleClick() {
     console.log("ToggleButton");
 }
 
-const ToggleButton = ({title, bottomTitle, imgMainUrl, style, path, navigation, flagButton, flagSlider, changeSliderValue }) => {
+const ToggleButton = ({index, title, bottomTitle, imgMainUrl, style, flagButton, flagSlider, changeSliderValue, onShowModal }) => {
 
     return (
         <View {...{ style }}>
             <View style={styles.container}>
                 <TouchableOpacity>
-                <Pressable style={styles.baseButton} onPress={() => navigation.navigate(path)}>
+                <Pressable style={styles.baseButton} onPress={() => onShowModal(index, true)}>
                     <View style={{...styles.baseButton, flex: 8 }}>
                     <View style={styles.mainImgage}>
                         <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
@@ -24,7 +24,7 @@ const ToggleButton = ({title, bottomTitle, imgMainUrl, style, path, navigation, 
                     </View>
                     <View>
                         <Text style={styles.roomText}>{title}</Text>
-                        {bottomTitle !== undefined && <Text style={styles.valueText}>{bottomTitle}%</Text>}
+                        {flagSlider && bottomTitle !== undefined && <Text style={styles.valueText}>{ bottomTitle?bottomTitle : 0 }%</Text>}
                     </View>
                     </View>
                     

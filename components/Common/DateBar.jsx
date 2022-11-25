@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import moment from 'moment';
+import { ELLIPSE_BLACK } from '../../Constant';
 
 const DataBar = ( {flagButton} ) => {
 
@@ -16,7 +17,7 @@ const DataBar = ( {flagButton} ) => {
         <View style={styles.container}>
             <Text style={styles.dateText}>{currentDate}</Text>
             {flagButton && <View style={styles.plusButton}>
-                <Image source={require('../../assets/images/ellipse.png')} style={{ width: 30, height: 30 }}></Image>
+                <Image source={ELLIPSE_BLACK} style={{ width: 30, height: 30 }}></Image>
                 <Text style={styles.plusText}>+</Text>
             </View>}  
         </View>

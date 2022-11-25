@@ -29,7 +29,8 @@ import {
     ACTION_ANALOGUE_VALUE_STATUS,
     ACTION_CLOSE_BUTTON,
     TALK_LABEL,
-    EDIT_LABEL
+    EDIT_LABEL,
+    ACTION_SWITCH,
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
@@ -45,6 +46,8 @@ import ImgDisplay from "../../assets/action_buttons/display.png";
 import ImgAnalogue from "../../assets/action_buttons/analogue.png";
 import ImgClose from "../../assets/action_buttons/close.png";
 import ImgCloseActive from "../../assets/action_buttons/close_active.png";
+import ImgLampTop from '../../assets/images/lamp_top.png';
+import ImgLampBottom from '../../assets/images/lamp_bottom.png';
 
 export default function ActionButton({ name, style, active, onClick, disabled }) {
     const [clickFlag, setClickFlag] = React.useState((active));
@@ -402,6 +405,27 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                         <Image source={clickFlag ? ImgCloseActive : ImgClose} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
                     </Pressable>
                 </View>
+            );
+            break;
+         case ACTION_SWITCH:
+            width = style ? style.width ? style.width : 42 : 42;
+            height = style ? style.height ? style.height : 36 : 36;
+            padding = height / 10;
+            borderRadius = height * 0.1;
+            return (
+                <View style={{ ...{ width: width, height: height, backgroundColor: 'rgba(248, 248, 248, 0.92)', borderRadius: borderRadius,  }, ...style }}>
+                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
+                        <View style={clickFlag ? { top: 0, height: height * 2/3, backgroundColor: '#F1580C', borderRadius: borderRadius } : { top: height * 1/3, height: height * 2/3, backgroundColor: '#F1580C', borderRadius: borderRadius }} >
+                            <View style={{ height: height * 2/3, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <View style={{ margin: 6, width: 30, height: 5, backgroundColor: '#FFFFFF', borderRadius: 5 }}></View>
+                                <View style={{ margin: 40 }}>
+                                    <Image source={ImgLampTop}></Image>
+                                    <Image source={ImgLampBottom} style={{ marginLeft: 6 }}></Image>
+                                </View>
+                            </View>
+                        </View>
+                    </Pressable >
+                </View >
             );
             break;
         default:

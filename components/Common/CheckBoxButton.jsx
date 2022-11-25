@@ -9,13 +9,13 @@ const handleClick = () => {
     console.log("okay");
 }
 
-const CheckBoxButton = ({ flagButton, title, bottomTitle, imgMainUrl, style, path, navigation, imgCenterUrl, textBottom }) => {
+const CheckBoxButton = ({ flagButton, title, bottomTitle, imgMainUrl, style, imgCenterUrl, textBottom, showModal }) => {
 
   return (
     <View {...{ style }}>
       <View style={styles.container}>
         <TouchableOpacity>
-          <Pressable style={styles.baseButton} onPress={() => navigation.navigate(path)}>
+          <Pressable style={styles.baseButton} onPress={() => showModal() }>
             <View style={{...styles.baseButton, flex: 7 }}>
               <View style={styles.mainImgage}>
                 <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      

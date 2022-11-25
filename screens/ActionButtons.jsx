@@ -28,7 +28,8 @@ import {
     ACTION_LIGHT_STATUS,
     ACTION_DISPLAY_STATUS,
     ACTION_ANALOGUE_VALUE_STATUS,
-    ACTION_CLOSE_BUTTON
+    ACTION_CLOSE_BUTTON,
+    ACTION_SWITCH
 } from "../Constant";
 
 export default function ActionButtons({ navigation }) {
@@ -68,6 +69,7 @@ export default function ActionButtons({ navigation }) {
                     <ActionButton name={ACTION_DISPLAY_STATUS} style={styles[ACTION_DISPLAY_STATUS]} />
                     <ActionButton name={ACTION_ANALOGUE_VALUE_STATUS} style={styles[ACTION_ANALOGUE_VALUE_STATUS]} />
                     <ActionButton name={ACTION_CLOSE_BUTTON} style={styles[ACTION_CLOSE_BUTTON]} />
+                    <ActionButton name={ACTION_SWITCH} style={styles[ACTION_SWITCH]} />
                 </Layout>
             </ScrollView>
         </SafeAreaView >
@@ -82,6 +84,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         textAlign: 'center',
         width: '100%'
+    },
+    [ACTION_SWITCH]: {
+        marginTop: 10,
+        width: 124,
+        height: 325
     },
     [ACTION_TURN_OFF]: {
         marginTop: 10,

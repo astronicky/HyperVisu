@@ -13,6 +13,7 @@ export const LOGIN = "Login";
 export const CONNECT = "Connect";
 export const FORGOT_PASSWORD = "Forgot";
 export const BABYROOM = "Babyroom";
+export const POWER = "Power";
 export const ACTION_BUTTONS = "Buttons";
 // common
 export const LOGO_TITLE = "HYPERVISU";
@@ -47,6 +48,8 @@ export const CAMERA_MONITORING = "Camera/Monitoring";
 export const ALARM_CLOCK = "Alarm Clock";
 export const SAFETY_SECURITY = "Safety&Security";
 export const NEWS = "News";
+export const BRIGHTNESS = "Brightness";
+export const COLOR = "Color";
 // action button
 export const ACTION_TURN_ON = "TurnOn";
 export const ACTION_TURN_OFF = "TurnOff";
@@ -74,6 +77,7 @@ export const ACTION_LIGHT_STATUS = "LightStatus";
 export const ACTION_DISPLAY_STATUS = "DisplayStatus";
 export const ACTION_ANALOGUE_VALUE_STATUS = "AnalogueValueStatus";
 export const ACTION_CLOSE_BUTTON = "CloseButton";
+export const ACTION_SWITCH = "Switch";
 
 // Temp data
 
@@ -124,7 +128,7 @@ export const CATEGORY_DATA = [
     {
         title: 'Energy',
         imgUrl: require('./assets/images/categories/energy.png'),
-        path: SHUTTER
+        path: POWER
     },
     {
         title: 'lightning',
@@ -176,27 +180,27 @@ export const SARAH_DEDROOM = "Sarah Redroom";
 
 export const ROOMS_DATA = [
     {
-        room: 'Bedroom',
+        room: BEDROOM,
         imgUrl: require('./assets/images/rooms/bedroom.png')
     },
     {
-        room: 'Bathroom',
+        room: BATHROOM,
         imgUrl: require('./assets/images/rooms/bathroom.png')
     },
     {
-        room: 'Garage',
+        room: GARAGE,
         imgUrl: require('./assets/images/rooms/garage.png')
     },
     {
-        room: 'Kitchen',
+        room: KITCHEN,
         imgUrl: require('./assets/images/rooms/kitchen.png')
     },
     {
-        room: 'Study',
+        room: STUDY,
         imgUrl: require('./assets/images/rooms/study.png')
     },
     {
-        room: 'Basement',
+        room: BASEMENT,
         imgUrl: require('./assets/images/rooms/basement.png')
     },
     {
@@ -263,6 +267,11 @@ export const FAVORITE_CATEGORY_DATA = [
     }
 ];
 
+export const SNOW = require('./assets/images/snow.png');
+export const CLOSE = require('./assets/images/close.png');
+export const CHECKBOX_WHITE = require('./assets/images/checkbox_white.png');
+export const CHECKBOX = require('./assets/images/checkbox.png');
+export const ELLIPSE_BLACK = require('./assets/images/ellipse.png');
 export const UPARROW = require('./assets/images/favorite_category/uparrow.png');
 export const DOWNARROW = require('./assets/images/favorite_category/downarrow.png');
 export const ELLIPSE = require('./assets/images/favorite_category/ellipse.png');
@@ -281,13 +290,13 @@ export const SHUTTER_AMAND = [
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png')
+        imgCenterUrl: CHECKBOX
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png')
+        imgCenterUrl: CHECKBOX
     }
 ];
 
@@ -296,25 +305,25 @@ export const SHUTTER_DAMON = [
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png')
+        imgCenterUrl: CHECKBOX
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png')
+        imgCenterUrl: CHECKBOX
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png'),
+        imgCenterUrl: CHECKBOX
     },
     {
         title: 'Shutter/Blind',
         bottomTitle: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png')
+        imgCenterUrl: CHECKBOX
     }
 ];
 
@@ -333,7 +342,6 @@ export const LIGHT_DAMONROOM = [
     },
     {
         title: 'On/Off Switch',
-        bottomTitle: '70',
         imgMainUrl: require('./assets/images/room/dimmer.png'),
         flagButton: 'on/off',
         flagSlider: true
@@ -355,7 +363,6 @@ export const LIGHT_BATHROOM = [
     },
     {
         title: 'RGB Dimmer01',
-        bottomTitle: '70',
         imgMainUrl: require('./assets/images/room/dimmer.png'),
         flagButton: 'on/off',
         flagSlider: true
@@ -397,7 +404,7 @@ export const SHUTTER_BLINDS_DATA = [
         title: 'Shutter/Blind',
         percentValue: '60',
         imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: require('./assets/images/room/checkbox.png')
+        imgCenterUrl: CHECKBOX
     }
 ];
 
@@ -417,8 +424,12 @@ export const FOOTER_NAV_BAR = {
         icon: "th-large",
         tab: CATEGORIES
     },
-    [SETTING]: {
+    // [SETTING]: {
+    //     icon: "cog",
+    //     tab: SETTING
+    // },
+    [ACTION_BUTTONS]: {
         icon: "cog",
-        tab: SETTING
+        tab: ACTION_BUTTONS
     },
 }

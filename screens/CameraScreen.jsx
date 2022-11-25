@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         marginTop: 5,
-        color: 'white',
+        color: '#FFFFFF',
         fontWeight: '600',
         fontSize: 17,
         lineHeight: 22,
@@ -69,20 +69,6 @@ const styles = StyleSheet.create({
     },
     categoryContainer: {
         padding: 27,
-    },
-    categoryTilte: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 11
-    },
-    categoryText: {
-        color: '#FFFFFF',
-        fontSize: 17,
-        fontWeight: '400',
-        lineHeight: 22,
-        letterSpacing: -0.41
     },
     cameraItem: {
         borderRadius: 20,

@@ -97,8 +97,7 @@ const RoomScreen = ({ navigation }) => {
                                                                     title={SHUTTER_BLINDS_DATA[0].title} 
                                                                     bottomTitle={SHUTTER_BLINDS_DATA[0].percentValue + "%"} 
                                                                     imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl} 
-                                                                    imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}
-                                                                    {...{ navigation, path: ROOMS }}></CheckBoxButton>}
+                                                                    imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}></CheckBoxButton>}
                 </View>
                 <View style={styles.favoriteCategory}>
                     <View style={styles.favoriteTilte}>
@@ -114,14 +113,12 @@ const RoomScreen = ({ navigation }) => {
                                 flagButton="on/off"
                                 bottomTitle={dimmerValue}
                                 flagSlider={true}
-                                changeSliderValue={changeDimmerValue}
-                                {...{ navigation, path: ROOMS }}>
+                                changeSliderValue={changeDimmerValue}>
                     </ToggleButton>
                     <ToggleButton title="Push Button" 
                                 imgMainUrl={dimmerImg}
                                 flagButton="push"
-                                flagSlider={false}
-                                {...{ navigation, path: ROOMS }}></ToggleButton>
+                                flagSlider={false}></ToggleButton>
                     <CheckBoxButton title="Status Display"
                                 bottomTitle="On" 
                                 imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl}>
@@ -131,28 +128,24 @@ const RoomScreen = ({ navigation }) => {
                                 flagButton="on/off"
                                 bottomTitle={whiteDimmerValue}
                                 flagSlider={true}
-                                changeSliderValue={changeWhiteDimmerValue}
-                                {...{ navigation, path: ROOMS }}>
+                                changeSliderValue={changeWhiteDimmerValue}>
                     </ToggleButton>
                     <ToggleButton title="Analogue Value Input" 
                                 imgMainUrl={dimmerImg}
                                 bottomTitle={analogueInputValue}
                                 flagSlider={true}
-                                changeSliderValue={changeAnalogueInputValue}
-                                {...{ navigation, path: ROOMS }}>
+                                changeSliderValue={changeAnalogueInputValue}>
                     </ToggleButton>
                     <ToggleButton title="Analogue Value Display" 
                                 imgMainUrl={dimmerImg}
                                 bottomTitle={analogueDisplayVaule}
                                 flagSlider={true}
-                                changeSliderValue={changeAnalogueDisplayValue}
-                                {...{ navigation, path: ROOMS }}>
+                                changeSliderValue={changeAnalogueDisplayValue}>
                     </ToggleButton>
                     <CheckBoxButton flagButton={true}
                                 title="Climate" 
                                 imgMainUrl={number24Img}
-                                textBottom="Temp"
-                                {...{ navigation, path: ROOMS }}></CheckBoxButton>
+                                textBottom="Temp"></CheckBoxButton>
                 </View>
                 <View style={styles.favoriteCategory}>
                     <View style={styles.favoriteTilte}>
@@ -161,8 +154,7 @@ const RoomScreen = ({ navigation }) => {
                     <ToggleButton title="On/Off Switch" 
                                 imgMainUrl={filmImg}
                                 flagButton="on/off"
-                                flagSlider={false}
-                                {...{ navigation, path: ROOMS }}>
+                                flagSlider={false}>
                     </ToggleButton>
                 </View>
                 <View style={styles.favoriteCategory}>
@@ -172,8 +164,7 @@ const RoomScreen = ({ navigation }) => {
                     <ToggleButton title="On/Off Switch" 
                                 imgMainUrl={doorImg}
                                 flagButton="on/off"
-                                flagSlider={false}
-                                {...{ navigation, path: ROOMS }}>
+                                flagSlider={false}>
                     </ToggleButton>
                 </View>
                 </ScrollView>

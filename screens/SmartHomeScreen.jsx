@@ -157,7 +157,6 @@ const styles = StyleSheet.create({
         letterSpacing: -0.24
     }, 
     info: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -167,7 +166,6 @@ const styles = StyleSheet.create({
         paddingBottom: 27
     },
     favoriteTilte: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -181,7 +179,6 @@ const styles = StyleSheet.create({
         letterSpacing: -0.41
     },
     roomItems: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

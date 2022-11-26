@@ -22,7 +22,6 @@ export default function LogoTitle({ color, header }) {
 
 const styles = StyleSheet.create({
     container: {
-        display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
         marginRight: 13
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     containerHeader: {
-        display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end'
     },

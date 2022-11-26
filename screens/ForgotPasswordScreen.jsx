@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
         paddingRight: 100
     },
     bodyContainer: {
-        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',

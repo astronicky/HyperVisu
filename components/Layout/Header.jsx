@@ -21,9 +21,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderBottomColor: '#F1580C',
         width: '100%',
-        alignItems: 'center',
-        display: 'flex',
         flexDirection: 'row',
+        alignItems: 'center',    
         justifyContent: 'space-between'
     },
     headerTitle: {

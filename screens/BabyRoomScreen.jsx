@@ -32,7 +32,7 @@ const BabyRoomScreen = ({ navigation }) => {
                             <Text style={styles.tempStatus}>Cooling</Text>
                         </View>                       
                         <MultiArcCircle radius={125} intervals={[ { start: 0, end: 360 } ]} color='#2F2F31' width={25} style={styles.topCircle} />
-                        <Progress.Circle size={270} radius={30} strokeCap='round' progress={0.5} borderColor="#000000" color="#F1580C" thickness={24} />
+                        <Progress.Circle size={270} radius={30} strokeCap='round' progress={0.7} borderColor="#000000" color="#F1580C" thickness={24} />
                     </View>
                     <View style={{ padding: 15, alignSelf: 'center' }}>
                         <Text style={styles.statusText}>Comfort</Text>
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     },
     startCircle: {
         position: 'absolute',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,
@@ -105,7 +104,6 @@ const styles = StyleSheet.create({
     },
     tempText: {
         position: 'absolute',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
     },

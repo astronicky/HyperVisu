@@ -14,6 +14,7 @@ export const CONNECT = "Connect";
 export const FORGOT_PASSWORD = "Forgot";
 export const BABYROOM = "Babyroom";
 export const POWER = "Power";
+export const VIDEOPHONE = "videophone";
 export const ACTION_BUTTONS = "Buttons";
 // common
 export const LOGO_TITLE = "HYPERVISU";
@@ -118,7 +119,7 @@ export const CATEGORY_DATA = [
     {
         title: 'Audio',
         imgUrl: require('./assets/images/categories/audio.png'),
-        path: SHUTTER
+        path: VIDEOPHONE
     },
     {
         title: 'Control',
@@ -271,7 +272,14 @@ export const SNOW = require('./assets/images/snow.png');
 export const CLOSE = require('./assets/images/close.png');
 export const CHECKBOX_WHITE = require('./assets/images/checkbox_white.png');
 export const CHECKBOX = require('./assets/images/checkbox.png');
-export const ELLIPSE_BLACK = require('./assets/images/ellipse.png');
+export const GRAPH = require('./assets/images/power/graph.png');
+export const OVAL = require('./assets/images/power/oval.png');
+export const OVAL_1 = require('./assets/images/power/oval_1.png');
+export const OVAL_2 = require('./assets/images/power/oval_2.png');
+export const CAMERA_IMAGE = require('./assets/images/camera/camera-bitmap.png');
+export const CAMERA_RED = require('./assets/images/camera/red.png');
+export const CAMERA_GREEN = require('./assets/images/camera/green.png');
+// export const ELLIPSE_BLACK = require('./assets/images/ellipse.png');
 export const UPARROW = require('./assets/images/favorite_category/uparrow.png');
 export const DOWNARROW = require('./assets/images/favorite_category/downarrow.png');
 export const ELLIPSE = require('./assets/images/favorite_category/ellipse.png');
@@ -368,10 +376,6 @@ export const LIGHT_BATHROOM = [
         flagSlider: true
     }
 ];
-
-export const CAMERA_IMAGE = require('./assets/images/camera/camera-bitmap.png');
-export const CAMERA_RED = require('./assets/images/camera/red.png');
-export const CAMERA_GREEN = require('./assets/images/camera/green.png');
 
 export const FAVORITE_DATA = [
     {

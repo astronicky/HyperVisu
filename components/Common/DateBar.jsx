@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import moment from 'moment';
-import { ELLIPSE_BLACK } from '../../Constant';
+import ActionButton from './ActionButton';
+import { ACTION_CIRECLE_PLUS } from '../../Constant';
 
-const DataBar = ( {flagButton} ) => {
-
+const DataBar = ( { flagButton , handleClick} ) => {
+    
     const [currentDate, setCurrentDate] = useState();
 
     useEffect(() => {
@@ -16,10 +17,7 @@ const DataBar = ( {flagButton} ) => {
     return (
         <View style={styles.container}>
             <Text style={styles.dateText}>{currentDate}</Text>
-            {flagButton && <View style={styles.plusButton}>
-                <Image source={ELLIPSE_BLACK} style={{ width: 30, height: 30 }}></Image>
-                <Text style={styles.plusText}>+</Text>
-            </View>}  
+            {flagButton && <ActionButton name={ACTION_CIRECLE_PLUS} style={styles[ACTION_CIRECLE_PLUS]} onClick={handleClick}/>}  
         </View>
     )
 };
@@ -37,17 +35,9 @@ const styles = StyleSheet.create({
         fontSize: 14,
         opacity: 0.7
     },
-    plusButton: {
-        position: 'relative',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    plusText: {
-        position: 'absolute',
-        color: '#FFFFFF',
-        fontSize: 18,
-        fontWeight: '500'
+    [ACTION_CIRECLE_PLUS]: {
+        width: 30,
+        height: 30
     }
 });
 

@@ -15,7 +15,7 @@ const CheckBoxButton = ({ flagButton, title, bottomTitle, imgMainUrl, style, img
     <View {...{ style }}>
       <View style={styles.container}>
         <TouchableOpacity>
-          <Pressable style={styles.baseButton} onPress={() => showModal() }>
+          <Pressable style={styles.baseButton} onPress={() => (showModal) && showModal() }>
             <View style={{...styles.baseButton, flex: 7 }}>
               <View style={styles.mainImgage}>
                 <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      

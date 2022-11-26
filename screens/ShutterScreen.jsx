@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
         opacity: 0.6
     },
     topTitle: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -167,7 +166,6 @@ const styles = StyleSheet.create({
         paddingBottom: 0
     },
     categoryTilte: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -216,7 +214,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     bottomControl: {
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20

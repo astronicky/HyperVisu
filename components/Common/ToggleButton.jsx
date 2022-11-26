@@ -16,7 +16,7 @@ const ToggleButton = ({index, title, bottomTitle, imgMainUrl, style, flagButton,
         <View {...{ style }}>
             <View style={styles.container}>
                 <TouchableOpacity>
-                <Pressable style={styles.baseButton} onPress={() => onShowModal(index, true)}>
+                <Pressable style={styles.baseButton} onPress={() => (onShowModal) && onShowModal(index, true)}>
                     <View style={{...styles.baseButton, flex: 8 }}>
                     <View style={styles.mainImgage}>
                         <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      

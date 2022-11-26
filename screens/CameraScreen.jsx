@@ -20,16 +20,16 @@ const CameraScreen = ({ navigation }) => {
                     <Text style={styles.cameraText}>Dinning Room</Text>
                     <Image source={CAMERA_GREEN}></Image>
                 </View>          
-                <ImageBackground style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
+                <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
                 </View>
             </View>
             <View style={styles.categoryContainer}>
                 <View style={styles.cameraItem}>
-                <View style={styles.cameraTitle}>
-                    <Text style={styles.cameraText}>Kitchen</Text>
-                    <Image source={CAMERA_RED}></Image>
-                </View>          
-                <ImageBackground style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
+                    <View style={styles.cameraTitle}>
+                        <Text style={styles.cameraText}>Kitchen</Text>
+                        <Image source={CAMERA_RED}></Image>
+                    </View>          
+                    <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
                 </View>
             </View>
             </ScrollView>
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
         position: 'relative'
     },
     cameraTitle: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

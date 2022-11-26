@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     },
     container: {
-        display: 'flex',
         flexDirection: 'column',
         height: '100%',
         justifyContent: 'center',
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     bodyContainer: {
-        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',

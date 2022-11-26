@@ -19,10 +19,11 @@ import CameraScreen from '../screens/CameraScreen';
 import RoomScreen from '../screens/RoomScreen';
 import BabyRoomScreen from '../screens/BabyRoomScreen';
 import PowerScreen from '../screens/PowerScreen';
+import VideophoneScreen from '../screens/VideophoneScreen';
 import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, 
         ACTION_BUTTONS, SETTING, CONFIG, CATEGORIES, 
         ROOMS, HOME, SHUTTER, LIGHT, CAMERA, ROOM,
-        BABYROOM, POWER } from '../Constant';
+        BABYROOM, POWER, VIDEOPHONE } from '../Constant';
 import Footer from '../components/Layout/Footer';
 
 const Tab = createBottomTabNavigator();
@@ -109,6 +110,7 @@ export default function Router() {
                 <Tab.Screen name={ROOM} component={RoomScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={BABYROOM} component={BabyRoomScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={POWER} component={PowerScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={VIDEOPHONE} component={VideophoneScreen} options={{ headerShown: false }} />
             </Tab.Navigator>
         </NavigationContainer>
     );

@@ -79,8 +79,9 @@ const RoomScreen = ({ navigation }) => {
                     <Modal  animationType="fade"
                             transparent={true}
                             visible={newSenceModalVisible}>
-                            <ScrollView>
+                            
                                 <View style={styles.newSenceModal}>
+                                <ScrollView>
                                     <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
                                         <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                     </Pressable>
@@ -111,15 +112,16 @@ const RoomScreen = ({ navigation }) => {
                                         <NormalButton title="Add Devices"></NormalButton>
                                         <CircleToggleButton title="Automatic" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>
                                         <CircleToggleButton title="Show Favourite" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>
-                                        <MainButton style={{ marginTop: 20 }} title={DONE}></MainButton>
-                                    </View>    
+                                        <MainButton style={{ marginTop: 20, marginBottom: 25 }} title={DONE}></MainButton>
+                                    </View>  
+                                    </ScrollView>  
                                 </View>
-                            </ScrollView>        
+                                    
                     </Modal>
                     <Modal  animationType="fade"
                             transparent={true}
                             visible={scheduleModalVisible}>
-                            <View style={{ backgroundColor: '#2F2F31', opacity: 0.9, marginTop: 150, marginLeft: 36, marginRight: 36, padding: 21}}>
+                            <View style={{ backgroundColor: '#2F2F31', opacity: 0.9, marginTop: 140, marginLeft: 36, marginRight: 36, padding: 21}}>
                                 <Pressable onPress={() => setScheduleModalVisible(!scheduleModalVisible)} >
                                     <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                 </Pressable>
@@ -405,6 +407,7 @@ const styles = StyleSheet.create({
         lineHeight: 25, 
     },
     newSenceModal: {
+        marginTop: 20,
         backgroundColor: '#1D1D1E',
         padding: 23,
         height: '100%',
@@ -419,8 +422,8 @@ const styles = StyleSheet.create({
     },
     textNewSceneTitle: {
         flexDirection: 'row',
-        marginLeft: -24,
-        marginRight: -24,
+        // marginLeft: -24,
+        // marginRight: -24,
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderTopColor: 'rgba(255, 255, 255, 0.92)',

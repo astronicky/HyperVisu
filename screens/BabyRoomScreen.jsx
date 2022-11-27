@@ -42,7 +42,7 @@ const BabyRoomScreen = ({ navigation }) => {
                         <MainButton title="Stand By" style={{ width: '32%' }}></MainButton>
                         <MainButton title="Night" style={{ width: '32%' }}></MainButton>
                     </View>
-                    <View style={{paddingLeft: 24, paddingRight: 24, paddingBottom: 5}}>
+                    <View style={{paddingLeft: 20, paddingRight: 20, paddingBottom: 5}}>
                         <Text style={{ color: '#FFFFFF' }}>Temperature</Text>
                         <CheckBoxButton flagButton={true}
                                         title="Climate" 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     categoryTitle: {
-        padding: 27,
+        padding: 20,
     },
     mainTitle: {
         color: 'white',
@@ -81,9 +81,6 @@ const styles = StyleSheet.create({
         fontSize: 17,
         lineHeight: 22,
         letterSpacing: -0.41
-    },
-    categoryContainer: {
-        padding: 24,
     },
     progressConatiner: {
         position: 'relative',
@@ -135,7 +132,7 @@ const styles = StyleSheet.create({
     },
     buttonGroup: {
         width: '100%',
-        padding: 24,
+        padding: 20,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

@@ -4,51 +4,57 @@ import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import FavoriteRoom from '../components/Common/FavoriteRoom';
 import ImageButton from '../components/Common/ImageButton';
+import { useOrientation } from '../hooks/useOrientation';
 import { ROOM, ROOMS_DATA, CATEGORIES, FAVORITE_ROOMS_DATA } from "../Constant";
 
 const RoomsScreen = ({ navigation }) => {
-  return (
-    <SafeAreaView style={styles.containerScroll}>
-        <Layout header={true}>
-            <ScrollView style={styles.scrollView}>
-                <View style={styles.roomsContainer}>
-                    <DateBar flagButton={false}></DateBar>
-                    <Text style={styles.mainTitle}>Rooms</Text>
-                    <Text style={styles.subTitle}>You can control all your Smart Home{"\n"}and enjoy Smart life</Text>
-                </View>
-                <View style={styles.favoriteRooms}>
-                    <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>Favorite Room</Text>
-                        <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                            <Text style={{...styles.favoriteText, color: '#F1580C'}}>See all</Text>
-                        </Pressable>
+
+    const orientation = useOrientation();
+
+    let count = orientation === 'PORTRAIT' ? 3 : 5;
+
+    return (
+        <SafeAreaView style={portrait.containerScroll}>
+            <Layout header={true}>
+                <ScrollView style={portrait.scrollView}>
+                    <View style={portrait.roomsContainer}>
+                        <DateBar flagButton={false}></DateBar>
+                        <Text style={portrait.mainTitle}>Rooms</Text>
+                        <Text style={portrait.subTitle}>You can control all your Smart Home{orientation === 'PORTRAIT' && "\n"}and enjoy Smart life</Text>
                     </View>
-                    <View style={styles.roomItems}>
-                    {FAVORITE_ROOMS_DATA?.map(( data, index ) => {
+                    <View style={portrait.favoriteRooms}>
+                        <View style={portrait.favoriteTitle}>
+                            <Text style={portrait.favoriteText}>Favorite Room</Text>
+                            <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
+                                <Text style={{...portrait.favoriteText, color: '#F1580C'}}>See all</Text>
+                            </Pressable>
+                        </View>
+                        <View style={portrait.roomItems}>
+                            {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
+                                return (
+                                    <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
+                                );
+                            })}
+                        </View> 
+                    </View>
+                    <View style={portrait.roomAll}>
+                        <Text style={portrait.favoriteText}>All</Text>
+                        {/* <Text style={{...portrait.favoriteText, color: '#F1580C'}}>See all</Text> */}
+                    </View>
+                    <View style={orientation === 'PORTRAIT' ? portrait.roomsList : landscape.roomsList}>    
+                        {ROOMS_DATA?.map((data, index) => {
                         return (
-                            <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
+                            <ImageButton key={index} {...{ title: data.room, imgUrl: data.imgUrl, navigation, path: ROOM }}></ImageButton>
                         );
-                    })}
-                    </View> 
-                </View>
-                <View style={styles.roomButtons}>
-                    <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>All</Text>
-                        <Text style={{...styles.favoriteText, color: '#F1580C'}}>See all</Text>
+                        })}
                     </View>
-                    {ROOMS_DATA?.map((data, index) => {
-                    return (
-                        <ImageButton key={index} {...{ title: data.room, imgUrl: data.imgUrl, navigation, path: ROOM }}></ImageButton>
-                    );
-                    })}
-                </View>
-            </ScrollView>
-        </Layout>
-    </SafeAreaView>
-  )
+                </ScrollView>
+            </Layout>
+        </SafeAreaView>
+    )
 };
 
-const styles = StyleSheet.create({
+const portrait = StyleSheet.create({
     containerScroll: {
         flex: 1,
         backgroundColor: '#000000'
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     roomsContainer: {
-        padding: 25,
+        padding: 20
     },
     mainTitle: {
         color: 'white',
@@ -67,23 +73,20 @@ const styles = StyleSheet.create({
         letterSpacing: 0.41
     },
     subTitle: {
-        marginTop: 5,
-        color: 'white',
+        color: '#FFFFFF',
         fontWeight: '600',
         fontSize: 17,
         lineHeight: 22,
         letterSpacing: -0.41
     },
     favoriteRooms: {
-        paddingLeft: 27,
-        paddingRight: 27,
-        paddingBottom: 27
+        padding: 20
     },
-    favoriteTilte: {
+    favoriteTitle: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 11
+        marginBottom: 10
     },
     favoriteText: {
         color: 'white',
@@ -97,11 +100,28 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    roomButtons: {
-        padding: 25,
-        paddingBottom: 0
+    roomAll: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginBottom: 10
+    },
+    roomsList: {
+        paddingLeft: 20,
+        paddingRight: 20
     }
 }) ;
+
+const landscape = StyleSheet.create({
+    roomsList: {
+        paddingLeft: 5,
+        paddingRight: 5,
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+    favoriteRooms: {
+        flexDirection: 'row'
+    }
+})
 
 export default RoomsScreen;
 

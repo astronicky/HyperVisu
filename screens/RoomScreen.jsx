@@ -15,12 +15,18 @@ import { STAIRE, NUMBER08, NUMBER69, RECT, LAMP_WHITE,
         ROOMS, CATEGORIES, FAVORITE_DATA, SHUTTER_BLINDS_DATA,
         CLOSE, DONE } from "../Constant";
 
+import { useOrientation } from '../hooks/useOrientation';
+
 const dimmerImg = require('../assets/images/room/dimmer.png');
 const number24Img = require('../assets/images/room/24.png');
 const filmImg = require('../assets/images/room/film.png');
 const doorImg = require('../assets/images/room/door.png');
 
 const RoomScreen = ({ navigation }) => {
+
+    const orientation = useOrientation();
+
+    let count = orientation === 'PORTRAIT' ? 3 : 5;
 
     const [dimmerValue, setDimmerValue] = useState();
     const [whiteDimmerValue, setWhiteDimmerValue] = useState();
@@ -58,21 +64,20 @@ const RoomScreen = ({ navigation }) => {
     }, [isVisibleShowModal, isBottomModal, scheduleModalVisible]);
     
     return (
-        <SafeAreaView style={styles.containerScroll}>
+        <SafeAreaView style={portrait.containerScroll}>
             <Layout header={true}>
-                <ScrollView style={styles.scrollView}>
+                <ScrollView style={portrait.scrollView}>
                     <Modal  animationType="fade"
                             transparent={true}
                             visible={isBottomModal}>
-                            <View style={styles.addModal}>
+                            <View style={portrait.addModal}>
                                 <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
-                                    <View style={styles.buttonSence}>
-                                        {/* <Text style={ styles.textPlus }>+ </Text> */}
-                                        <Text style={styles.textSence}>+ Add Sence</Text>
+                                    <View style={portrait.buttonSence}>
+                                        <Text style={portrait.textSence}>+ Add Sence</Text>
                                     </View>
                                 </Pressable>
                                 <Pressable onPress={() => setIsBottomModal(!isBottomModal)} >
-                                    <Text style={styles.buttonCancel}>Cancel</Text>
+                                    <Text style={portrait.buttonCancel}>Cancel</Text>
                                 </Pressable>
                             </View>
                     </Modal>
@@ -80,26 +85,26 @@ const RoomScreen = ({ navigation }) => {
                             transparent={true}
                             visible={newSenceModalVisible}>
                             
-                                <View style={styles.newSenceModal}>
+                                <View style={portrait.newSenceModal}>
                                 <ScrollView>
                                     <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
                                         <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                     </Pressable>
                                     <View style={{ padding: 25 }}>
-                                        <Text style={styles.textNewScene}>New Scene</Text>
+                                        <Text style={portrait.textNewScene}>New Scene</Text>
                                     </View>
-                                    <View style={styles.textNewSceneTitle}>
+                                    <View style={portrait.textNewSceneTitle}>
                                         <Text style={{color: '#FFFFFF', fontSize: 17, fontWeight: '600', lineHeight: 22, letterSpacing: -0.41 }}>Name</Text>
                                         <Text style={{ marginLeft: 50, color: '#8E8E93', fontSize: 17, fontWeight: '600', lineHeight: 22, letterSpacing: -0.41 }}>Watching TV</Text>
                                     </View>
                                     <View style={{ paddingTop: 30 }}>
-                                        <View style={styles.favoriteTilte}>
-                                        <Text style={styles.favoriteText}>Included Devices</Text>
+                                        <View style={portrait.favoriteTilte}>
+                                        <Text style={portrait.favoriteText}>Included Devices</Text>
                                         <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                                            <Text style={styles.favoriteText}><Text style={{ color: '#F1580C' }}>See All</Text></Text>
+                                            <Text style={portrait.favoriteText}><Text style={{ color: '#F1580C' }}>See All</Text></Text>
                                         </Pressable>
                                         </View>
-                                        <View style={styles.roomItems}>
+                                        <View style={portrait.roomItems}>
                                         {FAVORITE_DATA?.map(( data, index ) => {
                                             return (
                                             <FavoriteCategory key={index} title={data.title} imgMainUrl={data.imgMainUrl} bgColor={data.bgColor} textColor={data.textColor} imgUpUrl={data.imgUpUrl} imgDownUrl={data.imgDownUrl}></FavoriteCategory>
@@ -126,29 +131,28 @@ const RoomScreen = ({ navigation }) => {
                                     <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                 </Pressable>
                                 <View style={{ padding: 5, marginBottom: 20 }}>
-                                    <Text style={styles.textNewScene}>Schedule</Text>
+                                    <Text style={portrait.textNewScene}>Schedule</Text>
                                 </View>
                                 <Schedule title="Schedule 1" setDate="Daily" setTime="6:00 AM"></Schedule>
                                 <Schedule title="Schedule 2" setDate="Mon, Tue, Fri" setTime="10:30 AM"></Schedule>
                                 <Schedule title="Schedule 3" setDate="Sat" setTime="9:00 PM"></Schedule>
                             </View>        
                     </Modal>
-
                     <CommonModal index="4" isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CommonModal>
-                    <View style={styles.smartHomeTitle}>
+                    <View style={portrait.smartHomeTitle}>
                         <DateBar flagButton={true} handleClick={(flag) => setIsBottomModal(flag)}></DateBar>
-                        <Text style={styles.mainTitle}>Living Room</Text>
-                        <Text style={styles.subTitle}>Control your house</Text>
+                        <Text style={portrait.mainTitle}>Living Room</Text>
+                        <Text style={portrait.subTitle}>Control your house</Text>
                     </View>
-                    <View style={styles.controlContent}>
-                        <View style={styles.switchContent}>
-                        <View style={styles.switch}>
-                            <Image source={RECT} style={{ width: 5.24, height: 30, marginBottom: 33.38 }} ></Image>
-                            <Image source={LAMP_WHITE} style={{ width: 34, height: 34, marginBottom: 33.38 }} ></Image>
-                            <Image source={ELLIPSE} style={{ width: 34, height: 34 }}></Image>
-                        </View>
+                    <View style={orientation === 'PORTRAIT' ? portrait.controlContent : landscape.controlContent}>
+                        <View style={orientation === 'PORTRAIT' ? portrait.switchContent : landscape.switchContent}>
+                            <View style={portrait.switch}>
+                                <Image source={RECT} style={{ width: 5.24, height: 30, marginBottom: 33.38 }} ></Image>
+                                <Image source={LAMP_WHITE} style={{ width: 34, height: 34, marginBottom: 33.38 }} ></Image>
+                                <Image source={ELLIPSE} style={{ width: 34, height: 34 }}></Image>
+                            </View>
                         <View style={{ flex: 2 }}></View>
-                        <View style={styles.switch}>
+                        <View style={portrait.switch}>
                             <Image source={UPARROW} style={{ width: 29, height: 16.52, marginBottom: 47.48 }} ></Image>
                             <Image source={BLINDS_WHITE} style={{ width: 34, height: 34, marginBottom: 47.48 }} ></Image>
                             <Image source={DOWNARROW} style={{ width: 29, height: 16.52 }}></Image>
@@ -156,46 +160,80 @@ const RoomScreen = ({ navigation }) => {
                         </View>
                         <View style={{ flex: 1 }}></View>
                         <ImageBackground source={STAIRE} resizeMode="cover">
-                        <View style={styles.infoContent}>
-                            <View style={styles.info}>
-                            <Image source={NUMBER08}></Image>
-                            <Text style={styles.infoTitle}>Lights On</Text>
+                            <View style={portrait.infoContent}>
+                                <View style={portrait.info}>
+                                <Image source={NUMBER08}></Image>
+                                <Text style={portrait.infoTitle}>Lights On</Text>
+                                </View>
+                                <View style={portrait.info}>
+                                    <Image source={NUMBER69} style={{ width: 62, height: 29 }}></Image>
+                                    <Text style={portrait.infoTitle}>Currently</Text>
+                                </View>
                             </View>
-                            <View style={styles.info}>
-                                <Image source={NUMBER69} style={{ width: 62, height: 29 }}></Image>
-                                <Text style={styles.infoTitle}>Currently</Text>
-                            </View>
-                        </View>
                         </ImageBackground>
+                        {orientation === 'LANDSCAPE' && <View style={{flex: 6}}></View>}
                     </View>
-                    <View style={styles.favoriteCategory}>
-                        <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>Favorite</Text>
-                        <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                            <Text style={styles.favoriteText}><Text style={{ color: '#F1580C' }}>Edit</Text></Text>
-                        </Pressable>
+                    <View style={portrait.favoriteCategory}>
+                        <View style={portrait.favoriteTilte}>
+                            <Text style={portrait.favoriteText}>Favorite</Text>
+                            <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
+                                <Text style={portrait.favoriteText}><Text style={{ color: '#F1580C' }}>Edit</Text></Text>
+                            </Pressable>
                         </View>
-                        <View style={styles.roomItems}>
-                        {FAVORITE_DATA?.map(( data, index ) => {
+                        <View style={portrait.roomItems}>
+                        {FAVORITE_DATA?.slice(0, count).map(( data, index ) => {
                             return (
                             <FavoriteCategory key={index} title={data.title} imgMainUrl={data.imgMainUrl} bgColor={data.bgColor} textColor={data.textColor} imgUpUrl={data.imgUpUrl} imgDownUrl={data.imgDownUrl}></FavoriteCategory>
                             );
                         })}
                         </View> 
                     </View>
-                    <View style={styles.favoriteCategory}>
-                        <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>Shutter/Blind</Text>
+                    
+                    <View>
+                        <View style={portrait.favoriteCategory}>
+                            <View style={portrait.favoriteTilte}>
+                            <Text style={portrait.favoriteText}>Shutter/Blind</Text>
+                            </View>
+                            {SHUTTER_BLINDS_DATA !== undefined && <CheckBoxButton flagButton={false}
+                                                                            title={SHUTTER_BLINDS_DATA[0].title} 
+                                                                            bottomTitle={SHUTTER_BLINDS_DATA[0].percentValue + "%"} 
+                                                                            imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl} 
+                                                                            imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}></CheckBoxButton>}
                         </View>
-                        {SHUTTER_BLINDS_DATA !== undefined && <CheckBoxButton flagButton={false}
-                                                                        title={SHUTTER_BLINDS_DATA[0].title} 
-                                                                        bottomTitle={SHUTTER_BLINDS_DATA[0].percentValue + "%"} 
-                                                                        imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl} 
-                                                                        imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}></CheckBoxButton>}
+                        <View style={portrait.favoriteCategory}>
+                            <View style={portrait.favoriteTilte}>
+                                <Text style={portrait.favoriteText}>Climate</Text>
+                            </View>
+                            <CheckBoxButton flagButton={true}
+                                        title="Climate" 
+                                        imgMainUrl={number24Img}
+                                        textBottom="Temp"></CheckBoxButton>
+                        </View>
+                        <View style={portrait.favoriteCategory}>
+                            <View style={portrait.favoriteTilte}>
+                            <Text style={portrait.favoriteText}>Camera/Monitor</Text>
+                            </View>
+                            <ToggleButton title="On/Off Switch" 
+                                        imgMainUrl={filmImg}
+                                        flagButton="on/off"
+                                        flagSlider={false}
+                                        onShowModal={onShowModal}>
+                            </ToggleButton>
+                        </View>
+                        <View style={portrait.favoriteCategory}>
+                            <View style={portrait.favoriteTilte}>
+                            <Text style={portrait.favoriteText}>Access</Text>
+                            </View>
+                            <ToggleButton title="On/Off Switch" 
+                                        imgMainUrl={doorImg}
+                                        flagButton="on/off"
+                                        flagSlider={false}>
+                            </ToggleButton>
+                        </View>
                     </View>
-                    <View style={styles.favoriteCategory}>
-                        <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>Lights</Text>
+                    <View style={portrait.favoriteCategory}>
+                        <View style={portrait.favoriteTilte}>
+                            <Text style={portrait.favoriteText}>Lights</Text>
                         </View>
                         <ToggleButton title="On/Off Switch" 
                                     imgMainUrl={LAMP_WHITE}
@@ -235,40 +273,15 @@ const RoomScreen = ({ navigation }) => {
                                     bottomTitle={analogueDisplayVaule}
                                     flagSlider={true}
                                     changeSliderValue={changeAnalogueDisplayValue}>
-                        </ToggleButton>
-                        <CheckBoxButton flagButton={true}
-                                    title="Climate" 
-                                    imgMainUrl={number24Img}
-                                    textBottom="Temp"></CheckBoxButton>
-                    </View>
-                    <View style={styles.favoriteCategory}>
-                        <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>Camera/Monitor</Text>
-                        </View>
-                        <ToggleButton title="On/Off Switch" 
-                                    imgMainUrl={filmImg}
-                                    flagButton="on/off"
-                                    flagSlider={false}
-                                    onShowModal={onShowModal}>
-                        </ToggleButton>
-                    </View>
-                    <View style={styles.favoriteCategory}>
-                        <View style={styles.favoriteTilte}>
-                        <Text style={styles.favoriteText}>Access</Text>
-                        </View>
-                        <ToggleButton title="On/Off Switch" 
-                                    imgMainUrl={doorImg}
-                                    flagButton="on/off"
-                                    flagSlider={false}>
-                        </ToggleButton>
-                    </View>
+                        </ToggleButton>    
+                    </View>   
                 </ScrollView>
             </Layout>
         </SafeAreaView>
     )
 };
 
-const styles = StyleSheet.create({
+const portrait = StyleSheet.create({
     containerScroll: {
         flex: 1,
         backgroundColor: '#000000'
@@ -277,7 +290,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     smartHomeTitle: {
-        padding: 27,
+        padding: 20,
     },
     mainTitle: {
         color: 'white',
@@ -295,10 +308,7 @@ const styles = StyleSheet.create({
         letterSpacing: -0.41
     },
     controlContent: {
-        paddingLeft: 28,
-        paddingRight: 28,
-        paddingBottom: 28,
-        display: 'flex',
+        padding: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
@@ -314,10 +324,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F1580C',
         borderRadius: 16,
-        paddingTop: 20,
-        paddingLeft: 21,
-        paddingRight: 21,
-        paddingBottom: 20,
+        padding: 20
     },
     infoContent: {
         flex: 5,
@@ -341,15 +348,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     favoriteCategory: {
-        paddingLeft: 27,
-        paddingRight: 27,
-        paddingBottom: 27
+        // borderColor: 'white',
+        // borderWidth: 1,
+        padding: 20,
+        paddingBottom: 0
     },
     favoriteTilte: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 11
+        marginBottom: 5
     },
     favoriteText: {
         color: 'white',
@@ -432,6 +440,20 @@ const styles = StyleSheet.create({
         paddingBottom: 14.5,
         paddingLeft: 16.5
     }
+});
+
+const landscape = StyleSheet.create({
+    controlContent: {
+        padding: 20,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
+    switchContent: {
+        flex: 4,
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        alignItems: 'center', 
+    },
 });
 
 export default RoomScreen;

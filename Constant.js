@@ -240,7 +240,19 @@ export const FAVORITE_ROOMS_DATA = [
         imgUrl: require('./assets/images/bed.png'),
         bgColor: '#FFFFFF',
         textColor: '#000000'
-    }
+    },
+    {
+        room: 'Laundry',
+        imgUrl: require('./assets/images/laundry.png'),
+        bgColor: '#2F2F31',
+        textColor: '#FFFFFF'
+    },
+    {
+        room: 'Kitchen',
+        imgUrl: require('./assets/images/kitchen.png'),
+        bgColor: '#2F2F31',
+        textColor: '#FFFFFF'
+    },
 ];
 
 export const FAVORITE_CATEGORY_DATA = [
@@ -265,6 +277,20 @@ export const FAVORITE_CATEGORY_DATA = [
         textColor: '#FFFFFF',
         imgUpUrl: require('./assets/images/favorite_category/uparrow.png'),
         imgDownUrl: require('./assets/images/favorite_category/downarrow.png')
+    },
+    {
+        title: 'Lightning',
+        imgMainUrl: require('./assets/images/favorite_category/lamp.png'),
+        bgColor: '#FFFFFF',
+        textColor: '#000000',
+        imgUpUrl: '',
+    },
+    {
+        title: 'Climate',
+        imgMainUrl: require('./assets/images/favorite_category/thermometer.png'),
+        bgColor: '#2F2F31',
+        textColor: '#FFFFFF',
+        imgUpUrl: require('./assets/images/favorite_category/timer.png'),
     }
 ];
 
@@ -400,6 +426,21 @@ export const FAVORITE_DATA = [
         textColor: '#FFFFFF',
         imgUpUrl: require('./assets/images/room/uparrow.png'),
         imgDownUrl: require('./assets/images/room/downarrow.png')
+    },
+    {
+        title: 'Climate',
+        imgMainUrl: require('./assets/images/room/climate.png'),
+        bgColor: '#2F2F31',
+        textColor: '#FFFFFF',
+        imgUpUrl: require('./assets/images/room/timer.png'),
+    },
+    {
+        title: 'Shutter',
+        imgMainUrl: require('./assets/images/room/shutter.png'),
+        bgColor: '#2F2F31',
+        textColor: '#FFFFFF',
+        imgUpUrl: require('./assets/images/room/uparrow.png'),
+        imgDownUrl: require('./assets/images/room/downarrow.png')
     }
 ];
 
@@ -428,12 +469,12 @@ export const FOOTER_NAV_BAR = {
         icon: "th-large",
         tab: CATEGORIES
     },
-    // [SETTING]: {
-    //     icon: "cog",
-    //     tab: SETTING
-    // },
-    [ACTION_BUTTONS]: {
+    [SETTING]: {
         icon: "cog",
-        tab: ACTION_BUTTONS
+        tab: SETTING
     },
+    // [ACTION_BUTTONS]: {
+    //     icon: "cog",
+    //     tab: ACTION_BUTTONS
+    // },
 }

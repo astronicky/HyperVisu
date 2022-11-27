@@ -3,19 +3,23 @@ import { View, StyleSheet, ScrollView, Text, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
 import ImageButton from '../components/Common/ImageButton';
 import DateBar from '../components/Common/DateBar';
+import { useOrientation } from '../hooks/useOrientation';
 import { CATEGORY_DATA } from "../Constant";
 
 const CategoriesScreen = ({ navigation }) => {
+
+    const orientation = useOrientation();
+
     return (
-        <SafeAreaView style={styles.containerScroll}>
+        <SafeAreaView style={portrait.containerScroll}>
             <Layout header={true}>
-                <ScrollView style={styles.scrollView}>
-                    <View style={styles.categoryContainer}>
+                <ScrollView style={portrait.scrollView}>
+                    <View style={portrait.categoryContainer}>
                         <DateBar flagButton={false}></DateBar>
-                        <Text style={styles.mainTitle}>Categories</Text>
-                        <Text style={styles.subTitle}>You can control all your Smart Home {"\n"}and enjoy Smart life</Text>
+                        <Text style={portrait.mainTitle}>Categories</Text>
+                        <Text style={portrait.subTitle}>You can control all your Smart Home {orientation === 'PORTRAIT' && "\n" }and enjoy Smart life</Text>
                     </View>
-                    <View style={styles.categoryButtons}>
+                    <View style={orientation === 'PORTRAIT' ? portrait.category : landscape.category}>
                         {CATEGORY_DATA?.map((data, index) => {
                             return (
                                 <ImageButton key={index} {...{ title: data.title, imgUrl: data.imgUrl, path: data.path, navigation }}></ImageButton>
@@ -28,7 +32,7 @@ const CategoriesScreen = ({ navigation }) => {
     )
 };
 
-const styles = StyleSheet.create({
+const portrait = StyleSheet.create({
     containerScroll: {
         flex: 1,
         backgroundColor: '#000000'
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     categoryContainer: {
-        padding: 25,
+        padding: 20,
     },
     mainTitle: {
         color: 'white',
@@ -54,11 +58,20 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         letterSpacing: -0.41
     },
-    categoryButtons: {
-        padding: 20,
-        paddingBottom: 0
+    category: {
+        paddingLeft: 20,
+        paddingRight: 20
     }
-}) ;
+});
+
+const landscape = StyleSheet.create({
+    category: {
+        paddingLeft: 5,
+        paddingRight: 5,
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    }
+});
 
 export default CategoriesScreen;
 

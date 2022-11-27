@@ -1,35 +1,66 @@
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
+import { useOrientation } from '../../hooks/useOrientation';
 
 const FavoriteCategory = ({ title, imgMainUrl, bgColor, textColor, imgUpUrl, imgDownUrl }) => {
-  return (
-    <View style={{...styles.container, backgroundColor: bgColor, position: 'relative'}}>
-      {imgUpUrl !== undefined && <Image source={imgUpUrl} style={{ position: 'absolute', left: '95%', top: '10%' }}></Image>}
-      <Image source={imgMainUrl}></Image>
-      <Text style={{...styles.baseText, color: textColor}}>{title}</Text>
-      {imgDownUrl !== undefined && <Image source={imgDownUrl} style={{ position: 'absolute', left: '95%', top: '95%' }}></Image>}
-    </View>
-  )
+
+    const orientation = useOrientation();
+
+    return (
+        <View style={orientation === 'PORTRAIT' ? {...portrait.container, backgroundColor: bgColor} : {...landscape.container, backgroundColor: bgColor}}>
+            {imgUpUrl !== undefined && <Image source={imgUpUrl} style={portrait.imgUp}></Image>}
+            <Image source={imgMainUrl}></Image>
+            <Text style={{...portrait.baseText, color: textColor}}>{title}</Text>
+            {imgDownUrl !== undefined && <Image source={imgDownUrl} style={portrait.imgDown}></Image>}
+        </View>
+    )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 10,
-    paddingLeft: 17,
-    paddingTop: 9,
-    paddingBottom: 9,
-    paddingRight: 10,
-    display: 'flex',
-    justifyContent: 'center',
-    width: 105,
-    height: 119
-  },
-  baseText: {
-    marginTop: 5,
-    fontWeight: '600',
-    fontSize: 14,
-    lineHeight: 17
-  }
+const portrait = StyleSheet.create({
+    container: {
+        position: 'relative',
+        borderRadius: 10,
+        paddingLeft: 17,
+        paddingTop: 9,
+        paddingBottom: 9,
+        paddingRight: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        width: '30%',
+        height: 119,
+        marginBottom: 20
+    },
+    baseText: {
+        marginTop: 5,
+        fontWeight: '600',
+        fontSize: 14,
+        lineHeight: 17
+    },
+    imgUp: {
+        position: 'absolute',
+        left: '95%',
+        top: '10%'
+    },
+    imgDown: {
+        position: 'absolute',
+        left: '95%',
+        top: '95%'
+    }
 });
+
+const landscape = StyleSheet.create({
+    container: {
+        position: 'relative',
+        borderRadius: 10,
+        paddingLeft: 17,
+        paddingTop: 9,
+        paddingBottom: 9,
+        paddingRight: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        width: '17%',
+        height: 119,
+    },
+})
 
 export default FavoriteCategory;

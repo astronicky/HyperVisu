@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import Slider from '@react-native-community/slider';
 import ActionButton from './ActionButton';
-import { useOrientation } from '../../hooks/useOrientation';
 import { ACTION_REC_SWITCH_BUTTON, ACTION_OPTION_BUTTON } from '../../Constant';
 
 const backgroundImg = require('../../assets/images/room/ellipse.png');
@@ -13,30 +12,28 @@ function handleClick() {
 
 const ToggleButton = ({index, title, bottomTitle, imgMainUrl, style, flagButton, flagSlider, changeSliderValue, onShowModal }) => {
 
-    const orientation = useOrientation();
-
     return (
         <View {...{ style }}>
-            <View style={orientation === 'PORTRAIT' ? portrait.container : landscape.container}>
+            <View style={styles.container}>
                 <TouchableOpacity>
-                <Pressable style={portrait.baseButton} onPress={() => (onShowModal) && onShowModal(index, true)}>
-                    <View style={{...portrait.baseButton, flex: 8 }}>
-                    <View style={portrait.mainImgage}>
+                <Pressable style={styles.baseButton} onPress={() => (onShowModal) && onShowModal(index, true)}>
+                    <View style={{...styles.baseButton, flex: 8 }}>
+                    <View style={styles.mainImgage}>
                         <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
                         <Image source={imgMainUrl} style={{ width: 20, height: 20, position: 'absolute' }}></Image>  
                     </View>
                     <View>
-                        <Text style={portrait.roomText}>{title}</Text>
-                        {flagSlider && bottomTitle !== undefined && <Text style={portrait.valueText}>{ bottomTitle?bottomTitle : 0 }%</Text>}
+                        <Text style={styles.roomText}>{title}</Text>
+                        {flagSlider && bottomTitle !== undefined && <Text style={styles.valueText}>{ bottomTitle?bottomTitle : 0 }%</Text>}
                     </View>
                     </View>
                     
-                    <View style={portrait.btnGroup}>
+                    <View style={styles.btnGroup}>
                     {flagButton !== undefined && flagButton == "on/off" && (
-                        <ActionButton name={ACTION_REC_SWITCH_BUTTON} style={portrait[ACTION_REC_SWITCH_BUTTON]} onClick={handleClick} />
+                        <ActionButton name={ACTION_REC_SWITCH_BUTTON} style={styles[ACTION_REC_SWITCH_BUTTON]} onClick={handleClick} />
                     )}
                     {flagButton !== undefined && flagButton == "push" && (
-                        <ActionButton name={ACTION_OPTION_BUTTON} style={portrait[ACTION_OPTION_BUTTON]} onClick={handleClick} />
+                        <ActionButton name={ACTION_OPTION_BUTTON} style={styles[ACTION_OPTION_BUTTON]} onClick={handleClick} />
                     )}
                     </View>  
                 </Pressable> 
@@ -56,7 +53,7 @@ const ToggleButton = ({index, title, bottomTitle, imgMainUrl, style, flagButton,
     )
 };
 
-const portrait = StyleSheet.create({
+const styles = StyleSheet.create({
     [ACTION_REC_SWITCH_BUTTON]: {
         width: 41,
         height: 36,
@@ -82,7 +79,7 @@ const portrait = StyleSheet.create({
         alignItems: 'center'
     },
     roomText: {
-        marginLeft: 25,
+        paddingLeft: 5,
         fontStyle: 'normal',
         color: '#FFFFFF',
         fontWeight: '600',
@@ -110,17 +107,6 @@ const portrait = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center'
-    }
-});
-
-const landscape = StyleSheet.create({
-    container: {
-        width: '47%',
-        borderRadius: 10,
-        padding: 11,
-        backgroundColor: '#2F2F31',
-        marginBottom: 15,
-        marginLeft: 15
     }
 });
 

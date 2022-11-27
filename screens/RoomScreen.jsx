@@ -188,93 +188,96 @@ const RoomScreen = ({ navigation }) => {
                         })}
                         </View> 
                     </View>
-                    
-                    <View>
-                        <View style={portrait.favoriteCategory}>
-                            <View style={portrait.favoriteTilte}>
-                            <Text style={portrait.favoriteText}>Shutter/Blind</Text>
+                    <View style={orientation === 'LANDSCAPE' && { flexDirection: 'row'}}>
+                        <View style={orientation === 'LANDSCAPE' && { flex: 6 }}>
+                            <View style={portrait.favoriteCategory}>
+                                <View style={portrait.favoriteTilte}>
+                                <Text style={portrait.favoriteText}>Shutter/Blind</Text>
+                                </View>
+                                {SHUTTER_BLINDS_DATA !== undefined && <CheckBoxButton flagButton={false}
+                                                                                title={SHUTTER_BLINDS_DATA[0].title} 
+                                                                                bottomTitle={SHUTTER_BLINDS_DATA[0].percentValue + "%"} 
+                                                                                imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl} 
+                                                                                imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}></CheckBoxButton>}
                             </View>
-                            {SHUTTER_BLINDS_DATA !== undefined && <CheckBoxButton flagButton={false}
-                                                                            title={SHUTTER_BLINDS_DATA[0].title} 
-                                                                            bottomTitle={SHUTTER_BLINDS_DATA[0].percentValue + "%"} 
-                                                                            imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl} 
-                                                                            imgCenterUrl={SHUTTER_BLINDS_DATA[0].imgCenterUrl}></CheckBoxButton>}
-                        </View>
-                        <View style={portrait.favoriteCategory}>
-                            <View style={portrait.favoriteTilte}>
-                                <Text style={portrait.favoriteText}>Climate</Text>
+                            <View style={portrait.favoriteCategory}>
+                                <View style={portrait.favoriteTilte}>
+                                    <Text style={portrait.favoriteText}>Climate</Text>
+                                </View>
+                                <CheckBoxButton flagButton={true}
+                                            title="Climate" 
+                                            imgMainUrl={number24Img}
+                                            textBottom="Temp"></CheckBoxButton>
                             </View>
-                            <CheckBoxButton flagButton={true}
-                                        title="Climate" 
-                                        imgMainUrl={number24Img}
-                                        textBottom="Temp"></CheckBoxButton>
+                            <View style={portrait.favoriteCategory}>
+                                <View style={portrait.favoriteTilte}>
+                                <Text style={portrait.favoriteText}>Camera/Monitor</Text>
+                                </View>
+                                <ToggleButton title="On/Off Switch" 
+                                            imgMainUrl={filmImg}
+                                            flagButton="on/off"
+                                            flagSlider={false}
+                                            onShowModal={onShowModal}>
+                                </ToggleButton>
+                            </View>
+                            <View style={portrait.favoriteCategory}>
+                                <View style={portrait.favoriteTilte}>
+                                <Text style={portrait.favoriteText}>Access</Text>
+                                </View>
+                                <ToggleButton title="On/Off Switch" 
+                                            imgMainUrl={doorImg}
+                                            flagButton="on/off"
+                                            flagSlider={false}>
+                                </ToggleButton>
+                            </View>
                         </View>
-                        <View style={portrait.favoriteCategory}>
+                        <View style={orientation === 'LANDSCAPE' && { flex: 6 }}>
+                        <View style={{...portrait.favoriteCategory}}>
                             <View style={portrait.favoriteTilte}>
-                            <Text style={portrait.favoriteText}>Camera/Monitor</Text>
+                                <Text style={portrait.favoriteText}>Lights</Text>
                             </View>
                             <ToggleButton title="On/Off Switch" 
-                                        imgMainUrl={filmImg}
+                                        imgMainUrl={LAMP_WHITE}
                                         flagButton="on/off"
                                         flagSlider={false}
-                                        onShowModal={onShowModal}>
-                            </ToggleButton>
-                        </View>
-                        <View style={portrait.favoriteCategory}>
-                            <View style={portrait.favoriteTilte}>
-                            <Text style={portrait.favoriteText}>Access</Text>
-                            </View>
-                            <ToggleButton title="On/Off Switch" 
-                                        imgMainUrl={doorImg}
+                                        {...{ navigation, path: ROOMS }}></ToggleButton>
+                            <ToggleButton title="Dimmer01" 
+                                        imgMainUrl={dimmerImg}
                                         flagButton="on/off"
-                                        flagSlider={false}>
+                                        bottomTitle={dimmerValue}
+                                        flagSlider={true}
+                                        changeSliderValue={changeDimmerValue}>
                             </ToggleButton>
-                        </View>
-                    </View>
-                    <View style={portrait.favoriteCategory}>
-                        <View style={portrait.favoriteTilte}>
-                            <Text style={portrait.favoriteText}>Lights</Text>
-                        </View>
-                        <ToggleButton title="On/Off Switch" 
-                                    imgMainUrl={LAMP_WHITE}
-                                    flagButton="on/off"
-                                    flagSlider={false}
-                                    {...{ navigation, path: ROOMS }}></ToggleButton>
-                        <ToggleButton title="Dimmer01" 
-                                    imgMainUrl={dimmerImg}
-                                    flagButton="on/off"
-                                    bottomTitle={dimmerValue}
-                                    flagSlider={true}
-                                    changeSliderValue={changeDimmerValue}>
-                        </ToggleButton>
-                        <ToggleButton title="Push Button" 
-                                    imgMainUrl={dimmerImg}
-                                    flagButton="push"
-                                    flagSlider={false}></ToggleButton>
-                        <CheckBoxButton title="Status Display"
-                                    bottomTitle="On" 
-                                    imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl}>
-                                    </CheckBoxButton>
-                        <ToggleButton title="Tunable White Dimmer" 
-                                    imgMainUrl={dimmerImg}
-                                    flagButton="on/off"
-                                    bottomTitle={whiteDimmerValue}
-                                    flagSlider={true}
-                                    changeSliderValue={changeWhiteDimmerValue}>
-                        </ToggleButton>
-                        <ToggleButton title="Analogue Value Input" 
-                                    imgMainUrl={dimmerImg}
-                                    bottomTitle={analogueInputValue}
-                                    flagSlider={true}
-                                    changeSliderValue={changeAnalogueInputValue}>
-                        </ToggleButton>
-                        <ToggleButton title="Analogue Value Display" 
-                                    imgMainUrl={dimmerImg}
-                                    bottomTitle={analogueDisplayVaule}
-                                    flagSlider={true}
-                                    changeSliderValue={changeAnalogueDisplayValue}>
-                        </ToggleButton>    
-                    </View>   
+                            <ToggleButton title="Push Button" 
+                                        imgMainUrl={dimmerImg}
+                                        flagButton="push"
+                                        flagSlider={false}></ToggleButton>
+                            <CheckBoxButton title="Status Display"
+                                        bottomTitle="On" 
+                                        imgMainUrl={SHUTTER_BLINDS_DATA[0].imgMainUrl}>
+                                        </CheckBoxButton>
+                            <ToggleButton title="Tunable White Dimmer" 
+                                        imgMainUrl={dimmerImg}
+                                        flagButton="on/off"
+                                        bottomTitle={whiteDimmerValue}
+                                        flagSlider={true}
+                                        changeSliderValue={changeWhiteDimmerValue}>
+                            </ToggleButton>
+                            <ToggleButton title="Analogue Value Input" 
+                                        imgMainUrl={dimmerImg}
+                                        bottomTitle={analogueInputValue}
+                                        flagSlider={true}
+                                        changeSliderValue={changeAnalogueInputValue}>
+                            </ToggleButton>
+                            <ToggleButton title="Analogue Value Display" 
+                                        imgMainUrl={dimmerImg}
+                                        bottomTitle={analogueDisplayVaule}
+                                        flagSlider={true}
+                                        changeSliderValue={changeAnalogueDisplayValue}>
+                            </ToggleButton>    
+                        </View> 
+                        </View> 
+                    </View> 
                 </ScrollView>
             </Layout>
         </SafeAreaView>
@@ -348,8 +351,7 @@ const portrait = StyleSheet.create({
         alignItems: 'center'
     },
     favoriteCategory: {
-        // borderColor: 'white',
-        // borderWidth: 1,
+        width: '100%',
         padding: 20,
         paddingBottom: 0
     },

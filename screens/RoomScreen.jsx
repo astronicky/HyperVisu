@@ -9,8 +9,12 @@ import CircleToggleButton from '../components/Common/CircleToggleButton';
 import CommonModal from '../components/Common/CommonModal';
 import NormalButton from '../components/Common/NormalButton';
 import MainButton from '../components/Common/MainButton';
+import ActionButton from '../components/Common/ActionButton';
+import FavoriteRoom from '../components/Common/FavoriteRoom';
 import Schedule from '../components/Common/Schedule';
-import { STAIRE, NUMBER08, NUMBER69, RECT, LAMP_WHITE, 
+import { portrait, landscape } from '../assets/styles/RoomScreen/index';
+import { ACTION_TURN_ON, ACTION_TURN_OFF, ACTION_LAMP_STATUS, ACTION_SHUTTER_STATUS, FAVORITE_ROOMS_DATA,
+        STAIRE, NUMBER08, NUMBER69, RECT, LAMP_WHITE, 
         ELLIPSE, UPARROW, DOWNARROW, BLINDS_WHITE,
         ROOMS, CATEGORIES, FAVORITE_DATA, SHUTTER_BLINDS_DATA,
         CLOSE, DONE } from "../Constant";
@@ -25,6 +29,7 @@ const doorImg = require('../assets/images/room/door.png');
 const RoomScreen = ({ navigation }) => {
 
     const orientation = useOrientation();
+    const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
 
     let count = orientation === 'PORTRAIT' ? 3 : 5;
 
@@ -62,6 +67,10 @@ const RoomScreen = ({ navigation }) => {
     useEffect(() => { 
 
     }, [isVisibleShowModal, isBottomModal, scheduleModalVisible]);
+
+    const handleClick = () => {
+
+    };
     
     return (
         <SafeAreaView style={portrait.containerScroll}>
@@ -70,12 +79,19 @@ const RoomScreen = ({ navigation }) => {
                     <Modal  animationType="fade"
                             transparent={true}
                             visible={isBottomModal}>
-                            <View style={portrait.addModal}>
-                                <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
-                                    <View style={portrait.buttonSence}>
-                                        <Text style={portrait.textSence}>+ Add Sence</Text>
-                                    </View>
-                                </Pressable>
+                            <View style={orientationStyle.addModal}>
+                                <View style={orientationStyle.buttonGroup}>
+                                    <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
+                                        <View style={{...portrait.buttonSence, borderBottomWidth: 1, borderBottomColor: 'rgba(255, 255, 255, 0.3)'}}>
+                                            <Text style={portrait.textSence}>+ Add Accessory</Text>
+                                        </View>
+                                    </Pressable>
+                                    <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
+                                        <View style={portrait.buttonSence}>
+                                            <Text style={portrait.textSence}>+ Add Sence</Text>
+                                        </View>
+                                    </Pressable>
+                                </View>
                                 <Pressable onPress={() => setIsBottomModal(!isBottomModal)} >
                                     <Text style={portrait.buttonCancel}>Cancel</Text>
                                 </Pressable>
@@ -85,40 +101,44 @@ const RoomScreen = ({ navigation }) => {
                             transparent={true}
                             visible={newSenceModalVisible}>
                             
-                                <View style={portrait.newSenceModal}>
-                                <ScrollView>
-                                    <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
-                                        <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
-                                    </Pressable>
-                                    <View style={{ padding: 25 }}>
-                                        <Text style={portrait.textNewScene}>New Scene</Text>
-                                    </View>
-                                    <View style={portrait.textNewSceneTitle}>
-                                        <Text style={{color: '#FFFFFF', fontSize: 17, fontWeight: '600', lineHeight: 22, letterSpacing: -0.41 }}>Name</Text>
-                                        <Text style={{ marginLeft: 50, color: '#8E8E93', fontSize: 17, fontWeight: '600', lineHeight: 22, letterSpacing: -0.41 }}>Watching TV</Text>
-                                    </View>
-                                    <View style={{ paddingTop: 30 }}>
-                                        <View style={portrait.favoriteTilte}>
-                                        <Text style={portrait.favoriteText}>Included Devices</Text>
-                                        <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                                            <Text style={portrait.favoriteText}><Text style={{ color: '#F1580C' }}>See All</Text></Text>
+                                <View style={orientationStyle.newSenceModal}>
+                                    <ScrollView>
+                                        <Pressable onPress={() => setNewSenceModalVisible(!newSenceModalVisible)} >
+                                            <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                         </Pressable>
+                                        <View style={{ padding: 25 }}>
+                                            <Text style={portrait.textNewScene}>New Scene</Text>
                                         </View>
-                                        <View style={portrait.roomItems}>
-                                        {FAVORITE_DATA?.map(( data, index ) => {
-                                            return (
-                                            <FavoriteCategory key={index} title={data.title} imgMainUrl={data.imgMainUrl} bgColor={data.bgColor} textColor={data.textColor} imgUpUrl={data.imgUpUrl} imgDownUrl={data.imgDownUrl}></FavoriteCategory>
-                                            );
-                                        })}
-                                        </View> 
-                                    </View>
-                                    <View style={{ paddingTop: 30 }}>
-                                        <NormalButton title="Test this scene"></NormalButton>
-                                        <NormalButton title="Add Devices"></NormalButton>
-                                        <CircleToggleButton title="Automatic" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>
-                                        <CircleToggleButton title="Show Favourite" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>
-                                        <MainButton style={{ marginTop: 20, marginBottom: 25 }} title={DONE}></MainButton>
-                                    </View>  
+                                        <View style={orientationStyle.newSenceLand}>
+                                            <View style={orientationStyle.newSenceLeft}>
+                                                <View style={portrait.textNewSceneTitle}>
+                                                    <Text style={portrait.newSenceName}>Name</Text>
+                                                    <Text style={portrait.newSenceTitle}>Watching TV</Text>
+                                                </View>
+                                                <View style={{ marginTop: 30 }}>
+                                                    <View style={portrait.favoriteTilte}>
+                                                    <Text style={portrait.favoriteText}>Included Devices</Text>
+                                                    <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
+                                                        <Text style={portrait.favoriteText}><Text style={{ color: '#F1580C' }}>See All</Text></Text>
+                                                    </Pressable>
+                                                    </View>
+                                                    <View style={portrait.roomItems}>
+                                                    {FAVORITE_DATA?.slice(0, count).map(( data, index ) => {
+                                                        return (
+                                                            <FavoriteCategory key={index} title={data.title} imgMainUrl={data.imgMainUrl} bgColor={data.bgColor} textColor={data.textColor} imgUpUrl={data.imgUpUrl} imgDownUrl={data.imgDownUrl}></FavoriteCategory>
+                                                        );
+                                                    })}
+                                                    </View> 
+                                                </View>
+                                            </View>
+                                            <View style={orientationStyle.newSenceRight}>
+                                                <NormalButton title="Test this scene"></NormalButton>
+                                                <NormalButton title="Add Devices"></NormalButton>
+                                                <CircleToggleButton title="Automatic" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>
+                                                <CircleToggleButton title="Show Favourite" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>                                                
+                                            </View>      
+                                        </View>
+                                        <MainButton style={orientationStyle.newSenceButton} title={DONE}></MainButton>
                                     </ScrollView>  
                                 </View>
                                     
@@ -126,7 +146,7 @@ const RoomScreen = ({ navigation }) => {
                     <Modal  animationType="fade"
                             transparent={true}
                             visible={scheduleModalVisible}>
-                            <View style={{ backgroundColor: '#2F2F31', opacity: 0.9, marginTop: 140, marginLeft: 36, marginRight: 36, padding: 21}}>
+                            <View style={orientationStyle.scheduleModal}>
                                 <Pressable onPress={() => setScheduleModalVisible(!scheduleModalVisible)} >
                                     <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                 </Pressable>
@@ -144,49 +164,56 @@ const RoomScreen = ({ navigation }) => {
                         <Text style={portrait.mainTitle}>Living Room</Text>
                         <Text style={portrait.subTitle}>Control your house</Text>
                     </View>
-                    <View style={orientation === 'PORTRAIT' ? portrait.controlContent : landscape.controlContent}>
-                        <View style={orientation === 'PORTRAIT' ? portrait.switchContent : landscape.switchContent}>
-                            <View style={portrait.switch}>
-                                <Image source={RECT} style={{ width: 5.24, height: 30, marginBottom: 33.38 }} ></Image>
-                                <Image source={LAMP_WHITE} style={{ width: 34, height: 34, marginBottom: 33.38 }} ></Image>
-                                <Image source={ELLIPSE} style={{ width: 34, height: 34 }}></Image>
-                            </View>
-                        <View style={{ flex: 2 }}></View>
-                        <View style={portrait.switch}>
-                            <Image source={UPARROW} style={{ width: 29, height: 16.52, marginBottom: 47.48 }} ></Image>
-                            <Image source={BLINDS_WHITE} style={{ width: 34, height: 34, marginBottom: 47.48 }} ></Image>
-                            <Image source={DOWNARROW} style={{ width: 29, height: 16.52 }}></Image>
-                        </View>     
-                        </View>
-                        <View style={{ flex: 1 }}></View>
-                        <ImageBackground source={STAIRE} resizeMode="cover">
-                            <View style={portrait.infoContent}>
-                                <View style={portrait.info}>
-                                <Image source={NUMBER08}></Image>
-                                <Text style={portrait.infoTitle}>Lights On</Text>
+                    <View style={orientation === 'LANDSCAPE' && { flexDirection: 'row'}}>
+                        <View style={orientation === 'PORTRAIT' ? portrait.controlContent : landscape.controlContent}>
+                            <View style={orientation === 'PORTRAIT' ? portrait.switchContent : landscape.switchContent}>
+                                <View style={orientation === 'PORTRAIT' ? portrait.switch : landscape.switch}>
+                                    <ActionButton name={ACTION_TURN_ON} style={orientation === 'PORTRAIT' ? portrait[ACTION_TURN_ON] : landscape[ACTION_TURN_ON]} onClick={handleClick} />
+                                    <ActionButton name={ACTION_LAMP_STATUS} style={orientation === 'PORTRAIT' ? portrait[ACTION_LAMP_STATUS] : landscape[ACTION_LAMP_STATUS]} />
+                                    <ActionButton name={ACTION_TURN_OFF} style={orientation === 'PORTRAIT' ? portrait[ACTION_TURN_OFF] : landscape[ACTION_TURN_OFF]} onClick={handleClick} />
                                 </View>
-                                <View style={portrait.info}>
-                                    <Image source={NUMBER69} style={{ width: 62, height: 29 }}></Image>
-                                    <Text style={portrait.infoTitle}>Currently</Text>
-                                </View>
+                                {orientation === 'PORTRAIT' && <View style={{ flex: 1 }}></View>}
+                                <View style={orientation === 'PORTRAIT' ? portrait.switch : landscape.switch}>
+                                    {/* <ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} onClick={handleClick} />
+                                    <ActionButton name={ACTION_SHUTTER_STATUS} style={styles[ACTION_SHUTTER_STATUS]} />
+                                    <ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} onClick={handleClick} /> */}
+                                    
+                                    <Image source={UPARROW} style={{ width: 29, height: 16.52, marginBottom: 47.48 }} ></Image>
+                                    <Image source={BLINDS_WHITE} style={{ width: 34, height: 34, marginBottom: 47.48 }} ></Image>
+                                    <Image source={DOWNARROW} style={{ width: 29, height: 16.52 }}></Image>
+                                </View>     
                             </View>
-                        </ImageBackground>
-                        {orientation === 'LANDSCAPE' && <View style={{flex: 6}}></View>}
-                    </View>
-                    <View style={portrait.favoriteCategory}>
-                        <View style={portrait.favoriteTilte}>
-                            <Text style={portrait.favoriteText}>Favorite</Text>
-                            <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                                <Text style={portrait.favoriteText}><Text style={{ color: '#F1580C' }}>Edit</Text></Text>
-                            </Pressable>
+                            {orientation === 'PORTRAIT' && <View style={{ flex: 1 }}></View>}
+                            <ImageBackground source={STAIRE} resizeMode="cover" imageStyle={orientation === 'LANDSCAPE' && { borderRadius: 16, width: 209, height: 287, marginLeft: 27 }}>
+                                <View style={orientation === 'PORTRAIT' ? portrait.infoContent : landscape.infoContent}>
+                                    <View style={orientation === 'PORTRAIT' ? portrait.info : landscape.info}>
+                                        <Image source={NUMBER08}></Image>
+                                        <Text style={orientation === 'PORTRAIT' ? portrait.infoTitle : landscape.infoTitle }>Lights On</Text>
+                                    </View>
+                                    <View style={orientation === 'PORTRAIT' ? portrait.info : landscape.info}>
+                                        <Image source={NUMBER69} style={{ width: 62, height: 29 }}></Image>
+                                        <Text style={orientation === 'PORTRAIT' ? portrait.infoTitle : landscape.infoTitle }>Currently</Text>
+                                    </View>
+                                </View>
+                            </ImageBackground>
                         </View>
-                        <View style={portrait.roomItems}>
-                        {FAVORITE_DATA?.slice(0, count).map(( data, index ) => {
-                            return (
-                            <FavoriteCategory key={index} title={data.title} imgMainUrl={data.imgMainUrl} bgColor={data.bgColor} textColor={data.textColor} imgUpUrl={data.imgUpUrl} imgDownUrl={data.imgDownUrl}></FavoriteCategory>
-                            );
-                        })}
-                        </View> 
+                        <View style={landscape.favoirteList}>
+                            <View style={portrait.favoriteRooms}>
+                                <View style={portrait.favoriteTilte}>
+                                    <Text style={orientation === 'PORTRAIT' ? portrait.favoriteText : landscape.favoriteText}>Favorite Room</Text>
+                                    <Pressable onPress={() => navigation.navigate(ROOMS)}>
+                                        <Text style={orientation === 'PORTRAIT' ? portrait.favoriteText : landscape.favoriteText}><Text style={{ color: '#F1580C' }}>See all</Text></Text>
+                                    </Pressable>        
+                                </View>
+                                <View style={portrait.roomItems}>
+                                    {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
+                                        return (
+                                            <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
+                                        );
+                                    })}
+                                </View> 
+                            </View>
+                        </View>
                     </View>
                     <View style={orientation === 'LANDSCAPE' && { flexDirection: 'row'}}>
                         <View style={orientation === 'LANDSCAPE' && { flex: 6 }}>
@@ -283,179 +310,5 @@ const RoomScreen = ({ navigation }) => {
         </SafeAreaView>
     )
 };
-
-const portrait = StyleSheet.create({
-    containerScroll: {
-        flex: 1,
-        backgroundColor: '#000000'
-    },
-    scrollView: {
-        width: '100%'
-    },
-    smartHomeTitle: {
-        padding: 20,
-    },
-    mainTitle: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 30,
-        lineHeight: 41,
-        letterSpacing: 0.41
-    },
-    subTitle: {
-        marginTop: 5,
-        color: 'white',
-        fontWeight: '600',
-        fontSize: 17,
-        lineHeight: 22,
-        letterSpacing: -0.41
-    },
-    controlContent: {
-        padding: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    switchContent: {
-        flex: 5, 
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        alignItems: 'center', 
-    },
-    switch: {
-        flex: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F1580C',
-        borderRadius: 16,
-        padding: 20
-    },
-    infoContent: {
-        flex: 5,
-        borderRadius: 16,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: 147,
-        paddingTop: 19,
-        paddingBottom: 36.31
-    },
-    infoTitle: {
-        marginTop: 8,
-        color: 'white',
-        fontWeight: '600',
-        fontSize: 15,
-        lineHeight: 20,
-        letterSpacing: -0.24
-    }, 
-    info: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    favoriteCategory: {
-        width: '100%',
-        padding: 20,
-        paddingBottom: 0
-    },
-    favoriteTilte: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 5
-    },
-    favoriteText: {
-        color: 'white',
-        fontSize: 17,
-        fontWeight: '400',
-        lineHeight: 22,
-        letterSpacing: -0.41
-    },
-    roomItems: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    addModal: {
-        flex: 1,
-        backgroundColor: '#000000',
-        opacity: 0.8,
-        paddingTop: 500,
-        paddingLeft: 24,
-        paddingRight: 24,
-        marginTop: 20
-    },
-    buttonSence: {
-        flexDirection: 'row', 
-        justifyContent: 'flex-start', 
-        alignItems: 'center', 
-        backgroundColor: '#2F2F31', 
-        borderRadius: 14, 
-        padding: 15
-    },
-    buttonCancel: {
-        backgroundColor: '#2F2F31',
-        borderRadius: 14,
-        padding: 17,
-        color: '#F1580C',
-        fontSize: 17, 
-        fontWeight: '600', 
-        textAlign: 'center',
-        marginTop: 10,
-        lineHeight: 22
-    },
-    textPlus: { 
-        borderWidth: 1, 
-        borderColor: '#FFFFFF', 
-        color: '#F1580C', 
-        fontSize: 40, 
-        fontWeight: '600', 
-        lineHeight: 25,
-
-    },
-    textSence: {
-        color: '#F1580C', 
-        fontSize: 20, 
-        fontWeight: '600', 
-        lineHeight: 25, 
-    },
-    newSenceModal: {
-        marginTop: 20,
-        backgroundColor: '#1D1D1E',
-        padding: 23,
-        height: '100%',
-    },
-    textNewScene: {
-        fontStyle: 'normal',
-        color: '#FFFFFF',
-        fontWeight: '700',
-        fontSize: 30,
-        lineHeight: 36,
-        alignSelf: 'center'
-    },
-    textNewSceneTitle: {
-        flexDirection: 'row',
-        // marginLeft: -24,
-        // marginRight: -24,
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderTopColor: 'rgba(255, 255, 255, 0.92)',
-        borderBottomColor: 'rgba(255, 255, 255, 0.92)',
-        paddingTop: 14.5,
-        paddingBottom: 14.5,
-        paddingLeft: 16.5
-    }
-});
-
-const landscape = StyleSheet.create({
-    controlContent: {
-        padding: 20,
-        flexDirection: 'row',
-        justifyContent: 'flex-start'
-    },
-    switchContent: {
-        flex: 4,
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        alignItems: 'center', 
-    },
-});
 
 export default RoomScreen;

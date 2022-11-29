@@ -42,7 +42,7 @@ const portrait = StyleSheet.create({
 
 const landscape = StyleSheet.create({
     container: {
-        width: '47%',
+        width: '48%',
         borderRadius: 10,
         padding: 11,
         backgroundColor: '#2F2F31',

@@ -31,6 +31,9 @@ import {
     TALK_LABEL,
     EDIT_LABEL,
     ACTION_SWITCH,
+    UPARROW, 
+    DOWNARROW,
+    BLINDS_WHITE
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
@@ -353,12 +356,12 @@ export default function ActionButton({ name, style, active, onClick, disabled })
             }
             break;
         case ACTION_SHUTTER_STATUS:
-            width = style ? style.width ? style.width : 34 : 34;
-            height = style ? style.height ? style.height : 34 : 34;
+            width = style ? style.width ? style.width : 34 : 48;
+            height = style ? style.height ? style.height : 34 : 48;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
                     <Pressable onPress={() => { (onClick) && onClick() }}>
-                        <Image source={disabled ? ImgShutterDisabled : ImgShutter} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
+                        <Image source={disabled ? ImgShutterDisabled : ImgShutter} width={width} height={height} style={{ resizeMode: 'contain' }} />
                     </Pressable>
                 </View>
             );

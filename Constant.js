@@ -83,12 +83,34 @@ export const ACTION_SWITCH = "Switch";
 // Temp data
 
 export const SETTING_DATA = [
-    { name: 'Notifications' },
-    { name: 'Background Color' },
-    { name: 'Widget Background' },
-    { name: 'Text Color' },
-    { name: 'Icons Color' },
-    { name: 'Active Color' },
+    { 
+        name: 'Notifications',
+        path: LOGIN
+    },
+    { 
+        name: 'Background Color',
+        path: LOGIN
+    },
+    { 
+        name: 'Widget Background',
+        path: LOGIN
+    },
+    { 
+        name: 'Text Color',
+        path: LOGIN
+    },
+    { 
+        name: 'Icons Color',
+        path: LOGIN
+    },
+    { 
+        name: 'Active Color',
+        path: LOGIN
+    },
+    { 
+        name: OPEN_CONFIGURATION,
+        path: CONFIG
+    },
 ];
 
 export const CONFIG_DATA = [
@@ -305,6 +327,7 @@ export const OVAL_2 = require('./assets/images/power/oval_2.png');
 export const CAMERA_IMAGE = require('./assets/images/camera/camera-bitmap.png');
 export const CAMERA_RED = require('./assets/images/camera/red.png');
 export const CAMERA_GREEN = require('./assets/images/camera/green.png');
+export const SLIDER_THUMB = require('./assets/images/slider_thumb.png');
 // export const ELLIPSE_BLACK = require('./assets/images/ellipse.png');
 export const UPARROW = require('./assets/images/favorite_category/uparrow.png');
 export const DOWNARROW = require('./assets/images/favorite_category/downarrow.png');

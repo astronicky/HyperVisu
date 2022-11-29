@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView } from "react-native";
+import * as ScreenOrientation from 'expo-screen-orientation';
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
 import MainInput from "../components/Common/MainInput";
 import { CONNECT, HOME, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
 
 export default function LoginScreen({ navigation }) {
+
+    // async function changeScreenOrientation() {
+    //     await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+    // }; 
+
+    // useEffect(() => {
+        
+    //     const unsubscribe = navigation.addListener('focus', () => {
+    //         changeScreenOrientation();
+    //     });
+
+    //     return unsubscribe;
+    // }, [navigation]);
+
+
     return (
         <SafeAreaView style={styles.containerScroll}>
             <ScrollView style={styles.scrollView}>

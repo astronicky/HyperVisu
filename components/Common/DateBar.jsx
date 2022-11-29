@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import moment from 'moment';
 import ActionButton from './ActionButton';
 import { ACTION_CIRECLE_PLUS } from '../../Constant';
+import { useOrientation } from '../../hooks/useOrientation';
 
 const DataBar = ( { flagButton , handleClick} ) => {
     
     const [currentDate, setCurrentDate] = useState();
+    const orientation = useOrientation();
 
     useEffect(() => {
         setInterval(() => {
@@ -15,14 +17,14 @@ const DataBar = ( { flagButton , handleClick} ) => {
     }, []);
     
     return (
-        <View style={styles.container}>
-            <Text style={styles.dateText}>{currentDate}</Text>
-            {flagButton && <ActionButton name={ACTION_CIRECLE_PLUS} style={styles[ACTION_CIRECLE_PLUS]} onClick={handleClick}/>}  
+        <View style={portrait.container}>
+            <Text style={orientation === 'PORTRAIT' ? portrait.dateText : landscape.dateText}>{currentDate}</Text>
+            {flagButton && <ActionButton name={ACTION_CIRECLE_PLUS} style={portrait[ACTION_CIRECLE_PLUS]} onClick={handleClick}/>}  
         </View>
     )
 };
 
-const styles = StyleSheet.create({
+const portrait = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'row',
@@ -38,6 +40,15 @@ const styles = StyleSheet.create({
     [ACTION_CIRECLE_PLUS]: {
         width: 30,
         height: 30
+    }
+});
+
+const landscape = StyleSheet.create({
+    dateText: {
+        color: 'white',
+        fontWeight: '400',
+        fontSize: 22,
+        opacity: 0.7
     }
 });
 

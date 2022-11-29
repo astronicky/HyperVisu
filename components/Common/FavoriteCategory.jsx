@@ -58,7 +58,7 @@ const landscape = StyleSheet.create({
         paddingRight: 10,
         display: 'flex',
         justifyContent: 'center',
-        width: '17%',
+        width: '18%',
         height: 119,
     },
 })

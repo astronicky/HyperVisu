@@ -4,9 +4,14 @@ import ColorPicker from 'react-native-wheel-color-picker';
 import Slider from '@react-native-community/slider';
 import MainButton from './MainButton';
 import ActionButton from "./ActionButton";
+import { useOrientation } from '../../hooks/useOrientation';
+import { portrait, landscape } from "../../assets/styles/CommonModal/index";
 import { CLOSE, BRIGHTNESS, ACTION_SWITCH, COLOR, CAMERA_GREEN, CAMERA_IMAGE } from '../../Constant';
 
 const CommonModal = ({ index, isVisible, setIsVisible }) => {
+
+    const orientation = useOrientation();
+    const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
 
     const [tempValue, onTempValue] = useState();
     const changeSliderValue = (value) => {
@@ -17,59 +22,48 @@ const CommonModal = ({ index, isVisible, setIsVisible }) => {
         <Modal  animationType="fade"
                 transparent={true}
                 visible={isVisible}
-                onRequestClose={() => {setModalVisible(!isVisible);}} >                                  
-                {index == 0 && 
-                    <View style={styles.modalView}>
-                        <Pressable onPress={() => setIsVisible(false)} >
-                            <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
-                        </Pressable> 
+                onRequestClose={() => {setModalVisible(!isVisible);}} >
+                <View style={orientationStyle.modalView}>
+                    <Pressable onPress={() => setIsVisible(false)} >
+                        <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
+                    </Pressable>
+                    {index == 0 &&(<>
                         <View style={{ padding: 16, marginBottom: 25 }}>
-                            <Text style={styles.textCaption}>RGB Dimmer</Text>
+                            <Text style={portrait.textCaption}>RGB Dimmer</Text>
                         </View>
-                        <View style={{padding: 20}}>
-                            <ColorPicker  thumbSize={30}
-					                    sliderSize={20}
-					                    noSnap={false}
-                                        swatches={true}
-					                    row={false} />
-                        </View>
-                        <View style={{ padding: 58, marginTop: 250 }}>
+                        <ColorPicker  
+                            thumbSize={30}
+                            noSnap={false}
+                            swatches={false}
+                            row={false}
+                            sliderHidden={true} />
+                        <View style={orientationStyle.brightButton}>
                             <MainButton title={BRIGHTNESS}></MainButton>
                         </View>
-                        
-                    </View>
-                }   
-                {index == 1 && 
-                    <View style={styles.modalView}>
-                        <Pressable onPress={() => setIsVisible(false)} >
-                            <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
-                        </Pressable> 
+                    </>)}
+                    {index == 1 && (<> 
                         <View style={{ padding: 16, marginBottom: 25 }}>
-                            <Text style={styles.textCaption}>Brightness</Text>
+                            <Text style={portrait.textCaption}>Brightness</Text>
                         </View>
                         <View style={{ alignSelf: 'center' }}>
-                            <ActionButton name={ACTION_SWITCH} style={styles[ACTION_SWITCH]} />
+                            <ActionButton name={ACTION_SWITCH} style={orientationStyle[ACTION_SWITCH]} />
                         </View>
-                        <View style={{ padding: 58 }}>
+                        <View style={orientationStyle.colorButton}>
                             <MainButton title={COLOR}></MainButton>
                         </View>
-                    </View>
-                }  
-                {index == 2 && 
-                    <View style={styles.modalView}>
-                        <Pressable onPress={() => setIsVisible(false)} >
-                            <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
-                        </Pressable> 
+                    </>)}
+                
+                    {index == 2 && (<> 
                         <View style={{ padding: 16, marginBottom: 15 }}>
-                            <Text style={styles.textCaption}>Bed Light</Text>
-                            <Text style={ styles.tempText }>Brightness - 58%</Text>
+                            <Text style={portrait.textCaption}>Bed Light</Text>
+                            <Text style={ portrait.tempText }>Brightness - 58%</Text>
                         </View>
                         <View style={{ alignSelf: 'center' }}>
-                            <ActionButton name={ACTION_SWITCH} style={styles[ACTION_SWITCH]} />
+                            <ActionButton name={ACTION_SWITCH} style={portrait[ACTION_SWITCH]} />
                         </View>
                         <View style={{ marginTop: 5 }}>
-                            <Text style={ styles.tempText }>Temperature - {tempValue}%</Text>
-                            <Slider style={{width: '100%', height: 40}}
+                            <Text style={ portrait.tempText }>Temperature - {tempValue}%</Text>
+                            <Slider style={{width: '100%'}}
                                 minimumValue={0}
                                 maximumValue={100}
                                 step={1}
@@ -78,100 +72,25 @@ const CommonModal = ({ index, isVisible, setIsVisible }) => {
                                 thumbTintColor="#FFFFFF"
                                 onValueChange={changeSliderValue} />
                         </View>
-                    </View>
-                }
-                {index == 4 && 
-                    <View style={{...styles.modalView, marginTop: 100, marginBottom: 100 }}>
-                        <Pressable onPress={() => setIsVisible(false)} >
-                            <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
-                        </Pressable> 
+                    </>)}
+                    {index == 4 && (<>
                         <View style={{ padding: 16, marginBottom: 15 }}>
-                            <Text style={styles.textCaption}>Amanda’s Room</Text>
-                            <Text style={ styles.tempText }>Monday 24, 2022 | 08:47am</Text>
+                            <Text style={portrait.textCaption}>Amanda’s Room</Text>
+                            <Text style={ portrait.tempText }>Monday 24, 2022 | 08:47am</Text>
                         </View>
-                        <View style={styles.cameraContainer}>  
-                            <View style={styles.cameraItem}>
-                                <View style={styles.cameraTitle}>
-                                    <Text style={styles.cameraText}>Camera On</Text>
+                        <View style={portrait.cameraContainer}>  
+                            <View style={portrait.cameraItem}>
+                                <View style={portrait.cameraTitle}>
+                                    <Text style={portrait.cameraText}>Camera On</Text>
                                     <Image source={CAMERA_GREEN}></Image>
                                 </View>       
-                                <ImageBackground imageStyle={{ borderRadius: 10 }} style={styles.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
-                                
+                                <ImageBackground imageStyle={{ borderRadius: 10 }} style={orientationStyle.cameraBackground} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>   
                             </View>
                         </View>
-                    </View>
-                }                                                  
-                
+                    </>)}
+                </View>                                                      
         </Modal>
     );
 };
-
-const styles = StyleSheet.create({
-    modalView: {
-        flex: 1, 
-        backgroundColor: '#2F2F31', 
-        marginLeft: 35,
-        marginRight: 35,
-        marginTop: 50,
-        marginBottom: 50,
-        padding: 18, 
-        opacity: 0.9,
-    },
-    textCaption: {
-        color: '#FFFFFF', 
-        fontSize: 30, 
-        fontWeight: '600',  
-        lineHeight: 41,
-        letterSpacing: 0.41,
-        alignSelf: 'center'
-    },
-    colorPickerContainer: {
-
-    },
-    [ACTION_SWITCH]: {
-        marginTop: 10,
-        width: 124,
-        height: 325
-    },
-    tempText: {
-        textAlign: 'center',
-        color: '#FFFFFF',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: 15,
-        lineHeight: 41,
-        letterSpacing: 0.41
-    },
-    cameraContainer: {
-        // 
-    },
-    cameraItem: {
-        borderRadius: 20,
-        position: 'relative'
-    },
-    cameraTitle: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'absolute',
-        padding: 12,
-        width: '100%', 
-        backgroundColor: '#1C1C1E',
-        borderTopRightRadius: 10,
-        borderTopLeftRadius: 10,
-        zIndex: 1
-    },
-    cameraText: {
-        color: '#FFFFFF',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: 16,
-        lineHeight: 19,
-    },
-    cameraBackground: {
-        width: '100%',
-        height: 261
-    }
-});
 
 export default CommonModal;

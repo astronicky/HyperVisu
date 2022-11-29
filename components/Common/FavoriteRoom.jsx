@@ -20,7 +20,6 @@ const portrait = StyleSheet.create({
         height: 119,
         borderRadius: 10,
         padding: 17,
-        display: 'flex',
         justifyContent: 'center'    
     },
     baseText: {
@@ -33,7 +32,7 @@ const portrait = StyleSheet.create({
 
 const landscape = StyleSheet.create({
     container: {
-        width: '17%',
+        width: '18%',
         height: 119,
         borderRadius: 10,
         padding: 17,

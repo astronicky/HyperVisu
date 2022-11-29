@@ -6,12 +6,17 @@ import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import SwitchButton from '../components/Common/SwitchButton';
 import CheckBoxButton from '../components/Common/CheckBoxButton';
-import { SHUTTER_AMAND, SHUTTER_DAMON, CLOSE } from '../Constant';
+import { useOrientation } from '../hooks/useOrientation';
+import { SHUTTER_AMAND, SHUTTER_DAMON, CLOSE, SLIDER_THUMB } from '../Constant';
+import { portrait, landscape } from '../assets/styles/ShutterScreen/index';
 
 const ShutterScreen = ({ navigation }) => {
 
+    const orientation = useOrientation();
+    const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
+
     const [modalVisible, setModalVisible] = useState(false);
-    const [sliderValue, setSliderValue] = useState();
+    const [sliderValue, setSliderValue] = useState(0);
     const [sliderHValue, setSliderHValue] = useState();
 
     const showModal = () => {
@@ -23,24 +28,25 @@ const ShutterScreen = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.containerScroll}>
+        <SafeAreaView style={portrait.containerScroll}>
             <Layout header={true}>
-                <ScrollView style={styles.scrollView}>              
+                <ScrollView style={portrait.scrollView}>              
                     <Modal  animationType="fade"
                             transparent={true}
                             visible={modalVisible}
                             onRequestClose={() => {
                             setModalVisible(!modalVisible);}} >
                             
-                            <View style={styles.modalView}>
+                            <View style={orientationStyle.modalView}>
                                 <Pressable onPress={() => setModalVisible(false)} >
                                     <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                                 </Pressable>                                 
                                 <View style={{ padding: 16, marginBottom: 25 }}>
-                                    <Text style={styles.textCaption}>Position & Slat</Text>
+                                    <Text style={portrait.textCaption}>Position & Slat</Text>
+                                    {orientation === 'LANDSCAPE' && (<Text style={orientationStyle.sliderValueText}>{sliderValue}%</Text>)}
                                 </View>
-                                <View style={styles.controlContainer}>
-                                    <Text style={styles.sliderValueText}>{sliderValue? sliderValue : 0}%</Text>
+                                <View style={orientationStyle.controlContainer}>
+                                    {orientation === 'PORTRAIT' && <Text style={orientationStyle.sliderValueText}>{sliderValue}%</Text>}
                                     <View style={{ marginRight: 41 }}>
                                         <VerticalSlider
                                             min={0}
@@ -63,59 +69,61 @@ const ShutterScreen = ({ navigation }) => {
                                             ballIndicatorPosition={-5}
                                             />
                                     </View>
-                                    <SwitchButton style={{ width: '50%' }}></SwitchButton>                                    
+                                    <SwitchButton></SwitchButton>                                    
                                 </View>   
-                                <View style={styles.bottomControl}>
-                                    <Text style={styles.bottomSliderValue}>Slat-{sliderHValue}%</Text>
+                                <View style={orientationStyle.bottomControl}>
+                                    {orientation === 'PORTRAIT' && <Text style={portrait.bottomSliderValue}>Slat-{sliderHValue}%</Text>}
                                     <Slider
-                                        style={{width: '100%', height: 40}}
+                                        style={orientationStyle.bottomSlider}
                                         minimumValue={0}
                                         maximumValue={100}
                                         step={1}
                                         minimumTrackTintColor="#F1580C"
                                         maximumTrackTintColor="#FFFFFF"
                                         thumbTintColor="#FFFFFF"
+                                        thumbImage={SLIDER_THUMB}
                                         onValueChange={changeSliderValue} /> 
-                                </View>
-                                                               
+                                </View>                                                             
                             </View>
                     </Modal>
-                    <View style={styles.categoryTitle}>
+                    <View style={styles.shutterTitle}>
                         <DateBar flagButton={false}></DateBar>
-                        <Text style={styles.mainTitle}>Shutter</Text>
-                        <Text style={styles.subTitle}>Control your house</Text>
+                        <Text style={orientationStyle.mainTitle}>Shutter</Text>
+                        <Text style={orientationStyle.subTitle}>Control your house</Text>
                     </View>
-                    <View style={styles.categoryContainer}>
-                        <View style={styles.categoryTilte}>
-                            <Text style={styles.categoryText}>Amanda’s Room</Text>
+                    <View style={orientationStyle.shutterContainerLand}>
+                        <View style={orientationStyle.shutterContainer}>
+                            <View style={orientationStyle.shutterTilte}>
+                                <Text style={orientationStyle.shutterText}>Amanda’s Room</Text>
+                            </View>
+                            {SHUTTER_AMAND?.map((data, index) => {
+                                return (
+                                    <CheckBoxButton  key={index}
+                                            flagButton={false}
+                                            title={data.title} 
+                                            bottomTitle={data.bottomTitle + "%"}
+                                            imgMainUrl={data.imgMainUrl}
+                                            imgCenterUrl={data.imgCenterUrl}
+                                            showModal={showModal}></CheckBoxButton>                         
+                                );
+                            })}
                         </View>
-                        {SHUTTER_AMAND?.map((data, index) => {
-                            return (
-                                <CheckBoxButton  key={index}
-                                        flagButton={false}
-                                        title={data.title} 
-                                        bottomTitle={data.bottomTitle + "%"}
-                                        imgMainUrl={data.imgMainUrl}
-                                        imgCenterUrl={data.imgCenterUrl}
-                                        showModal={showModal}></CheckBoxButton>                         
-                            );
-                        })}
-                    </View>
-                    <View style={styles.categoryContainer}>
-                    <View style={styles.categoryTilte}>
-                        <Text style={styles.categoryText}>Damon’s Room</Text>
-                    </View>
-                    {SHUTTER_DAMON?.map((data, index) => {
-                        return (
-                        <CheckBoxButton key={index} 
-                                        flagButton={false}
-                                        title={data.title} 
-                                        bottomTitle={data.bottomTitle + "%"}
-                                        imgMainUrl={data.imgMainUrl}
-                                        imgCenterUrl={data.imgCenterUrl}
-                                        showModal={showModal}></CheckBoxButton>
-                        );
-                    })}
+                        <View style={orientationStyle.shutterContainer}>
+                            <View style={portrait.shutterTilte}>
+                                <Text style={portrait.shutterText}>Damon’s Room</Text>
+                            </View>
+                            {SHUTTER_DAMON?.map((data, index) => {
+                                return (
+                                <CheckBoxButton key={index} 
+                                                flagButton={false}
+                                                title={data.title} 
+                                                bottomTitle={data.bottomTitle + "%"}
+                                                imgMainUrl={data.imgMainUrl}
+                                                imgCenterUrl={data.imgCenterUrl}
+                                                showModal={showModal}></CheckBoxButton>
+                                );
+                            })}
+                        </View>
                     </View>
                 </ScrollView>
             </Layout>
@@ -124,107 +132,10 @@ const ShutterScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    containerScroll: {
-        flex: 1,
-        backgroundColor: '#000000'
-    },
-    scrollView: {
-        width: '100%'
-    },
-    categoryTitle: {
+    shutterTitle: {
         padding: 25,
         paddingBottom: 0
     },
-    dateTitle: {
-        color: 'white',
-        fontWeight: '400',
-        fontSize: 14,
-        opacity: 0.6
-    },
-    topTitle: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    mainTitle: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 30,
-        lineHeight: 41,
-        letterSpacing: 0.41
-    },
-    subTitle: {
-        marginTop: 5,
-        color: 'white',
-        fontWeight: '600',
-        fontSize: 17,
-        lineHeight: 22,
-        letterSpacing: -0.41
-    },
-    categoryContainer: {
-        padding: 27,
-        paddingBottom: 0
-    },
-    categoryTilte: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 11
-    },
-    categoryText: {
-        color: '#FFFFFF',
-        fontSize: 17,
-        fontWeight: '400',
-        lineHeight: 22,
-        letterSpacing: -0.41
-    },
-    modalView: {
-        flex: 1, 
-        backgroundColor: '#2F2F31', 
-        marginLeft: 35,
-        marginRight: 35,
-        marginTop: 50,
-        marginBottom: 50,
-        padding: 18, 
-        opacity: 0.9,
-    },
-    controlContainer: { 
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%'
-    },
-    sliderValueText: {
-        width: 31,
-        height: 41,
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: 15,
-        lineHeight: 41,
-        letterSpacing: 0.41,
-        color: '#FFFFFF',
-        alignSelf: 'center',
-        marginRight: 11
-    },
-    textCaption: {
-        color: '#FFFFFF', 
-        fontSize: 30, 
-        fontWeight: '600',  
-        lineHeight: 41,
-        letterSpacing: 0.41,
-        alignSelf: 'center'
-    },
-    bottomControl: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20
-    },
-    bottomSliderValue: {
-        color: '#FFFFFF',
-        fontSize: 15,
-        fontWeight: '400',
-        lineHeight: 41,
-        letterSpacing: 0.41
-    }
-});
+})
 
 export default ShutterScreen;

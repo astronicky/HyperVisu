@@ -10,6 +10,7 @@ import { ROOM, ROOMS_DATA, CATEGORIES, FAVORITE_ROOMS_DATA } from "../Constant";
 const RoomsScreen = ({ navigation }) => {
 
     const orientation = useOrientation();
+    const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
 
     let count = orientation === 'PORTRAIT' ? 3 : 5;
 
@@ -24,24 +25,39 @@ const RoomsScreen = ({ navigation }) => {
                     </View>
                     <View style={portrait.favoriteRooms}>
                         <View style={portrait.favoriteTitle}>
-                            <Text style={portrait.favoriteText}>Favorite Room</Text>
-                            <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                                <Text style={{...portrait.favoriteText, color: '#F1580C'}}>See all</Text>
-                            </Pressable>
+                            <View style={orientationStyle.favoriteRoomBar}>
+                                <Text style={orientationStyle.favoriteText}>Favorite Room</Text>
+                                <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
+                                    <Text style={{...orientationStyle.favoriteText, color: '#F1580C'}}>See all</Text>
+                                </Pressable>
+                            </View>
+                            {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
                         </View>
                         <View style={portrait.roomItems}>
+                            {orientation === 'LANDSCAPE' ? (<View style={{ flex:6, flexDirection: 'row', justifyContent: 'space-between'}}>
                             {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
                                 return (
                                     <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
                                 );
                             })}
+                            </View>) : 
+                            (
+                                <>
+                                    {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
+                                        return (
+                                            <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
+                                        );
+                                    })}
+                                </>
+                            )}
+                            {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
                         </View> 
                     </View>
                     <View style={portrait.roomAll}>
-                        <Text style={portrait.favoriteText}>All</Text>
+                        <Text style={orientationStyle.favoriteText}>All</Text>
                         {/* <Text style={{...portrait.favoriteText, color: '#F1580C'}}>See all</Text> */}
                     </View>
-                    <View style={orientation === 'PORTRAIT' ? portrait.roomsList : landscape.roomsList}>    
+                    <View style={orientationStyle.roomsList}>    
                         {ROOMS_DATA?.map((data, index) => {
                         return (
                             <ImageButton key={index} {...{ title: data.room, imgUrl: data.imgUrl, navigation, path: ROOM }}></ImageButton>
@@ -82,6 +98,11 @@ const portrait = StyleSheet.create({
     favoriteRooms: {
         padding: 20
     },
+    favoriteRoomBar: {
+        width: '100%',
+        flexDirection: 'row', 
+        justifyContent: 'space-between'
+    },
     favoriteTitle: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -120,7 +141,19 @@ const landscape = StyleSheet.create({
     },
     favoriteRooms: {
         flexDirection: 'row'
-    }
+    },
+    favoriteRoomBar: {
+        flex:6, 
+        flexDirection: 'row', 
+        justifyContent: 'space-between'
+    },
+    favoriteText: {
+        color: 'white',
+        fontSize: 22,
+        fontWeight: '400',
+        lineHeight: 22,
+        letterSpacing: -0.41
+    },
 })
 
 export default RoomsScreen;

@@ -8,13 +8,13 @@ import { LOGIN, CONNECT } from "../Constant";
 
 export default function ConnectScreen({ navigation }) {
 
-    async function changeScreenOrientation() {
-        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-    }; 
+    // async function changeScreenOrientation() {
+    //     await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+    // }; 
 
-    useEffect(() => {
-        changeScreenOrientation();
-    });
+    // useEffect(() => {
+    //     changeScreenOrientation();
+    // });
 
     return (
         <Layout>

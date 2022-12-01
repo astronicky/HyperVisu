@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import ActionButton from './ActionButton';
+import { useOrientation } from '../../hooks/useOrientation';
 import { ACTION_ARROW_UP, ACTION_ARROW_DOWN, ACTION_MINUS, ACTION_PLUS } from '../../Constant';
 
 const backgroundImg = require('../../assets/images/room/ellipse.png');
@@ -11,37 +12,40 @@ const handleClick = () => {
 
 const CheckBoxButton = ({ flagButton, title, bottomTitle, imgMainUrl, style, imgCenterUrl, textBottom, showModal }) => {
 
-  return (
-    <View {...{ style }}>
-      <View style={styles.container}>
-        <TouchableOpacity>
-          <Pressable style={styles.baseButton} onPress={() => (showModal) && showModal() }>
-            <View style={{...styles.baseButton, flex: 7 }}>
-              <View style={styles.mainImgage}>
-                <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
-                <Image source={imgMainUrl} resizeMode="contain" style={{ width: 20, height: 20, position: 'absolute' }}></Image>  
-              </View>
-              <View>
-                <Text style={styles.roomText}>{title}</Text>
-                {bottomTitle !== undefined && <Text style={styles.valueText}>{bottomTitle}</Text>}
-              </View>
-            </View>
-            <View style={styles.btnGroup}>
-              {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_PLUS} style={styles[ACTION_PLUS]} onClick={handleClick} />) :
-                            (<ActionButton name={ACTION_ARROW_UP} style={styles[ACTION_ARROW_UP]} onClick={handleClick} />))}
-              {imgCenterUrl !== undefined && <Image source={imgCenterUrl}></Image>}
-              {textBottom !== undefined && <Text style={{ color: '#FFFFFF', opacity: 0.5 }}>{textBottom}</Text>}
-              {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_MINUS} style={styles[ACTION_MINUS]} onClick={handleClick} />) :
-                            (<ActionButton name={ACTION_ARROW_DOWN} style={styles[ACTION_ARROW_DOWN]} onClick={handleClick} />))}
-            </View>  
-          </Pressable> 
-        </TouchableOpacity>           
-      </View>
-    </View> 
-  )
-}
+    const orientation = useOrientation();
+    const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
 
-const styles = StyleSheet.create({
+    return (
+        <View {...{ style }}>
+            <View style={portrait.container}>
+            <TouchableOpacity>
+                <Pressable style={portrait.baseButton} onPress={() => (showModal) && showModal() }>
+                <View style={{...portrait.baseButton, flex: 7 }}>
+                    <View style={portrait.mainImgage}>
+                    <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
+                    <Image source={imgMainUrl} resizeMode="contain" style={{ width: 20, height: 20, position: 'absolute' }}></Image>  
+                    </View>
+                    <View>
+                    <Text style={orientationStyle.roomText}>{title}</Text>
+                    {bottomTitle !== undefined && <Text style={orientationStyle.valueText}>{bottomTitle}</Text>}
+                    </View>
+                </View>
+                <View style={portrait.btnGroup}>
+                    {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_PLUS} style={portrait[ACTION_PLUS]} onClick={handleClick} />) :
+                                (<ActionButton name={ACTION_ARROW_UP} style={portrait[ACTION_ARROW_UP]} onClick={handleClick} />))}
+                    {imgCenterUrl !== undefined && <Image source={imgCenterUrl}></Image>}
+                    {textBottom !== undefined && <Text style={{ color: '#FFFFFF', opacity: 0.5 }}>{textBottom}</Text>}
+                    {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_MINUS} style={portrait[ACTION_MINUS]} onClick={handleClick} />) :
+                                (<ActionButton name={ACTION_ARROW_DOWN} style={portrait[ACTION_ARROW_DOWN]} onClick={handleClick} />))}
+                </View>  
+                </Pressable> 
+            </TouchableOpacity>           
+            </View>
+        </View> 
+    )
+};
+
+const portrait = StyleSheet.create({
     [ACTION_MINUS]: {
         width: 20,
         height: 20
@@ -103,6 +107,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center'
     }
+});
+
+const landscape = StyleSheet.create({
+    roomText: {
+        paddingLeft: 5,
+        fontStyle: 'normal',
+        color: '#FFFFFF',
+        fontWeight: '600',
+        fontSize: 20
+    },
+    valueText: {
+        marginLeft: 5,
+        fontStyle: 'normal',
+        color: '#FFFFFF',
+        fontWeight: '400',
+        fontSize: 20,
+        letterSpacing: -0.24,
+        opacity: 0.5
+    },
 });
 
 export default CheckBoxButton;

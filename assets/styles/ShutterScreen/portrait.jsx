@@ -78,8 +78,7 @@ const portrait = StyleSheet.create({
         lineHeight: 41,
         letterSpacing: 0.41,
         color: '#FFFFFF',
-        alignSelf: 'center',
-        marginRight: 11
+        alignSelf: 'center'
     },
     textCaption: {
         color: '#FFFFFF', 

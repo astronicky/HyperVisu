@@ -287,7 +287,7 @@ export default function ActionButton({ name, style, active, onClick, disabled })
             padding = width * 0.375;
             return (
                 <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center', borderRadius: width / 2 }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
+                    <Pressable onPressIn={() => { setClickFlag(!clickFlag); (onClick) && onClick() }} onPressOut={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
                         <View style={clickFlag ? { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#F1580C', borderWidth: borderWidth, borderRadius: width / 2, padding: padding, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#6A6A6B', borderWidth: borderWidth * 0.7, borderRadius: (height * 0.7) / 2, padding: padding * 0.7, width: width * 0.7, height: height * 0.7 }} >
                             <View style={clickFlag ? { backgroundColor: '#F1580C', borderRadius: innerWidth / 2, width: innerWidth, height: innerHeight } : { backgroundColor: '#6A6A6B', borderRadius: innerWidth * 0.7 / 2, width: innerWidth * 0.7, height: innerHeight * 0.7 }} />
                         </View>

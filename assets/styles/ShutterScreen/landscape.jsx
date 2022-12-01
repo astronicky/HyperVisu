@@ -57,7 +57,7 @@ const landscape = StyleSheet.create({
         alignSelf: 'center',
         marginRight: 11
     },
-    controlContainer: { 
+    controlContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
     },

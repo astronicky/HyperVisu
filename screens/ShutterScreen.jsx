@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, Text, SafeAreaView, Modal, Pressable, Alert, Image } from 'react-native';
-import VerticalSlider from 'rn-vertical-slider';
+// import VerticalSlider from 'rn-vertical-slider';
 import Slider from '@react-native-community/slider';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import SwitchButton from '../components/Common/SwitchButton';
 import CheckBoxButton from '../components/Common/CheckBoxButton';
+import VerticalSlider from '../components/Common/VerticalSlider';
 import { useOrientation } from '../hooks/useOrientation';
 import { SHUTTER_AMAND, SHUTTER_DAMON, CLOSE, SLIDER_THUMB } from '../Constant';
 import { portrait, landscape } from '../assets/styles/ShutterScreen/index';
@@ -24,7 +25,11 @@ const ShutterScreen = ({ navigation }) => {
     }
 
     const changeSliderValue = (value) => {
-        setSliderHValue(value);
+        setSliderHValue(Math.floor(value));
+    }
+
+    const onChangeVerticalValue = (value) => {
+        setSliderValue(value);
     }
 
     return (
@@ -46,28 +51,9 @@ const ShutterScreen = ({ navigation }) => {
                                     {orientation === 'LANDSCAPE' && (<Text style={orientationStyle.sliderValueText}>{sliderValue}%</Text>)}
                                 </View>
                                 <View style={orientationStyle.controlContainer}>
-                                    {orientation === 'PORTRAIT' && <Text style={orientationStyle.sliderValueText}>{sliderValue}%</Text>}
+                                    {orientation === 'PORTRAIT' && <Text style={portrait.sliderValueText}>{sliderValue}%</Text>}
                                     <View style={{ marginRight: 41 }}>
-                                        <VerticalSlider
-                                            min={0}
-                                            max={100}
-                                            width={39}
-                                            height={329}
-                                            step={1}
-                                            borderRadius={20}
-                                            onChange={(value) => {
-                                                setSliderValue(value);
-                                            }}
-                                            onComplete={(value) => {
-                                                setSliderValue(value);
-                                            }}
-                                            minimumTrackTintColor='#FFFFFF'
-                                            maximumTrackTintColor='#F1580C'
-                                            showBallIndicator
-                                            ballIndicatorColor='#FFFFFF'
-                                            ballIndicatorTextColor='#FFFFFF'
-                                            ballIndicatorPosition={-5}
-                                            />
+                                        <VerticalSlider onValueChange={onChangeVerticalValue}></VerticalSlider>
                                     </View>
                                     <SwitchButton></SwitchButton>                                    
                                 </View>   

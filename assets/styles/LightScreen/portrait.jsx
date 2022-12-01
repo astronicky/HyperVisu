@@ -48,6 +48,9 @@ const portrait = StyleSheet.create({
         lineHeight: 22,
         letterSpacing: -0.41
     },
+    ligthContainerLand: {
+        flexDirection: 'column'
+    },
 });
 
 export default portrait

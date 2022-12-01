@@ -36,7 +36,6 @@ const RoomScreen = ({ navigation }) => {
     const [dimmerValue, setDimmerValue] = useState();
     const [whiteDimmerValue, setWhiteDimmerValue] = useState();
     const [analogueInputValue, setAnalogueInputValue] = useState();
-    const [analogueDisplayVaule, setAnalogueDisplayValue] = useState();
     const [isVisibleShowModal, setIsVisibleShowModal] = useState(false);
     const [modaIndex, setModalIndex] = useState("");
     const [isBottomModal, setIsBottomModal] = useState(false);
@@ -53,10 +52,6 @@ const RoomScreen = ({ navigation }) => {
 
     const changeAnalogueInputValue = (value) => {
         setAnalogueInputValue(value);
-    };
-
-    const changeAnalogueDisplayValue = (value) => {
-        setAnalogueDisplayValue(value);
     };
 
     const onShowModal = (index, isVisibleModal) => {
@@ -158,19 +153,20 @@ const RoomScreen = ({ navigation }) => {
                                 <Schedule title="Schedule 3" setDate="Sat" setTime="9:00 PM"></Schedule>
                             </View>        
                     </Modal>
-                    <CommonModal index="4" isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CommonModal>
+                    <CommonModal index="camera_monitor" isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CommonModal>
+                    <CommonModal index="0" isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CommonModal>
                     <View style={portrait.smartHomeTitle}>
                         <DateBar flagButton={true} handleClick={(flag) => setIsBottomModal(flag)}></DateBar>
                         <Text style={portrait.mainTitle}>Living Room</Text>
                         <Text style={portrait.subTitle}>Control your house</Text>
                     </View>
                     <View style={orientation === 'LANDSCAPE' && { flexDirection: 'row'}}>
-                        <View style={orientation === 'PORTRAIT' ? portrait.controlContent : landscape.controlContent}>
-                            <View style={orientation === 'PORTRAIT' ? portrait.switchContent : landscape.switchContent}>
-                                <View style={orientation === 'PORTRAIT' ? portrait.switch : landscape.switch}>
-                                    <ActionButton name={ACTION_TURN_ON} style={orientation === 'PORTRAIT' ? portrait[ACTION_TURN_ON] : landscape[ACTION_TURN_ON]} onClick={handleClick} />
-                                    <ActionButton name={ACTION_LAMP_STATUS} style={orientation === 'PORTRAIT' ? portrait[ACTION_LAMP_STATUS] : landscape[ACTION_LAMP_STATUS]} />
-                                    <ActionButton name={ACTION_TURN_OFF} style={orientation === 'PORTRAIT' ? portrait[ACTION_TURN_OFF] : landscape[ACTION_TURN_OFF]} onClick={handleClick} />
+                        <View style={orientationStyle.controlContent}>
+                            <View style={orientationStyle.switchContent}>
+                                <View style={orientationStyle.switch}>
+                                    <ActionButton name={ACTION_TURN_ON} style={orientationStyle[ACTION_TURN_ON]} onClick={handleClick} />
+                                    <ActionButton name={ACTION_LAMP_STATUS} style={orientationStyle[ACTION_LAMP_STATUS]} />
+                                    <ActionButton name={ACTION_TURN_OFF} style={orientationStyle[ACTION_TURN_OFF]} onClick={handleClick} />
                                 </View>
                                 {orientation === 'PORTRAIT' && <View style={{ flex: 1 }}></View>}
                                 <View style={orientation === 'PORTRAIT' ? portrait.switch : landscape.switch}>
@@ -185,14 +181,14 @@ const RoomScreen = ({ navigation }) => {
                             </View>
                             {orientation === 'PORTRAIT' && <View style={{ flex: 1 }}></View>}
                             <ImageBackground source={STAIRE} resizeMode="cover" imageStyle={orientation === 'LANDSCAPE' && { borderRadius: 16, width: 209, height: 287, marginLeft: 27 }}>
-                                <View style={orientation === 'PORTRAIT' ? portrait.infoContent : landscape.infoContent}>
-                                    <View style={orientation === 'PORTRAIT' ? portrait.info : landscape.info}>
+                                <View style={orientationStyle.infoContent}>
+                                    <View style={orientationStyle.info}>
                                         <Image source={NUMBER08}></Image>
-                                        <Text style={orientation === 'PORTRAIT' ? portrait.infoTitle : landscape.infoTitle }>Lights On</Text>
+                                        <Text style={orientationStyle.infoTitle}>Lights On</Text>
                                     </View>
-                                    <View style={orientation === 'PORTRAIT' ? portrait.info : landscape.info}>
+                                    <View style={orientationStyle.info}>
                                         <Image source={NUMBER69} style={{ width: 62, height: 29 }}></Image>
-                                        <Text style={orientation === 'PORTRAIT' ? portrait.infoTitle : landscape.infoTitle }>Currently</Text>
+                                        <Text style={orientationStyle.infoTitle}>Currently</Text>
                                     </View>
                                 </View>
                             </ImageBackground>
@@ -200,9 +196,9 @@ const RoomScreen = ({ navigation }) => {
                         <View style={landscape.favoirteList}>
                             <View style={portrait.favoriteRooms}>
                                 <View style={portrait.favoriteTilte}>
-                                    <Text style={orientation === 'PORTRAIT' ? portrait.favoriteText : landscape.favoriteText}>Favorite Room</Text>
+                                    <Text style={orientationStyle.favoriteText}>Favorite Room</Text>
                                     <Pressable onPress={() => navigation.navigate(ROOMS)}>
-                                        <Text style={orientation === 'PORTRAIT' ? portrait.favoriteText : landscape.favoriteText}><Text style={{ color: '#F1580C' }}>See all</Text></Text>
+                                        <Text style={orientationStyle.favoriteText}><Text style={{ color: '#F1580C' }}>See all</Text></Text>
                                     </Pressable>        
                                 </View>
                                 <View style={portrait.roomItems}>
@@ -271,9 +267,8 @@ const RoomScreen = ({ navigation }) => {
                             <ToggleButton title="Dimmer01" 
                                         imgMainUrl={dimmerImg}
                                         flagButton="on/off"
-                                        bottomTitle={dimmerValue}
-                                        flagSlider={true}
-                                        changeSliderValue={changeDimmerValue}>
+                                        flagProgressBar={true}
+                                        onShowModal={onShowModal}>
                             </ToggleButton>
                             <ToggleButton title="Push Button" 
                                         imgMainUrl={dimmerImg}
@@ -298,9 +293,9 @@ const RoomScreen = ({ navigation }) => {
                             </ToggleButton>
                             <ToggleButton title="Analogue Value Display" 
                                         imgMainUrl={dimmerImg}
-                                        bottomTitle={analogueDisplayVaule}
-                                        flagSlider={true}
-                                        changeSliderValue={changeAnalogueDisplayValue}>
+                                        bottomTitle="30"
+                                        flagProgressBar={true}
+                                        >
                             </ToggleButton>    
                         </View> 
                         </View> 

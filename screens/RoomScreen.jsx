@@ -70,18 +70,23 @@ const RoomScreen = ({ navigation }) => {
     };
 
     const [roomName, setRoomName] = useState();
-    
+    const roomNameLoad = async () => {
+        try {
+            const savedRoomName = await AsyncStorage.getItem("room_name");
+            setRoomName(savedRoomName);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
-        const roomNameLoad = async () => {
-            try {
-                const savedRoomName = await AsyncStorage.getItem("room_name");
-                setRoomName(savedRoomName);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        roomNameLoad();
-    }, [roomName]);
+        const unsubscribe = navigation.addListener('focus', () => {
+            roomNameLoad();
+        });
+
+        return unsubscribe;
+    }, [navigation]);
+    
     
     return (
         <SafeAreaView style={portrait.containerScroll}>

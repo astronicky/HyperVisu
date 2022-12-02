@@ -10,7 +10,6 @@ const RoomItem = ({title, imgUrl, path, navigation}) => {
         console.log("Save : ", roomName);
         try {
             await AsyncStorage.setItem('room_name', roomName);
-            return value;
         } catch (e) {
             // saving error
         }

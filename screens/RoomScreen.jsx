@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, Text, Image, ImageBackground, Pressable, SafeAreaView, Modal } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import FavoriteCategory from '../components/Common/FavoriteCategory';
@@ -12,6 +13,7 @@ import MainButton from '../components/Common/MainButton';
 import ActionButton from '../components/Common/ActionButton';
 import FavoriteRoom from '../components/Common/FavoriteRoom';
 import Schedule from '../components/Common/Schedule';
+import Temperature from '../components/Common/Temperature';
 import { portrait, landscape } from '../assets/styles/RoomScreen/index';
 import { ACTION_TURN_ON, ACTION_TURN_OFF, ACTION_LAMP_STATUS, ACTION_SHUTTER_STATUS, FAVORITE_ROOMS_DATA,
         STAIRE, NUMBER08, NUMBER69, RECT, LAMP_WHITE, 
@@ -66,6 +68,20 @@ const RoomScreen = ({ navigation }) => {
     const handleClick = () => {
 
     };
+
+    const [roomName, setRoomName] = useState();
+    
+    useEffect(() => {
+        const roomNameLoad = async () => {
+            try {
+                const savedRoomName = await AsyncStorage.getItem("room_name");
+                setRoomName(savedRoomName);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        roomNameLoad();
+    }, [roomName]);
     
     return (
         <SafeAreaView style={portrait.containerScroll}>
@@ -157,7 +173,7 @@ const RoomScreen = ({ navigation }) => {
                     <CommonModal index="0" isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CommonModal>
                     <View style={portrait.smartHomeTitle}>
                         <DateBar flagButton={true} handleClick={(flag) => setIsBottomModal(flag)}></DateBar>
-                        <Text style={portrait.mainTitle}>Living Room</Text>
+                        <Text style={portrait.mainTitle}>{roomName}</Text>
                         <Text style={portrait.subTitle}>Control your house</Text>
                     </View>
                     <View style={orientation === 'LANDSCAPE' && { flexDirection: 'row'}}>
@@ -227,10 +243,7 @@ const RoomScreen = ({ navigation }) => {
                                 <View style={portrait.favoriteTilte}>
                                     <Text style={portrait.favoriteText}>Climate</Text>
                                 </View>
-                                <CheckBoxButton flagButton={true}
-                                            title="Climate" 
-                                            imgMainUrl={number24Img}
-                                            textBottom="Temp"></CheckBoxButton>
+                                <Temperature></Temperature>
                             </View>
                             <View style={portrait.favoriteCategory}>
                                 <View style={portrait.favoriteTilte}>

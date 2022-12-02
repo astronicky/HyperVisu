@@ -5,7 +5,7 @@ import { View, StyleSheet, ScrollView, Text, SafeAreaView, Image } from 'react-n
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import MainButton from '../components/Common/MainButton';
-import CheckBoxButton from '../components/Common/CheckBoxButton';
+import Temperature from '../components/Common/Temperature';
 import { BABYROOM_TITLE, CLIMATE, ELLIPSE_BLACK, SNOW, ROOMS } from '../Constant';
 import { useOrientation } from '../hooks/useOrientation';
 
@@ -51,10 +51,7 @@ const BabyRoomScreen = ({ navigation }) => {
                         
                         <View style={orientation === 'PORTRAIT' ? portrait.temper : landscape.temper}>
                             <Text style={{ color: '#FFFFFF' }}>Temperature</Text>
-                            <CheckBoxButton flagButton={true}
-                                            title="Climate" 
-                                            imgMainUrl={number24Img}
-                                            textBottom="Temp"></CheckBoxButton>    
+                            <Temperature></Temperature> 
                         </View> 
                     </View>     
                         

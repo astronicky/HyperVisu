@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Text, SafeAreaView, Pressable } from 'rea
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import FavoriteRoom from '../components/Common/FavoriteRoom';
-import ImageButton from '../components/Common/ImageButton';
+import RoomItem from '../components/Common/RoomItem';
 import { useOrientation } from '../hooks/useOrientation';
 import { ROOM, ROOMS_DATA, CATEGORIES, FAVORITE_ROOMS_DATA } from "../Constant";
 
@@ -41,15 +41,13 @@ const RoomsScreen = ({ navigation }) => {
                                 );
                             })}
                             </View>) : 
-                            (
-                                <>
-                                    {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
-                                        return (
-                                            <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
-                                        );
-                                    })}
-                                </>
-                            )}
+                            (<>
+                                {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
+                                    return (
+                                        <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
+                                    );
+                                })}
+                            </> )}
                             {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
                         </View> 
                     </View>
@@ -60,7 +58,7 @@ const RoomsScreen = ({ navigation }) => {
                     <View style={orientationStyle.roomsList}>    
                         {ROOMS_DATA?.map((data, index) => {
                         return (
-                            <ImageButton key={index} {...{ title: data.room, imgUrl: data.imgUrl, navigation, path: ROOM }}></ImageButton>
+                            <RoomItem key={index} {...{ title: data.room, imgUrl: data.imgUrl, navigation, path: ROOM }}></RoomItem>
                         );
                         })}
                     </View>

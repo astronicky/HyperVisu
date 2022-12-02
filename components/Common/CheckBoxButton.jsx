@@ -1,45 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ActionButton from './ActionButton';
 import { useOrientation } from '../../hooks/useOrientation';
 import { ACTION_ARROW_UP, ACTION_ARROW_DOWN, ACTION_MINUS, ACTION_PLUS } from '../../Constant';
 
 const backgroundImg = require('../../assets/images/room/ellipse.png');
 
-const handleClick = () => {
-    console.log("okay");
-}
-
 const CheckBoxButton = ({ flagButton, title, bottomTitle, imgMainUrl, style, imgCenterUrl, textBottom, showModal }) => {
-
+    
     const orientation = useOrientation();
     const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
 
     return (
         <View {...{ style }}>
             <View style={portrait.container}>
-            <TouchableOpacity>
-                <Pressable style={portrait.baseButton} onPress={() => (showModal) && showModal() }>
-                <View style={{...portrait.baseButton, flex: 7 }}>
-                    <View style={portrait.mainImgage}>
-                    <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
-                    <Image source={imgMainUrl} resizeMode="contain" style={{ width: 20, height: 20, position: 'absolute' }}></Image>  
-                    </View>
-                    <View>
-                    <Text style={orientationStyle.roomText}>{title}</Text>
-                    {bottomTitle !== undefined && <Text style={orientationStyle.valueText}>{bottomTitle}</Text>}
-                    </View>
-                </View>
-                <View style={portrait.btnGroup}>
-                    {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_PLUS} style={portrait[ACTION_PLUS]} onClick={handleClick} />) :
-                                (<ActionButton name={ACTION_ARROW_UP} style={portrait[ACTION_ARROW_UP]} onClick={handleClick} />))}
-                    {imgCenterUrl !== undefined && <Image source={imgCenterUrl}></Image>}
-                    {textBottom !== undefined && <Text style={{ color: '#FFFFFF', opacity: 0.5 }}>{textBottom}</Text>}
-                    {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_MINUS} style={portrait[ACTION_MINUS]} onClick={handleClick} />) :
-                                (<ActionButton name={ACTION_ARROW_DOWN} style={portrait[ACTION_ARROW_DOWN]} onClick={handleClick} />))}
-                </View>  
-                </Pressable> 
-            </TouchableOpacity>           
+                <TouchableOpacity>
+                    <Pressable style={portrait.baseButton} onPress={() => (showModal) && showModal() }>
+                        <View style={{...portrait.baseButton, flex: 7 }}>
+                            <View style={portrait.mainImgage}>
+                                <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
+                                <Image source={imgMainUrl} resizeMode="contain" style={{ width: 20, height: 20, position: 'absolute' }}></Image>  
+                            </View>
+                            <View>
+                            <Text style={orientationStyle.roomText}>{title}</Text>
+                            {bottomTitle !== undefined && <Text style={orientationStyle.valueText}>{bottomTitle}</Text>}
+                            </View>
+                        </View>
+                        <View style={portrait.btnGroup}>
+                            {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_PLUS} style={portrait[ACTION_PLUS]} onClick={(value) => setClimateTemp(value)} />) :
+                                        (<ActionButton name={ACTION_ARROW_UP} style={portrait[ACTION_ARROW_UP]} onClick={() => {}} />))}
+                            {imgCenterUrl !== undefined && <Image source={imgCenterUrl}></Image>}
+                            {textBottom !== undefined && <Text style={{ fonSize: 12, fontWeight: '300', color: '#FFFFFF', opacity: 0.5 }}>{climateTemp}</Text>}
+                            {flagButton !== undefined && (flagButton === true?(<ActionButton name={ACTION_MINUS} style={portrait[ACTION_MINUS]} onClick={(value) => setClimateTemp(value)} />) :
+                                        (<ActionButton name={ACTION_ARROW_DOWN} style={portrait[ACTION_ARROW_DOWN]} onClick={() => {}} />))}
+                        </View>  
+                    </Pressable> 
+                </TouchableOpacity>           
             </View>
         </View> 
     )

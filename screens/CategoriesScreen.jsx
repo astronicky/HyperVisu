@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
-import ImageButton from '../components/Common/ImageButton';
+import RoomItem from '../components/Common/RoomItem';
 import DateBar from '../components/Common/DateBar';
 import { useOrientation } from '../hooks/useOrientation';
 import { CATEGORY_DATA } from "../Constant";
@@ -22,7 +22,7 @@ const CategoriesScreen = ({ navigation }) => {
                     <View style={orientation === 'PORTRAIT' ? portrait.category : landscape.category}>
                         {CATEGORY_DATA?.map((data, index) => {
                             return (
-                                <ImageButton key={index} {...{ title: data.title, imgUrl: data.imgUrl, path: data.path, navigation }}></ImageButton>
+                                <RoomItem key={index} {...{ title: data.title, imgUrl: data.imgUrl, path: data.path, navigation }}></RoomItem>
                             );
                         })}
                     </View>

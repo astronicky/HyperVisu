@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     ACTION_TURN_ON,
     ACTION_TURN_OFF,
@@ -53,7 +54,9 @@ import ImgLampTop from '../../assets/images/lamp_top.png';
 import ImgLampBottom from '../../assets/images/lamp_bottom.png';
 
 export default function ActionButton({ name, style, active, onClick, disabled }) {
-    const [clickFlag, setClickFlag] = React.useState((active));
+
+    const [clickFlag, setClickFlag] = useState((active));
+    
     let width, height, innerWidth, innerHeight, borderWidth, borderRadius, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, fontSize, lineHeight, stock;
     switch (name) {
         case ACTION_TURN_ON:
@@ -101,26 +104,26 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                 </View>
             );
             break;
-        case ACTION_MINUS:
-            width = style ? style.width ? style.width : 30 : 30;
-            height = style ? style.height ? style.width * 0.18 : 5.24 : 5.24;
-            return (
-                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
-                    <View style={{ ...{ width: height, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: height / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: height / 2, width: width, height: height }} />
-                    </View>
-                </Pressable>
-            );
-            break;
         case ACTION_PLUS:
             width = style ? style.width ? style.width : 30 : 30;
             height = style ? style.height ? style.height : 30 : 30;
             stock = width * 0.18;
             return (
-                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }} >
+                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => {  }} >
                     <View style={{ ...{ width: height, height: height, position: 'relative' }, ...style }}>
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: width, height: stock, position: 'absolute', top: (width - stock) / 2 }} />
                         <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: stock / 2, width: stock, height: height, position: 'absolute', left: (height - stock) / 2 } : { backgroundColor: '#ffffff', borderRadius: stock / 2, width: stock, height: height, position: 'absolute', left: (height - stock) / 2 }} />
+                    </View>
+                </Pressable>
+            );
+            break;
+        case ACTION_MINUS:
+            width = style ? style.width ? style.width : 30 : 30;
+            height = style ? style.height ? style.width * 0.18 : 5.24 : 5.24;
+            return (
+                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { }} >
+                    <View style={{ ...{ width: height, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
+                        <View style={clickFlag ? { backgroundColor: '#4CD964', borderRadius: height / 2, width: width, height: height } : { backgroundColor: '#ffffff', borderRadius: height / 2, width: width, height: height }} />
                     </View>
                 </Pressable>
             );

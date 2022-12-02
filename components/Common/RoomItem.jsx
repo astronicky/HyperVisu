@@ -1,15 +1,32 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useOrientation } from '../../hooks/useOrientation';
 
-const ImageButton = ({title, imgUrl, path, navigation}) => {
+const RoomItem = ({title, imgUrl, path, navigation}) => {
 
     const orientation = useOrientation();
+    const roomNameSave = async (roomName) => {
+        console.log("Save : ", roomName);
+        try {
+            await AsyncStorage.setItem('room_name', roomName);
+            return value;
+        } catch (e) {
+            // saving error
+        }
+    }
 
     return (
         <View style={orientation === 'PORTRAIT' ? portrait.container : landscape.container}>
             <TouchableOpacity>
-                <Pressable style={portrait.baseButton} onPress={() => navigation.navigate(path)}>
+                <Pressable
+                    style={portrait.baseButton}
+                    onPress={() => { 
+                        roomNameSave(title) 
+                        navigation.navigate(path)
+                        }
+                    }
+                >
                     <View><Image source={imgUrl}></Image></View>
                     <View><Text style={portrait.categoryText}>{title}</Text></View>
                 </Pressable> 
@@ -51,4 +68,4 @@ const landscape = StyleSheet.create({
     }
 });
 
-export default ImageButton;
+export default RoomItem;

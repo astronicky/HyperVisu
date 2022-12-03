@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Modal } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 import Slider from '@react-native-community/slider';
-import VerticalSlider from '../Common/VerticalSlider';
+import VerticalSliderF from '../Common/VerticalSliderF';
 import SwitchButton from '../Common/SwitchButton';
 import { useOrientation } from '../../hooks/useOrientation';
 import { CHECKBOX, CLOSE, SLIDER_THUMB } from '../../Constant';
@@ -52,9 +52,9 @@ const ShutterBlind = () => {
                         {orientation === 'LANDSCAPE' && (<Text style={orientationStyle.sliderValueText}>{sliderValue}%</Text>)}
                     </View>
                     <View style={orientationStyle.controlContainer}>
-                        {orientation === 'PORTRAIT' && <Text style={portrait.sliderValueText}>{sliderValue}%</Text>}
-                        <View style={{ marginRight: 41 }}>
-                            <VerticalSlider onValueChange={onChangeVerticalValue}></VerticalSlider>
+                        {/* {orientation === 'PORTRAIT' && <Text style={portrait.sliderValueText}>{sliderValue}%</Text>} */}
+                        <View style={{ marginRight: 25, height: 350 }}>
+                            <VerticalSliderF onValueChange={onChangeVerticalValue}></VerticalSliderF>
                         </View>
                         <SwitchButton></SwitchButton>                                    
                     </View>   

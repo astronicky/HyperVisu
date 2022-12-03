@@ -18,12 +18,17 @@ const Dimmer = () => {
 
     const [clickFlag, setClickFlag] = useState();
     const [sliderValue, setSliderValue] = useState(0);
+    const [brightValue, setBrightValue] = useState(0);
     const [isVisibleMolal, setIsVisibleModal] = useState(false);
     const orientation = useOrientation();
     const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
 
     const changeSliderValue = (value) => {
         setSliderValue(value);
+    };
+
+    const onChangeBrightValue = (value) => {
+        setBrightValue(value);
     };
 
     useEffect(() => {
@@ -40,12 +45,12 @@ const Dimmer = () => {
                     <Pressable onPress={() => setIsVisibleModal(!isVisibleMolal)} >
                         <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                     </Pressable>                                 
-                    <View style={{ padding: 16, marginBottom: 25 }}>
+                    <View style={{ padding: 16, paddingBottom: 0 }}>
                         <Text style={portrait.modalTitle}>Bed Light</Text>
-                        <Text style={portrait.tempValue }>Brightness - {sliderValue}%</Text>
+                        {/* <Text style={portrait.tempValue }>Brightness - {brightValue}%</Text> */}
                     </View>
                     <View style={orientationStyle.verticalSlider}>
-                        <VerticalSlider></VerticalSlider>
+                        <VerticalSlider onValueChange={onChangeBrightValue}></VerticalSlider>
                     </View>
                     
                     {/* <View style={{ alignSelf: 'center' }}>
@@ -215,7 +220,7 @@ const portrait = StyleSheet.create({
     verticalSlider: {
         flexDirection: 'row', 
         justifyContent: 'center', 
-        height: 330
+        height: 400
     }
 });
 

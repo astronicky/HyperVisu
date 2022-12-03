@@ -30,7 +30,7 @@ const TunableWhiteDimmer = () => {
 
     const onChangeBrightValue = (value) => {
         setBrightValue(value);
-    }
+    };
 
     useEffect(() => {
 
@@ -46,9 +46,9 @@ const TunableWhiteDimmer = () => {
                     <Pressable onPress={() => setIsVisibleModal(!isVisibleMolal)} >
                         <Image source={CLOSE} style={{  width: 20, height: 20, alignSelf: 'flex-end' }}></Image>
                     </Pressable>                                 
-                    <View style={{ padding: 16, marginBottom: 10 }}>
+                    <View style={{ padding: 16, paddingBottom: 0 }}>
                         <Text style={portrait.modalTitle}>Bed Light</Text>
-                        <Text style={portrait.tempValue }>Brightness - {brightValue}%</Text>
+                        {/* <Text style={portrait.tempValue }>Brightness - {brightValue}%</Text> */}
                     </View>
                     <View style={orientationStyle.verticalSlider}>
                         <VerticalSlider onValueChange={onChangeBrightValue}></VerticalSlider>
@@ -246,7 +246,7 @@ const portrait = StyleSheet.create({
     verticalSlider: {
         flexDirection: 'row', 
         justifyContent: 'center', 
-        height: 330
+        height: 390
     }
 });
 

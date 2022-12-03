@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
     LayoutChangeEvent,
     PanResponder,
@@ -13,75 +13,89 @@ const min = 0;
 const max = 100;
 const CIRCLE_DIAMETER = 50;
 
-const VerticalSlider = ({ onValueChange }) => {
+export default class VerticalSlider extends React.Component {
 
-    const [barHeight, setBarHeight] = useState(null);
-    const [deltaValue, setDeltaValue] = useState(0);
-    const [value, setValue] = useState(initialValue);
+    constructor(props) {
+        console.log("this is child props", props.onValueChange)
+        super(props);
+    }
 
-    useEffect(() => {
-        // console.log("bottomOffset: ", bottomOffset);
-    }, [value, deltaValue, barHeight]);
+    state = {
+        barHeight: null,
+        deltaValue: 0,
+        value: initialValue
+    };
 
-    const panResponder = PanResponder.create({
+    panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onPanResponderEnd:() => true,
         onMoveShouldSetPanResponderCapture: () => true,
-        onPanResponderMove: (_, gestureState) => onMove(gestureState),
-        onPanResponderRelease: () => onEndMove(),
+        onPanResponderMove: (_, gestureState) => this.onMove(gestureState),
+        onPanResponderRelease: () => this.onEndMove(),
         onPanResponderTerminate: () => {}
     });
 
-    const onMove = (gestureState) => {
-        const newDeltaValue = getValueFromBottomOffset( -gestureState.dy, barHeight, min, max );
-        // console.log("onMove: ", newDeltaValue);
-        setDeltaValue(newDeltaValue);
+    onMove(gestureState) {
+        const { barHeight } = this.state;
+        const newDeltaValue = this.getValueFromBottomOffset( -gestureState.dy, barHeight, min, max );
+
+        this.setState({
+            deltaValue: newDeltaValue
+        });
     }
-    const onEndMove = () => {
-        setValue(value + deltaValue);
-        setDeltaValue(0);
+    onEndMove() {
+        const { value, deltaValue } = this.state;
+        this.setState({ value: value + deltaValue, deltaValue: 0 });
     }
 
-    const onBarLayout = (event) => {
+    onBarLayout = (event) => {
         const { height: barHeight } = event.nativeEvent.layout;
-        setBarHeight(barHeight);
+        this.setState({ barHeight });
     };
 
-    const capValueWithinRange = (_value, range) => {
-        if (_value < range[0]) return range[0];
-        if (_value > range[1]) return range[1];
-        return _value;
+    capValueWithinRange = (value, range) => {
+        if (value < range[0]) return range[0];
+        if (value > range[1]) return range[1];
+        return value;
     };
 
-    const getValueFromBottomOffset = (offset,_barHeight,rangeMin,rangeMax) => {
-        if (_barHeight === null) return 0;
-        return ((rangeMax - rangeMin) * offset) / _barHeight;
+    getValueFromBottomOffset = (offset,barHeight,rangeMin,rangeMax) => {
+        if (barHeight === null) return 0;
+        return ((rangeMax - rangeMin) * offset) / barHeight;
     };
 
-    const getBottomOffsetFromValue = (_value, rangeMin, rangeMax, _barHeight) => {
-        if (_barHeight === null) return 0;
-        const valueOffset = _value - rangeMin;
+    getBottomOffsetFromValue = (
+        value,
+        rangeMin,
+        rangeMax,
+        barHeight
+    ) => {
+        if (barHeight === null) return 0;
+        const valueOffset = value - rangeMin;
         const totalRange = rangeMax - rangeMin;
         const percentage = valueOffset / totalRange;
-        return _barHeight * percentage;
+        return barHeight * percentage;
     };
+    
+    render() {
+        const { value, deltaValue, barHeight } = this.state;
 
-    const cappedValue = capValueWithinRange(value + deltaValue, [ min, max ]);
-    const bottomOffset = getBottomOffsetFromValue(cappedValue, min, max, barHeight);
+        const cappedValue = this.capValueWithinRange(value + deltaValue, [ min, max ]);
+        const bottomOffset = this.getBottomOffsetFromValue(cappedValue, min, max, barHeight);
 
-    return (
+        return (
         <View style={styles.pageContainer}>
-            {/* <Text style={styles.value}>{Math.floor(cappedValue)}</Text> */}
+            <Text style={styles.value}>{Math.floor(cappedValue)}%</Text>
             <View style={styles.container}>
                 <View style={styles.barContainer}>
-                    <View style={styles.bar} onLayout={onBarLayout} />
-                    <View style={{...styles.circle, bottom: bottomOffset}} {...panResponder.panHandlers}/>
-                    <View style={{...styles.subContainer, height: Math.floor(bottomOffset + 10)}}></View>
+                    <View style={styles.bar} onLayout={this.onBarLayout} />
+                    <View style={{...styles.circle, bottom: bottomOffset}} {...this.panResponder.panHandlers}/>
+                    <View style={{...styles.subContainer, height: Math.floor(bottomOffset + 9), width: bottomOffset <= 1?10:'100%'}}></View>
                 </View>
             </View>
         </View>
-    );
-    
+        );
+    }
 };
 
 const styles = StyleSheet.create({
@@ -89,7 +103,8 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         alignSelf: 'stretch',
         alignItems: 'center',
-        height: 325
+        height: '100%',
+        flexDirection: 'row'
     },
     container: {
         flexGrow: 1,
@@ -98,7 +113,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     value: {
-        color: 'white'
+        textAlign: 'center',
+        color: '#FFFFFF',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: 15,
+        lineHeight: 41,
+        letterSpacing: 0.41,
+        marginBottom: 20,
+        width: 40
     },
     barContainer: {
         width: 39,
@@ -131,5 +154,3 @@ const styles = StyleSheet.create({
         opacity: 0.9
     }
 });
-
-export default VerticalSlider;

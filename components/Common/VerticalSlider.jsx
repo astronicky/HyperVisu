@@ -16,6 +16,7 @@ const CIRCLE_DIAMETER = 50;
 export default class VerticalSlider extends React.Component {
 
     constructor(props) {
+        console.log("this is child props", props.onValueChange)
         super(props);
     }
 
@@ -75,7 +76,7 @@ export default class VerticalSlider extends React.Component {
         const percentage = valueOffset / totalRange;
         return barHeight * percentage;
     };
-
+    
     render() {
         const { value, deltaValue, barHeight } = this.state;
 
@@ -84,7 +85,7 @@ export default class VerticalSlider extends React.Component {
 
         return (
         <View style={styles.pageContainer}>
-            {/* <Text style={styles.value}>{Math.floor(cappedValue)}</Text> */}
+            <Text style={styles.value}>Brightness - {Math.floor(cappedValue)}%</Text>
             <View style={styles.container}>
                 <View style={styles.barContainer}>
                     <View style={styles.bar} onLayout={this.onBarLayout} />
@@ -111,7 +112,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     value: {
-        color: 'white'
+        textAlign: 'center',
+        color: '#FFFFFF',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: 15,
+        lineHeight: 41,
+        letterSpacing: 0.41,
+        marginBottom: 20
     },
     barContainer: {
         width: 39,

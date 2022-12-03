@@ -85,7 +85,7 @@ export default class VerticalSlider extends React.Component {
 
         return (
         <View style={styles.pageContainer}>
-            <Text style={styles.value}>{Math.floor(cappedValue)}%</Text>
+            <Text style={styles.value}>{100-Math.floor(cappedValue)}%</Text>
             <View style={styles.container}>
                 <View style={styles.barContainer}>
                     <View style={styles.bar} onLayout={this.onBarLayout} />

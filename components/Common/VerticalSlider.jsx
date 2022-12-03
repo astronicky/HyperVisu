@@ -90,7 +90,7 @@ export default class VerticalSlider extends React.Component {
                 <View style={styles.barContainer}>
                     <View style={styles.bar} onLayout={this.onBarLayout} />
                     <View style={{...styles.circle, bottom: bottomOffset}} {...this.panResponder.panHandlers}/>
-                    <View style={{...styles.subContainer, height: Math.floor(bottomOffset + 9), width: bottomOffset <= 1?10:'100%'}}></View>
+                    <View style={{...styles.subContainer, height: Math.floor(bottomOffset+9), width: bottomOffset <= 1?10:'100%'}}></View>
                 </View>
             </View>
         </View>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: CIRCLE_DIAMETER / 2,
         marginHorizontal: 20,
-        backgroundColor: '#F1580C',
+        backgroundColor: '#FFFFFF',
         borderRadius: 23,
         position: 'relative'
     },
@@ -140,11 +140,12 @@ const styles = StyleSheet.create({
         height: CIRCLE_DIAMETER,
         backgroundColor: '#FFFFFF',
         position: 'absolute',
-        bottom: 0
+        bottom: 0,
+        zIndex: 1
     },
     subContainer: {
         position: 'absolute',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F1580C',
         borderBottomLeftRadius: 23,
         borderBottomRightRadius: 23,
         width: 39,

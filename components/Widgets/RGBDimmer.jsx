@@ -48,9 +48,9 @@ const RGBDimmer = () => {
                         <ColorPicker  
                             thumbSize={30}
                             noSnap={false}
-                            swatches={false}
+                            swatches={true}
                             row={false}
-                            sliderHidden={true} />
+                            sliderHidden={false} />
                     </View>
                     {/* <View style={orientationStyle.brightButton}>
                         <Pressable 

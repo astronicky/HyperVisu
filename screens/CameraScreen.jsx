@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text, ImageBackground, Image, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
+import Camera from '../components/Widgets/Camera';
 import { useOrientation } from '../hooks/useOrientation';
 import { CAMERA_IMAGE, CAMERA_RED, CAMERA_GREEN } from '../Constant';
 
@@ -20,28 +21,8 @@ const CameraScreen = ({ navigation }) => {
                         <Text style={portrait.subTitle}>Control your house</Text>
                     </View>
                     <View style={orientationStyle.cameraContainerLand}>
-                        <View style={orientationStyle.cameraContainer}>
-                            <View style={portrait.cameraItem}>
-                                <View style={orientationStyle.cameraTitle}>
-                                    <Text style={orientationStyle.cameraText}>Dinning Room</Text>
-                                    <Image source={CAMERA_GREEN}></Image>
-                                </View>   
-                                <View style={orientationStyle.videoMain}>  
-                                    <ImageBackground imageStyle={{ borderRadius: 10 }} style={{width: '100%', height: '100%'}} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={orientationStyle.cameraContainer}>
-                            <View style={portrait.cameraItem}>
-                                <View style={orientationStyle.cameraTitle}>
-                                    <Text style={orientationStyle.cameraText}>Kitchen</Text>
-                                    <Image source={CAMERA_RED}></Image>
-                                </View>  
-                                <View style={orientationStyle.videoMain}>    
-                                    <ImageBackground imageStyle={{ borderRadius: 10 }} style={{width: '100%', height: '100%'}} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
-                                </View>
-                            </View>
-                        </View>
+                        <Camera caption="Dinning Room" onFlag={true}></Camera>
+                        <Camera caption="Kitchen" onFlag={false}></Camera>
                     </View>
                 </ScrollView>
             </Layout>

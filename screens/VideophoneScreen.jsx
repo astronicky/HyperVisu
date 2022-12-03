@@ -1,19 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text, ImageBackground, Image, SafeAreaView } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, SafeAreaView } from 'react-native';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
-import ActionButton from '../components/Common/ActionButton';
+import VideoPhone from '../components/Widgets/VideoPhone';
 import { useOrientation } from '../hooks/useOrientation';
-import { CAMERA_RED, CAMERA_IMAGE, ACTION_SOUND_VOLUME, ACTION_CATEGORIES_BUTTON, ACTION_LOGOUT_BUTTON, ACTION_TALK_BUTTON } from '../Constant';
 
 const VideophoneScreen = ({ navigation }) => {
 
     const orientation = useOrientation();
     const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
-
-    const handleClick = () => {
-
-    }
 
     return (
         <SafeAreaView style={portrait.containerScroll}>
@@ -26,42 +21,8 @@ const VideophoneScreen = ({ navigation }) => {
                         </View>
                         <Text style={portrait.subTitle}>Widget Description</Text>
                         <View style={orientationStyle.videoContainerLand}>
-                            <View style={orientationStyle.screenContainer}>
-                                <View style={portrait.videoTop}>
-                                    <View style={portrait.videoTitle}>
-                                        <Image source={CAMERA_RED}></Image>
-                                        <Text style={portrait.videoName}>Entrance door</Text>
-                                    </View>
-                                    <ActionButton name={ACTION_SOUND_VOLUME} style={portrait[ACTION_SOUND_VOLUME]} onClick={handleClick} />
-                                </View>
-                                <View style={orientationStyle.videoMain}>
-                                    <ImageBackground imageStyle={{ borderRadius: 10 }} style={{ width: '100%', height: '100%' }} source={CAMERA_IMAGE}></ImageBackground>
-                                </View>
-                                <View style={portrait.videoBottom}>
-                                    <ActionButton name={ACTION_CATEGORIES_BUTTON} style={portrait[ACTION_CATEGORIES_BUTTON]} onClick={handleClick} />
-                                    <ActionButton name={ACTION_TALK_BUTTON} style={portrait[ACTION_TALK_BUTTON]} onClick={handleClick} />
-                                    <ActionButton name={ACTION_LOGOUT_BUTTON} style={portrait[ACTION_LOGOUT_BUTTON]} onClick={handleClick} />    
-                                </View>
-                                <Text style={{ color: '#FFFFFF', textAlign: 'center' }}>02:06:09 pm {"\n"} Today</Text>
-                            </View>
-                            <View style={orientationStyle.screenContainer}>
-                                <View style={portrait.videoTop}>
-                                    <View style={portrait.videoTitle}>
-                                        <Image source={CAMERA_RED}></Image>
-                                        <Text style={portrait.videoName}>Entrance door</Text>
-                                    </View>
-                                    <ActionButton name={ACTION_SOUND_VOLUME} style={portrait[ACTION_SOUND_VOLUME]} onClick={handleClick} />
-                                </View>
-                                <View style={orientationStyle.videoMain}>
-                                    <ImageBackground imageStyle={{ borderRadius: 10 }} style={{ width: '100%', height: '100%' }} source={CAMERA_IMAGE}></ImageBackground>
-                                </View>
-                                <View style={portrait.videoBottom}>
-                                    <ActionButton name={ACTION_CATEGORIES_BUTTON} style={portrait[ACTION_CATEGORIES_BUTTON]} onClick={handleClick} />
-                                    <ActionButton name={ACTION_TALK_BUTTON} style={portrait[ACTION_TALK_BUTTON]} onClick={handleClick} />
-                                    <ActionButton name={ACTION_LOGOUT_BUTTON} style={portrait[ACTION_LOGOUT_BUTTON]} onClick={handleClick} />    
-                                </View>
-                                <Text style={{ color: '#FFFFFF', textAlign: 'center' }}>02:06:09 pm {"\n"} Today</Text>
-                            </View>
+                            <VideoPhone caption="Entrance door" status={true}></VideoPhone>
+                            <VideoPhone caption="Kitchen" status={false}></VideoPhone>
                         </View>
                     </View>
                 </ScrollView>
@@ -98,10 +59,6 @@ const portrait = StyleSheet.create({
     },
     categoryContainer: {
         padding: 27,
-    },
-    [ACTION_SOUND_VOLUME]: {
-        width: 43,
-        height: 43
     },
     videoContainerLand: {
         

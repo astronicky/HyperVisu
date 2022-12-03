@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView, Text, Button, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
-import NormalButton from "../components/Common/NormalButton";
+import SettingItem from "../components/Common/SettingItem";
 import ConfigInfo from "../components/Common/ConfigInfo";
 import MainButton from "../components/Common/MainButton";
 import Layout from "../components/Layout/Layout";
@@ -14,7 +14,7 @@ const ConfigScreen = ({ navigation }) => {
                     <View style={styles.container}>
                         <Text style={styles.configTitle}>{CONFIGURATION}</Text>
                         <TouchableOpacity>          
-                            <NormalButton {...{ title: SERVER, path: LOGIN, navigation }}></NormalButton>
+                            <SettingItem {...{ title: SERVER, path: LOGIN, navigation }}></SettingItem>
                         </TouchableOpacity>
                     </View>
                     {CONFIG_DATA?.map((data, index) => {

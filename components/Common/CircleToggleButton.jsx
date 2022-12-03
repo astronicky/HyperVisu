@@ -1,20 +1,26 @@
-import React from "react";
-import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "react-native";
-import ActionButton from "./ActionButton";
-import { ACTION_CIR_SWITCH_BUTTON } from '../../Constant';
+import React, { useState } from "react";
+import { View, StyleSheet, Text, Pressable } from "react-native";
+const width = 52;
+const height =32;
+padding = height / 10;
 
-const CircleToggleButton = ({ title, style, onShowModal }) => {
+const CircleToggleButton = ({ title, onShowModal }) => {
+
+    const [clickFlag, setClickFlag] = useState();
 
     return (
-        <View {...{ style }}>
-            <Pressable onPress={() => (onShowModal) && onShowModal(true)}>
+        <Pressable onPress={() => (onShowModal) && onShowModal(true)}>
             <View style={styles.container}>
                 <View><Text style={styles.titleText}>{title}</Text></View>
-                <ActionButton name={ACTION_CIR_SWITCH_BUTTON} style={styles[ACTION_CIR_SWITCH_BUTTON]} />
+                <View style={{width: width, height: height, alignItems: 'center', justifyContent: 'center'}}>
+                    <Pressable onPress={() => { setClickFlag(!clickFlag) }}>
+                        <View style={clickFlag ? { flexDirection: 'row', justifyContent: 'flex-end', backgroundColor: '#4CD964', borderRadius: height / 2, padding: padding, width: width, height: height } : { flexDirection: 'row', backgroundColor: '#6A6A6B', borderRadius: height / 2, padding: padding, width: width, height: height }}>
+                            <View style={clickFlag ? { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (height * 0.8) / 2 } : { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (height * 0.8) / 2 }} />
+                        </View>
+                    </Pressable>
+                </View>
             </View>
-            </Pressable>
-        </View>
-      
+        </Pressable>
     )
 }
 
@@ -38,11 +44,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '600',
     lineHeight: 17
-  },
-  [ACTION_CIR_SWITCH_BUTTON]: {
-    width: 52,
-    height: 32,
-},
+  }
 });
 
 export default CircleToggleButton;

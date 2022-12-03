@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     ACTION_TURN_ON,
     ACTION_TURN_OFF,
@@ -16,10 +15,6 @@ import {
     ACTION_MORE_DETAIL,
     ACTION_EDIT_BUTTON,
     ACTION_CIRECLE_PLUS,
-    ACTION_SOUND_VOLUME,
-    ACTION_CATEGORIES_BUTTON,
-    ACTION_LOGOUT_BUTTON,
-    ACTION_TALK_BUTTON,
     ACTION_OPTION_BUTTON,
     ACTION_REC_SWITCH_BUTTON,
     ACTION_CIR_SWITCH_BUTTON,
@@ -29,12 +24,8 @@ import {
     ACTION_DISPLAY_STATUS,
     ACTION_ANALOGUE_VALUE_STATUS,
     ACTION_CLOSE_BUTTON,
-    TALK_LABEL,
     EDIT_LABEL,
-    ACTION_SWITCH,
-    UPARROW, 
-    DOWNARROW,
-    BLINDS_WHITE
+    ACTION_SWITCH
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
@@ -219,68 +210,6 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                 </View>
             );
             break;
-        case ACTION_SOUND_VOLUME:
-            width = style ? style.width ? style.width : 43 : 43;
-            height = style ? style.height ? style.height : 43 : 43;
-            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
-                            <Icon name="volume-down" size={fontSize} color='#ffffff' />
-                        </View>
-                    </Pressable>
-                </View>
-            );
-            break;
-        case ACTION_CATEGORIES_BUTTON:
-            width = style ? style.width ? style.width : 40 : 40;
-            height = style ? style.height ? style.height : 40 : 40;
-            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
-                            <Icon name="th-large" size={fontSize} color={clickFlag ? '#ffffff' : '#6A6A6B'} />
-                        </View>
-                    </Pressable>
-                </View>
-            );
-            break;
-        case ACTION_LOGOUT_BUTTON:
-            width = style ? style.width ? style.width : 40 : 40;
-            height = style ? style.height ? style.height : 40 : 40;
-            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => { (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
-                            <Icon name="sign-out" size={fontSize} color={clickFlag ? '#ffffff' : '#6A6A6B'} />
-                        </View>
-                    </Pressable>
-                </View>
-            );
-            break;
-        case ACTION_TALK_BUTTON:
-            width = style ? style.width ? style.width : 73 : 73;
-            height = style ? style.height ? style.height : 38 : 38;
-            paddingTop = style ? style.paddingTop ? style.paddingTop : 9 : 9;
-            paddingBottom = style ? style.paddingBottom ? style.paddingBottom : 9 : 9;
-            paddingLeft = style ? style.paddingLeft ? style.paddingLeft : 12 : 12;
-            paddingRight = style ? style.paddingRight ? style.paddingRight : 12 : 12;
-            fontSize = style ? style.fontSize ? style.fontSize : 15 : 15;
-            lineHeight = style ? style.lineHeight ? style.lineHeight : 20 : 20;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height * 0.18 } : { display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, justifyContent: 'center', backgroundColor: '#F1580C', alignItems: 'center', borderRadius: height * 0.18 }}>
-                            <Icon name="microphone" size={fontSize} color={clickFlag ? "#ffffff" : "#000000"} />
-                            <Text style={clickFlag ? { color: '#ffffff', fontSize: fontSize, lineHeight: lineHeight, marginLeft: paddingLeft * 0.6 } : { color: '#000000', fontSize: fontSize, lineHeight: lineHeight, marginLeft: paddingLeft * 0.6 }}>{TALK_LABEL}</Text>
-                        </View>
-                    </Pressable>
-                </View>
-            );
-            break;
         case ACTION_OPTION_BUTTON:
             width = style ? style.width ? style.width : 59 : 59;
             height = style ? style.height ? style.height : 59 : 59;
@@ -311,20 +240,6 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                         </View>
                     </Pressable >
                 </View >
-            );
-            break;
-        case ACTION_CIR_SWITCH_BUTTON:
-            width = style ? style.width ? style.width : 52 : 52;
-            height = style ? style.height ? style.height : 32 : 32;
-            padding = height / 10;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', justifyContent: 'flex-end', backgroundColor: '#4CD964', borderRadius: height / 2, padding: padding, width: width, height: height } : { display: 'flex', flexDirection: 'row', backgroundColor: '#6A6A6B', borderRadius: height / 2, padding: padding, width: width, height: height }}>
-                            <View style={clickFlag ? { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (height * 0.8) / 2 } : { flex: 0.5, backgroundColor: '#ffffff', borderRadius: (height * 0.8) / 2 }} />
-                        </View>
-                    </Pressable>
-                </View>
             );
             break;
         case ACTION_LAMP_STATUS:

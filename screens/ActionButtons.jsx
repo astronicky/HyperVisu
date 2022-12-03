@@ -69,7 +69,6 @@ export default function ActionButtons({ navigation }) {
                     <ActionButton name={ACTION_DISPLAY_STATUS} style={styles[ACTION_DISPLAY_STATUS]} />
                     <ActionButton name={ACTION_ANALOGUE_VALUE_STATUS} style={styles[ACTION_ANALOGUE_VALUE_STATUS]} />
                     <ActionButton name={ACTION_CLOSE_BUTTON} style={styles[ACTION_CLOSE_BUTTON]} />
-                    <ActionButton name={ACTION_SWITCH} style={styles[ACTION_SWITCH]} />
                 </Layout>
             </ScrollView>
         </SafeAreaView >

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
-import Icon from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useOrientation } from '../../hooks/useOrientation';
-
+import {CLIMATE_DETAIL} from '../../Constant';
 const backgroundImg = require('../../assets/images/room/ellipse.png');
-const number24Img = require('../../assets/images/room/24.png');
-const width = 25;
-const height = 25;
+const width = 20;
+const height = 20;
 const stock = width * 0.18;
 
-const Temperature = () => {
+const Temperature = ({caption, navigation}) => {
 
     const orientation = useOrientation();
     const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
@@ -18,18 +17,26 @@ const Temperature = () => {
     const [temperature, setTemperature] = useState(0);
 
     useEffect(() => {
-
+        temperatureSave();
     }, [temperature]);
+
+    const temperatureSave = async () => {
+        try {
+            await AsyncStorage.setItem("temperature", temperature.toString());
+        } catch (e) {
+            // saving error
+        }
+    }
 
     return (
         <View style={portrait.container}>
-            <View style={portrait.widgetTile}>
+            <Pressable onPress={() => navigation && navigation.navigate(CLIMATE_DETAIL)} style={portrait.widgetTile}>
                 <View style={portrait.mainImage}>
-                    <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>      
-                    <Image source={number24Img} resizeMode="contain" style={{ width: 20, height: 20, position: 'absolute' }}></Image>  
+                    <Image source={backgroundImg} style={{ width: 43, height: 43 }}></Image>    
+                    <Text style={portrait.realTemperature}>{temperature}</Text>  
                 </View>
-                <Text style={orientationStyle.widgetName}>Climate</Text>
-            </View>
+                <Text style={orientationStyle.widgetName}>{caption}</Text>    
+            </Pressable>
             <View style={portrait.controllButton}>
                 <Pressable onPressIn={() => setClickPlus(true)} onPressOut={() => setClickPlus(false)} onPress={() => {setTemperature(temperature+1)}} >
                     <View style={portrait.plusContaiter}>
@@ -77,6 +84,16 @@ const portrait = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: '600',
         fontSize: 15
+    },
+    realTemperature: {
+        width: 20, 
+        height: 20, 
+        position: 'absolute', 
+        color: '#FFFFFF', 
+        fontWeight: '700', 
+        letterSpacing: 1, 
+        textAlign: 'center',
+        opacity: 0.6, 
     },
     controllButton: {
         flexGrow: 1,

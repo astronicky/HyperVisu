@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable } from "reac
 import { useOrientation } from '../../hooks/useOrientation';
 import Icon from 'react-native-vector-icons/Fontisto';
 
-const NormalButton = ({title, path, navigation}) => {
+const SettingItem = ({title, path, navigation}) => {
 
     const orientation = useOrientation();
     const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
@@ -62,4 +62,4 @@ const landscape = StyleSheet.create({
     },
 });
 
-export default NormalButton;
+export default SettingItem;

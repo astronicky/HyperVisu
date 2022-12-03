@@ -17,13 +17,13 @@ import ShutterScreen from '../screens/ShutterScreen';
 import LightScreen from '../screens/LightScreen';
 import CameraScreen from '../screens/CameraScreen';
 import RoomScreen from '../screens/RoomScreen';
-import BabyRoomScreen from '../screens/BabyRoomScreen';
+import ClimateDetailScreen from '../screens/ClimateDetailScreen';
 import PowerScreen from '../screens/PowerScreen';
 import VideophoneScreen from '../screens/VideophoneScreen';
 import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, 
         ACTION_BUTTONS, SETTING, CONFIG, CATEGORIES, 
         ROOMS, HOME, SHUTTER, LIGHT, CAMERA, ROOM,
-        BABYROOM, POWER, VIDEOPHONE } from '../Constant';
+        CLIMATE_DETAIL, POWER, VIDEOPHONE } from '../Constant';
 import Footer from '../components/Layout/Footer';
 
 const Tab = createBottomTabNavigator();
@@ -108,7 +108,7 @@ export default function Router() {
                 <Tab.Screen name={LIGHT} component={LightScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={CAMERA} component={CameraScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={ROOM} component={RoomScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={BABYROOM} component={BabyRoomScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={CLIMATE_DETAIL} component={ClimateDetailScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={POWER} component={PowerScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={VIDEOPHONE} component={VideophoneScreen} options={{ headerShown: false }} />
             </Tab.Navigator>

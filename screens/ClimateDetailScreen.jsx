@@ -1,19 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import * as Progress from 'react-native-progress';
 import { MultiArcCircle } from 'react-native-circles';
-import { View, StyleSheet, ScrollView, Text, SafeAreaView, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, SafeAreaView, Image, Pressable } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
-import MainButton from '../components/Common/MainButton';
-import Temperature from '../components/Common/Temperature';
-import { BABYROOM_TITLE, CLIMATE, ELLIPSE_BLACK, SNOW, ROOMS } from '../Constant';
+import Temperature from '../components/Widgets/Temperature';
+import { CLIMATE, ELLIPSE_BLACK, SNOW } from '../Constant';
 import { useOrientation } from '../hooks/useOrientation';
 
-const number24Img = require('../assets/images/room/24.png');
-
-const BabyRoomScreen = ({ navigation }) => {
+const ClimateDetailScreen = ({ navigation }) => {
 
     const orientation = useOrientation();
+    const [clickButton, setClickButton] = useState("Comfort");
+    const [roomName, setRoomName] = useState();
+    const [temperature, setTemperature] = useState();
+    const roomNameLoad = async () => {
+        try {
+            const savedRoomName = await AsyncStorage.getItem("room_name");
+            setRoomName(savedRoomName);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    const temperatureLoad = async () => {
+        try {
+            const savedTemperature = await AsyncStorage.getItem("temperature");
+            setTemperature(Number(savedTemperature));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            roomNameLoad();
+            temperatureLoad();
+        });
+
+        return unsubscribe;
+    }, [navigation, temperature, clickButton]);
 
     return (
         <SafeAreaView style={portrait.containerScroll}>
@@ -21,7 +47,7 @@ const BabyRoomScreen = ({ navigation }) => {
                 <ScrollView style={portrait.scrollView}>
                     <View style={portrait.categoryTitle}>
                         <DateBar flagButton={false}></DateBar>
-                        <Text style={portrait.mainTitle}>{BABYROOM_TITLE}</Text>
+                        <Text style={portrait.mainTitle}>{roomName}</Text>
                         <Text style={portrait.subTitle}>{CLIMATE}</Text>
                     </View>  
                     <View style={ orientation === 'PORTRAIT' ? portrait.progressConatiner : landscape.progressConatiner}>
@@ -33,25 +59,31 @@ const BabyRoomScreen = ({ navigation }) => {
                             <View style={portrait.progressCircle}>
                                 <View style={portrait.tempText}>
                                     <Text style={portrait.tempC}>C</Text>
-                                    <Text style={portrait.tempNum}>28</Text>
+                                    <Text style={portrait.tempNum}>{temperature}</Text>
                                     <Text style={portrait.tempStatus}>Cooling</Text>
                                 </View>                       
                                 <MultiArcCircle radius={125} intervals={[ { start: 0, end: 360 } ]} color='#2F2F31' width={25} style={portrait.topCircle} />
-                                <Progress.Circle size={270} radius={30} strokeCap='round' progress={0.7} borderColor="#000000" color="#F1580C" thickness={24} />
+                                <Progress.Circle size={270} radius={30} strokeCap='round' progress={0.3} borderColor="#000000" color="#F1580C" thickness={24} />
                             </View>
                             <View style={{ padding: 15, alignSelf: 'center' }}>
-                                <Text style={portrait.statusText}>Comfort</Text>
+                                <Text style={portrait.statusText}>{clickButton}</Text>
                             </View>
                             <View style={portrait.buttonGroup}>
-                                <MainButton title="Comfort" style={{ width: '32%' }}></MainButton>
-                                <MainButton title="Stand By" style={{ width: '32%' }}></MainButton>
-                                <MainButton title="Night" style={{ width: '32%' }}></MainButton>
+                                <Pressable style={clickButton === "Comfort"?{...portrait.button, backgroundColor: '#F1580C'}:{...portrait.button, backgroundColor: '#979797'}} onPress={() => setClickButton("Comfort")}>
+                                    <Text style={portrait.buttonCaption}>Comfort</Text>
+                                </Pressable>
+                                <Pressable style={clickButton === "Stand By"?{...portrait.button, backgroundColor: '#F1580C'}:{...portrait.button, backgroundColor: '#979797'}} onPress={() => setClickButton("Stand By")}>
+                                    <Text style={portrait.buttonCaption}>Stand By</Text>
+                                </Pressable>
+                                <Pressable style={clickButton === "Night"?{...portrait.button, backgroundColor: '#F1580C'}:{...portrait.button, backgroundColor: '#979797'}} onPress={() => setClickButton("Night")}>
+                                    <Text style={portrait.buttonCaption}>Night</Text>
+                                </Pressable>
                             </View>
                         </View>
                         
                         <View style={orientation === 'PORTRAIT' ? portrait.temper : landscape.temper}>
                             <Text style={{ color: '#FFFFFF' }}>Temperature</Text>
-                            <Temperature></Temperature> 
+                            <Temperature caption="Air Condition 01"></Temperature> 
                         </View> 
                     </View>     
                         
@@ -147,7 +179,21 @@ const portrait = StyleSheet.create({
         paddingLeft: 20, 
         paddingRight: 20, 
         paddingBottom: 5
-    }
+    },
+    button: {
+        width: '32%',
+        borderRadius: 12
+    },
+    buttonCaption: {
+        color: 'white',
+        paddingTop: 13,
+        paddingBottom: 13,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 22,
+        color: '#FFFFFF'
+    },
 });
 
 const landscape = StyleSheet.create({
@@ -170,4 +216,4 @@ const landscape = StyleSheet.create({
     }
 });
 
-export default BabyRoomScreen;
+export default ClimateDetailScreen;

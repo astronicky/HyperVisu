@@ -12,7 +12,7 @@ export const CAMERA = "Camera";
 export const LOGIN = "Login";
 export const CONNECT = "Connect";
 export const FORGOT_PASSWORD = "Forgot";
-export const BABYROOM = "Babyroom";
+export const CLIMATE_DETAIL = "CliamteDetail";
 export const POWER = "Power";
 export const VIDEOPHONE = "videophone";
 export const ACTION_BUTTONS = "Buttons";
@@ -38,7 +38,6 @@ export const DONE = "Done";
 export const OPEN_CONFIGURATION = "Open Configuration";
 export const SERVER = "Server";
 export const CONFIGURATION = "Configuration";
-export const BABYROOM_TITLE = "Baby Room";
 export const ACCESS = "Access";
 export const AUDIO = "Audio";
 export const CONTROL = "Control";
@@ -136,7 +135,7 @@ export const CATEGORY_DATA = [
     {
         title: 'Access',
         imgUrl: require('./assets/images/categories/access.png'),
-        path: BABYROOM
+        path: SHUTTER
     },
     {
         title: 'Audio',
@@ -338,93 +337,9 @@ export const NUMBER69 = require('./assets/images/favorite_category/69.png');
 export const LAMP = require('./assets/images/favorite_category/lamp-white.png');
 export const BLINDS_WHITE = require('./assets/images/favorite_category/blinds-white.png');
 export const TIMER = require('./assets/images/favorite_category/timer.png');
-export const LAMP_WHITE = require('./assets/images/favorite_category/lamp-white.png');
+export const LAMP_WHITE = require('./assets/images/room/lamp.png');
 export const STAIRE = require('./assets/images/favorite_category/staire.png');
 export const DIMMER = require('./assets/images/room/dimmer.png');
-
-export const SHUTTER_AMAND = [
-    {
-        title: 'Shutter/Blind',
-        bottomTitle: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
-    },
-    {
-        title: 'Shutter/Blind',
-        bottomTitle: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
-    }
-];
-
-export const SHUTTER_DAMON = [
-    {
-        title: 'Shutter/Blind',
-        bottomTitle: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
-    },
-    {
-        title: 'Shutter/Blind',
-        bottomTitle: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
-    },
-    {
-        title: 'Shutter/Blind',
-        bottomTitle: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
-    },
-    {
-        title: 'Shutter/Blind',
-        bottomTitle: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
-    }
-];
-
-export const LIGHT_DAMONROOM = [
-    {
-        title: 'On/Off Switch',
-        imgMainUrl: require('./assets/images/room/lamp.png'),
-        flagButton: 'on/off',
-        flagSlider: false
-    },
-    {
-        title: 'On/Off Switch',
-        imgMainUrl: require('./assets/images/room/lamp.png'),
-        flagButton: 'on/off',
-        flagSlider: false
-    },
-    {
-        title: 'On/Off Switch',
-        imgMainUrl: require('./assets/images/room/dimmer.png'),
-        flagButton: 'on/off',
-        flagSlider: true
-    }
-];
-
-export const LIGHT_BATHROOM = [
-    {
-        title: 'Push Button',
-        imgMainUrl: require('./assets/images/room/dimmer.png'),
-        flagButton: 'push',
-        flagSlider: false
-    },
-    {
-        title: 'Push Button',
-        imgMainUrl: require('./assets/images/room/dimmer.png'),
-        flagButton: 'push',
-        flagSlider: false
-    },
-    {
-        title: 'RGB Dimmer01',
-        imgMainUrl: require('./assets/images/room/dimmer.png'),
-        flagButton: 'on/off',
-        flagSlider: true
-    }
-];
 
 export const FAVORITE_DATA = [
     {
@@ -464,15 +379,6 @@ export const FAVORITE_DATA = [
         textColor: '#FFFFFF',
         imgUpUrl: require('./assets/images/room/uparrow.png'),
         imgDownUrl: require('./assets/images/room/downarrow.png')
-    }
-];
-
-export const SHUTTER_BLINDS_DATA = [
-    {
-        title: 'Shutter/Blind',
-        percentValue: '60',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        imgCenterUrl: CHECKBOX
     }
 ];
 

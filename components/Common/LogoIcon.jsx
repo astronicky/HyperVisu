@@ -1,24 +1,33 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
+
+const logoIconEllispe = require('../../assets/images/logo_icon_ellispe.png');
+const logoIconRect = require('../../assets/images/logo_icon_rect.png');
+const logoEllispe = require('../../assets/images/logo_ellispe.png');
+const loggRect = require('../../assets/images/logo_rect.png');
 
 export default function LogoIcon({ color, header }) {
     if (header) {
         return (
-            <View style={styles.iconOutLineHeader}>
-                <View style={styles.iconInnerLineHeader} />
+            <View style={styles.logoContainer}>
+                <Image source={logoIconEllispe} style={styles.iconEllispe}></Image>
+                <Image source={logoIconRect} style={styles.iconRect}></Image>
             </View>
         )
     } else {
         if (color === 'white') {
             return (
-                <View style={styles.iconOutLineWhite}>
-                    <View style={styles.iconInnerLineWhite} />
+                <View style={styles.logoContainer}>
+                    <Image source={logoEllispe} style={styles.ellispe}></Image>
+                    <Image source={loggRect} style={styles.rect}></Image>
                 </View>
             )
         } else {
             return (
-                <View style={styles.iconOutLine}>
-                    <View style={styles.iconInnerLine} />
+                <View style={styles.logoContainer}>
+                    <Image source={logoEllispe} style={styles.ellispe}></Image>
+                    <Image source={loggRect} style={styles.rect}></Image>
                 </View>
             )
         }
@@ -26,55 +35,27 @@ export default function LogoIcon({ color, header }) {
 }
 
 const styles = StyleSheet.create({
-    iconOutLine: {
-        borderColor: '#F1580C',
-        borderWidth: 2,
-        width: 92,
-        height: 92,
-        borderRadius: 92 / 2,
-        display: 'flex',
+    logoContainer:{
+        position: 'relative',
         justifyContent: 'center',
         alignItems: 'center'
     },
-    iconOutLineWhite: {
-        borderColor: '#ffffff',
-        borderWidth: 2,
-        width: 92,
-        height: 92,
-        borderRadius: 92 / 2,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    iconInnerLine: {
-        borderColor: '#F1580C',
-        borderWidth: 6,
-        width: 42,
-        height: 30,
-        borderRadius: 10
-    },
-    iconInnerLineWhite: {
-        borderColor: '#ffffff',
-        borderWidth: 6,
-        width: 42,
-        height: 30,
-        borderRadius: 10
-    },
-    iconOutLineHeader: {
-        borderColor: '#ffffff',
-        borderWidth: 1,
+    iconEllispe: {
         width: 50,
         height: 50,
-        borderRadius: 50 / 2,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
     },
-    iconInnerLineHeader: {
-        borderColor: '#ffffff',
-        borderWidth: 3,
+    iconRect: {
+        position: 'absolute',
         width: 23,
-        height: 16,
-        borderRadius: 8
+        height: 16
     },
+    ellispe: {
+        width: 92,
+        height: 92,
+    },
+    rect: {
+        position: 'absolute',
+        width: 42,
+        height: 30
+    }
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import DateBar from '../components/Common/DateBar';
-import NormalButton from "../components/Common/NormalButton";
+import SettingItem from "../components/Common/SettingItem";
 import MainButton from "../components/Common/MainButton";
 import Layout from "../components/Layout/Layout";
 import { useOrientation } from '../hooks/useOrientation';
@@ -26,7 +26,7 @@ const SettingScreen = ({ navigation }) => {
                         <View style={orientationStyle.settingContainerLand}>
                             {SETTING_DATA?.map((data, index) => {
                             return (<View key={index} style={orientation === 'LANDSCAPE' && {width: '48%', marginRight: 24}}>
-                                <NormalButton {...{ title: data.name, navigation, path: data.path }}></NormalButton>
+                                <SettingItem {...{ title: data.name, navigation, path: data.path }}></SettingItem>
                             </View>);
                             })}
                         </View>

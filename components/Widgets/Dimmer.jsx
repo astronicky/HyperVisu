@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Modal } from 'react-native';
+import VerticalSlider from '../Common/VerticalSlider';
 import Slider from '@react-native-community/slider';
 import { useOrientation } from '../../hooks/useOrientation';
 import { CLOSE } from '../../Constant';
@@ -43,7 +44,11 @@ const Dimmer = () => {
                         <Text style={portrait.modalTitle}>Bed Light</Text>
                         <Text style={portrait.tempValue }>Brightness - {sliderValue}%</Text>
                     </View>
-                    <View style={{ alignSelf: 'center' }}>
+                    <View style={orientationStyle.verticalSlider}>
+                        <VerticalSlider></VerticalSlider>
+                    </View>
+                    
+                    {/* <View style={{ alignSelf: 'center' }}>
                         <View style={orientationStyle.switchContainer}>
                             <Pressable onPress={() => {setClickFlag(!clickFlag)}}>
                                 <View style={clickFlag ? portrait.switchOn : portrait.switchOff} >
@@ -55,9 +60,9 @@ const Dimmer = () => {
                                         </View>
                                     </View>
                                 </View>
-                            </Pressable >
-                        </View >
-                    </View>
+                            </Pressable>
+                        </View> 
+                    </View> */}
                 </View>
             </Modal>
             <View style={portrait.topContainer}>
@@ -206,6 +211,11 @@ const portrait = StyleSheet.create({
         height: 217, 
         alignItems: 'center', 
         justifyContent: 'space-between'
+    },
+    verticalSlider: {
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        height: 330
     }
 });
 
@@ -233,6 +243,11 @@ const landscape = StyleSheet.create({
         height: 325,
         backgroundColor: 'rgba(248, 248, 248, 0.92)', 
         borderRadius: 30
+    },
+    verticalSlider: {
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        height: 270
     }
 });
 

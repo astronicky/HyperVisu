@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Modal } from 'react-native';
 import Slider from '@react-native-community/slider';
+import VerticalSlider from '../Common/VerticalSlider';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useOrientation } from '../../hooks/useOrientation';
 import { CLOSE } from '../../Constant';
@@ -18,6 +19,7 @@ const TunableWhiteDimmer = () => {
 
     const [clickFlag, setClickFlag] = useState();
     const [sliderValue, setSliderValue] = useState(0);
+    const [brightValue, setBrightValue] = useState(0);
     const [isVisibleMolal, setIsVisibleModal] = useState(false);
     const orientation = useOrientation();
     const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
@@ -25,6 +27,10 @@ const TunableWhiteDimmer = () => {
     const changeSliderValue = (value) => {
         setSliderValue(value);
     };
+
+    const onChangeBrightValue = (value) => {
+        setBrightValue(value);
+    }
 
     useEffect(() => {
 
@@ -42,9 +48,12 @@ const TunableWhiteDimmer = () => {
                     </Pressable>                                 
                     <View style={{ padding: 16, marginBottom: 10 }}>
                         <Text style={portrait.modalTitle}>Bed Light</Text>
-                        <Text style={portrait.tempValue }>Brightness - {sliderValue}%</Text>
+                        <Text style={portrait.tempValue }>Brightness - {brightValue}%</Text>
                     </View>
-                    <View style={{ alignSelf: 'center' }}>
+                    <View style={orientationStyle.verticalSlider}>
+                        <VerticalSlider onValueChange={onChangeBrightValue}></VerticalSlider>
+                    </View>
+                    {/* <View style={{ alignSelf: 'center' }}>
                         <View style={orientationStyle.switchContainer}>
                             <Pressable onPress={() => {setClickFlag(!clickFlag)}}>
                                 <View style={clickFlag ? portrait.switchOn : portrait.switchOff} >
@@ -58,7 +67,7 @@ const TunableWhiteDimmer = () => {
                                 </View>
                             </Pressable >
                         </View >
-                    </View>
+                    </View> */}
                     <View style={{ marginTop: 7 }}>
                         <Text style={ portrait.tempValue }>Temperature - {sliderValue}%</Text>
                         <LinearGradient
@@ -234,6 +243,11 @@ const portrait = StyleSheet.create({
         lineHeight: 41,
         letterSpacing: 0.41
     },
+    verticalSlider: {
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        height: 330
+    }
 });
 
 const landscape = StyleSheet.create({
@@ -260,6 +274,11 @@ const landscape = StyleSheet.create({
         height: 325,
         backgroundColor: 'rgba(248, 248, 248, 0.92)', 
         borderRadius: 30
+    },
+    verticalSlider: {
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        height: 270
     }
 });
 

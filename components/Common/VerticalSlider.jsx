@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         alignSelf: 'stretch',
         alignItems: 'center',
-        height: 270
+        height: '100%'
     },
     container: {
         flexGrow: 1,

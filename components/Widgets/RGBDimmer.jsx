@@ -3,6 +3,7 @@ import { View, Text, Image, Pressable, StyleSheet, Modal } from 'react-native';
 import Slider from '@react-native-community/slider';
 import ColorPicker from 'react-native-wheel-color-picker';
 import VerticalSlider from "../Common/VerticalSlider";
+import * as Progress from 'react-native-progress';
 import { useOrientation } from '../../hooks/useOrientation';
 import { CLOSE, BRIGHTNESS, COLOR } from '../../Constant';
 
@@ -43,13 +44,15 @@ const RGBDimmer = () => {
                     <View style={{ padding: 16, marginBottom: 25 }}>
                         <Text style={portrait.modalTitle}>RGB Dimmer</Text>
                     </View>
-                    <ColorPicker  
-                        thumbSize={30}
-                        noSnap={false}
-                        swatches={false}
-                        row={false}
-                        sliderHidden={true} />
-                    <View style={orientationStyle.brightButton}>
+                    <View style={{width: '100%', height: 400}}>
+                        <ColorPicker  
+                            thumbSize={30}
+                            noSnap={false}
+                            swatches={false}
+                            row={false}
+                            sliderHidden={true} />
+                    </View>
+                    {/* <View style={orientationStyle.brightButton}>
                         <Pressable 
                             style={portrait.button} 
                             onPress={() => {
@@ -58,10 +61,10 @@ const RGBDimmer = () => {
                             }}>
                             <Text style={portrait.buttonCaption}>{BRIGHTNESS}</Text>
                         </Pressable>
-                    </View>
+                    </View> */}
                 </View>
             </Modal>
-            <Modal  
+            {/* <Modal  
                 animationType="fade"
                 transparent={true}
                 visible={isVisibleBrightModal}>
@@ -86,7 +89,7 @@ const RGBDimmer = () => {
                         </Pressable>
                     </View>
                 </View>
-            </Modal>
+            </Modal> */}
             <View style={portrait.topContainer}>
                 <Pressable onPress={() => setIsVisibleColorModal(!isVisibleColorMolal)} style={portrait.widgetTile}>
                     <View style={portrait.mainImage}>
@@ -95,7 +98,7 @@ const RGBDimmer = () => {
                     </View>
                     <View>
                         <Text style={orientationStyle.widgetName}>RGB Dimmer</Text>
-                        <Text style={{ paddingLeft: 5, fonSize: 12, fontWeight: '300', color: '#FFFFFF', opacity: 0.6 }}>{sliderValue}%</Text>
+                        {/* <Text style={{ paddingLeft: 5, fonSize: 12, fontWeight: '300', color: '#FFFFFF', opacity: 0.6 }}>{sliderValue}%</Text> */}
                     </View>    
                 </Pressable>
                 <View style={portrait.controllButton}>
@@ -106,7 +109,17 @@ const RGBDimmer = () => {
                     </Pressable>
                 </View>
             </View>
-            <Slider
+            <View style={{ paddingVertical: 20, paddingHorizontal: 15 }}>
+                <Progress.Bar 
+                    progress={0.3} 
+                    color="#F1580C" 
+                    unfilledColor="#979797" 
+                    borderWidth={0} 
+                    width={null} 
+                    height={2}
+                />
+            </View>
+            {/* <Slider
                 style={{width: '100%', height: 40}}
                 minimumValue={0}
                 maximumValue={100}
@@ -114,7 +127,7 @@ const RGBDimmer = () => {
                 minimumTrackTintColor="#5F3CFF"
                 maximumTrackTintColor="#FFFFFF"
                 thumbTintColor="#FFFFFF"
-                onValueChange={changeSliderValue}/>
+                onValueChange={changeSliderValue}/> */}
         </View>
     )
 };

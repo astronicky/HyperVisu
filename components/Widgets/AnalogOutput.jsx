@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Pressable, StyleSheet, Modal } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { useOrientation } from '../../hooks/useOrientation';
-import { CLOSE } from '../../Constant';
 
 const backgroundImg = require('../../assets/images/room/ellipse.png');
 const analogueTopImg = require('../../assets/images/room/analogue-top.png');

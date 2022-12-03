@@ -157,8 +157,8 @@ const landscape = StyleSheet.create({
         fontSize: 20
     },
     realTemperature: {
-        width: 23, 
-        height: 23, 
+        width: 25, 
+        height: 25, 
         position: 'absolute', 
         color: '#FFFFFF', 
         fontWeight: '700', 

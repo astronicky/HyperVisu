@@ -10,16 +10,14 @@ const Camera = ({ caption, status }) => {
     const statusImg = status === true?CAMERA_GREEN:CAMERA_RED;
 
     return (
-        <View>
-            <View style={orientationStyle.cameraContainer}>
-                <View style={portrait.cameraItem}>
-                    <View style={orientationStyle.cameraTitle}>
-                        <Text style={orientationStyle.cameraText}>{caption}</Text>
-                        <Image source={statusImg}></Image>
-                    </View>   
-                    <View style={orientationStyle.videoMain}>  
-                        <ImageBackground imageStyle={{ borderRadius: 10 }} style={{width: '100%', height: '100%'}} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
-                    </View>
+        <View style={orientationStyle.cameraContainer}>
+            <View style={portrait.cameraItem}>
+                <View style={orientationStyle.cameraTitle}>
+                    <Text style={orientationStyle.cameraText}>{caption}</Text>
+                    <Image source={statusImg}></Image>
+                </View>   
+                <View style={orientationStyle.videoMain}>  
+                    <ImageBackground imageStyle={{ borderRadius: 10 }} style={{width: '100%', height: '100%'}} source={CAMERA_IMAGE} resizeMode="cover"></ImageBackground>
                 </View>
             </View>
         </View>

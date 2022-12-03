@@ -149,6 +149,29 @@ const landscape = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20
     },
+    widgetName: {
+        paddingLeft: 5,
+        fontStyle: 'normal',
+        color: '#FFFFFF',
+        fontWeight: '600',
+        fontSize: 20
+    },
+    realTemperature: {
+        width: 23, 
+        height: 23, 
+        position: 'absolute', 
+        color: '#FFFFFF', 
+        fontWeight: '700', 
+        letterSpacing: 1, 
+        textAlign: 'center',
+        opacity: 0.6, 
+    },
+    temperature: {
+        fonSize: 17, 
+        fontWeight: '600', 
+        color: '#FFFFFF', 
+        opacity: 0.8
+    },
 });
 
 export default Temperature;

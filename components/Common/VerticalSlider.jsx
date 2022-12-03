@@ -89,7 +89,7 @@ export default class VerticalSlider extends React.Component {
                 <View style={styles.barContainer}>
                     <View style={styles.bar} onLayout={this.onBarLayout} />
                     <View style={{...styles.circle, bottom: bottomOffset}} {...this.panResponder.panHandlers}/>
-                    <View style={{...styles.subContainer, height: Math.floor(bottomOffset + 10)}}></View>
+                    <View style={{...styles.subContainer, height: Math.floor(bottomOffset + 9), width: bottomOffset <= 1?10:'100%'}}></View>
                 </View>
             </View>
         </View>

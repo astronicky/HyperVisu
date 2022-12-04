@@ -6,11 +6,11 @@ import DateBar from '../components/Common/DateBar';
 import FavoriteCategory from '../components/Common/FavoriteCategory';
 import CircleToggleButton from '../components/Common/CircleToggleButton';
 import PushButton from '../components/Widgets/PushButton';
-import CommonModal from '../components/Common/CommonModal';
+import CameraModal from '../components/Common/CameraModal';
 import MainButton from '../components/Common/MainButton';
 import ActionButton from '../components/Common/ActionButton';
 import FavoriteRoom from '../components/Common/FavoriteRoom';
-import Schedule from '../components/Common/Schedule';
+import ScheduleItem from '../components/Common/ScheduleItem';
 import Temperature from '../components/Widgets/Temperature';
 import ShutterBlind from '../components/Widgets/ShutterBlind';
 import Dimmer from '../components/Widgets/Dimmer';
@@ -22,14 +22,10 @@ import AnalogInput from '../components/Widgets/AnalogInput';
 import SettingItem from '../components/Common/SettingItem';
 import { portrait, landscape } from '../assets/styles/RoomScreen/index';
 import { ACTION_TURN_ON, ACTION_TURN_OFF, ACTION_LAMP_STATUS, FAVORITE_ROOMS_DATA,
-        STAIRE, NUMBER08, NUMBER69, LAMP_WHITE, 
-        UPARROW, DOWNARROW, BLINDS_WHITE,
-        ROOMS, CATEGORIES, FAVORITE_DATA,
-        CLOSE, DONE } from "../Constant";
+        STAIRE, NUMBER08, NUMBER69, UPARROW, DOWNARROW, BLINDS_WHITE, ROOM,
+        ROOMS, CATEGORIES, FAVORITE_DATA, CLOSE, DONE } from "../Constant";
 
 import { useOrientation } from '../hooks/useOrientation';
-
-const dimmerImg = require('../assets/images/room/dimmer.png');
 
 const RoomScreen = ({ navigation }) => {
 
@@ -140,7 +136,7 @@ const RoomScreen = ({ navigation }) => {
                                         <CircleToggleButton title="Show Favourite" onShowModal={(flag) => setScheduleModalVisible(flag)}></CircleToggleButton>                                                
                                     </View>      
                                 </View>
-                                <MainButton style={orientationStyle.newSenceButton} title={DONE}></MainButton>
+                                <MainButton style={orientationStyle.newSenceButton} title={DONE} navigation={navigation} path={ROOMS}></MainButton>
                             </ScrollView>  
                         </View>               
                     </Modal>
@@ -154,12 +150,12 @@ const RoomScreen = ({ navigation }) => {
                                 <View style={{ padding: 5, marginBottom: 20 }}>
                                     <Text style={portrait.textNewScene}>Schedule</Text>
                                 </View>
-                                <Schedule title="Schedule 1" setDate="Daily" setTime="6:00 AM"></Schedule>
-                                <Schedule title="Schedule 2" setDate="Mon, Tue, Fri" setTime="10:30 AM"></Schedule>
-                                <Schedule title="Schedule 3" setDate="Sat" setTime="9:00 PM"></Schedule>
+                                <ScheduleItem title="Schedule 1" setDate="Daily" setTime="6:00 AM"></ScheduleItem>
+                                <ScheduleItem title="Schedule 2" setDate="Mon, Tue, Fri" setTime="10:30 AM"></ScheduleItem>
+                                <ScheduleItem title="Schedule 3" setDate="Sat" setTime="9:00 PM"></ScheduleItem>
                             </View>        
                     </Modal>
-                    <CommonModal index="camera_monitor" isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CommonModal>
+                    <CameraModal isVisible={isVisibleShowModal} setIsVisible={(flag) => setIsVisibleShowModal(flag)}></CameraModal>
                     <View style={portrait.smartHomeTitle}>
                         <DateBar flagButton={true} handleClick={(flag) => setIsBottomModal(flag)}></DateBar>
                         <Text style={portrait.mainTitle}>{roomName}</Text>

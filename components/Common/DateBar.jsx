@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import moment from 'moment';
-import ActionButton from './ActionButton';
-import { ACTION_CIRECLE_PLUS } from '../../Constant';
 import { useOrientation } from '../../hooks/useOrientation';
 
+const width = 30;
+const height = 30;
+const fontSize = width * 0.5;
 const DataBar = ( { flagButton , handleClick} ) => {
     
     const [currentDate, setCurrentDate] = useState();
+    const [clickFlag, setClickFlag] = useState();
     const orientation = useOrientation();
 
     useEffect(() => {
@@ -19,7 +21,14 @@ const DataBar = ( { flagButton , handleClick} ) => {
     return (
         <View style={portrait.container}>
             <Text style={orientation === 'PORTRAIT' ? portrait.dateText : landscape.dateText}>{currentDate}</Text>
-            {flagButton && <ActionButton name={ACTION_CIRECLE_PLUS} style={portrait[ACTION_CIRECLE_PLUS]} onClick={handleClick}/>}  
+            {flagButton &&  
+            <View style={portrait.plusButtonContainer}>
+                <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => handleClick(true)}>
+                    <View style={clickFlag ? {...portrait.buttonColor, backgroundColor: '#4CD964'} : {...portrait.buttonColor, backgroundColor: '#2F2F31'}}>
+                        <Text style={{ color: '#ffffff', fontSize: fontSize }}>+</Text>
+                    </View>
+                </Pressable>
+            </View>}
         </View>
     )
 };
@@ -37,9 +46,19 @@ const portrait = StyleSheet.create({
         fontSize: 14,
         opacity: 0.7
     },
-    [ACTION_CIRECLE_PLUS]: {
-        width: 30,
-        height: 30
+    plusButtonContainer: {
+        width: width, 
+        height: height, 
+        alignItems: 'center', 
+        justifyContent: 'center'
+    },
+    buttonColor:{
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        borderRadius: height / 2, 
+        width: width, 
+        height: height
     }
 });
 

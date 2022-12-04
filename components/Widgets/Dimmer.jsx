@@ -52,7 +52,7 @@ const Dimmer = () => {
                     <View style={orientationStyle.verticalSlider}>
                         <VerticalSlider onValueChange={onChangeBrightValue}></VerticalSlider>
                     </View>
-                    
+                    {/* Switch button */}
                     {/* <View style={{ alignSelf: 'center' }}>
                         <View style={orientationStyle.switchContainer}>
                             <Pressable onPress={() => {setClickFlag(!clickFlag)}}>

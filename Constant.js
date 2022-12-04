@@ -30,7 +30,6 @@ export const SINGIN_DESCIPTION = "Sign in by your ID to access the application."
 export const PASSWORD_FORGOTTEN = "Password Forgotten ?";
 export const FORGOT_PASSWORD_LABEL = "Forgot Password";
 export const TALK_LABEL = "Talk";
-export const EDIT_LABEL = "EDIT";
 export const FORGOT_PASSWORD_DESCRIPTION = "Please enter your information to receive your password by email.";
 export const SEND_EMAIL = "Send by email";
 export const EMAIL = "Email";
@@ -62,22 +61,12 @@ export const ACTION_HEART = "Heart";
 export const ACTION_CLOCK = "Clock";
 export const ACTION_MENU_LIST = "MenuList";
 export const ACTION_MORE_DETAIL = "MoreDetail";
-export const ACTION_EDIT_BUTTON = "EditButton";
-export const ACTION_CIRECLE_PLUS = "CireclePlus";
-export const ACTION_SOUND_VOLUME = "SoundVolume";
 export const ACTION_CATEGORIES_BUTTON = "PauseButton";
-export const ACTION_LOGOUT_BUTTON = "LogoutButton";
-export const ACTION_TALK_BUTTON = "TalkButton";
 export const ACTION_OPTION_BUTTON = "OptionButton";
-export const ACTION_REC_SWITCH_BUTTON = "RecSwithButton";
-export const ACTION_CIR_SWITCH_BUTTON = "CirSwithButton";
 export const ACTION_LAMP_STATUS = "LampStatus";
 export const ACTION_SHUTTER_STATUS = "ShutterStatus";
 export const ACTION_LIGHT_STATUS = "LightStatus";
-export const ACTION_DISPLAY_STATUS = "DisplayStatus";
-export const ACTION_ANALOGUE_VALUE_STATUS = "AnalogueValueStatus";
 export const ACTION_CLOSE_BUTTON = "CloseButton";
-export const ACTION_SWITCH = "Switch";
 
 // Temp data
 

@@ -13,19 +13,11 @@ import {
     ACTION_CLOCK,
     ACTION_MENU_LIST,
     ACTION_MORE_DETAIL,
-    ACTION_EDIT_BUTTON,
-    ACTION_CIRECLE_PLUS,
     ACTION_OPTION_BUTTON,
-    ACTION_REC_SWITCH_BUTTON,
-    ACTION_CIR_SWITCH_BUTTON,
     ACTION_LAMP_STATUS,
     ACTION_SHUTTER_STATUS,
     ACTION_LIGHT_STATUS,
-    ACTION_DISPLAY_STATUS,
-    ACTION_ANALOGUE_VALUE_STATUS,
-    ACTION_CLOSE_BUTTON,
-    EDIT_LABEL,
-    ACTION_SWITCH
+    ACTION_CLOSE_BUTTON
 } from "../../Constant";
 
 import ImgClock from "../../assets/action_buttons/clock.png";
@@ -37,12 +29,8 @@ import ImgShutterDisabled from "../../assets/action_buttons/shutter_disable.png"
 import ImgShutter from "../../assets/action_buttons/shutter.png";
 import ImgLightDisable from "../../assets/action_buttons/light_disable.png";
 import ImgLight from "../../assets/action_buttons/light.png";
-import ImgDisplay from "../../assets/action_buttons/display.png";
-import ImgAnalogue from "../../assets/action_buttons/analogue.png";
 import ImgClose from "../../assets/action_buttons/close.png";
 import ImgCloseActive from "../../assets/action_buttons/close_active.png";
-import ImgLampTop from '../../assets/images/lamp_top.png';
-import ImgLampBottom from '../../assets/images/lamp_bottom.png';
 
 export default function ActionButton({ name, style, active, onClick, disabled }) {
 
@@ -177,39 +165,6 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                 </View>
             );
             break;
-        case ACTION_EDIT_BUTTON:
-            width = style ? style.width ? style.width : 62 : 62;
-            height = style ? style.height ? style.height : 24 : 24;
-            paddingTop = style ? style.paddingTop ? style.paddingTop : 2 : 2;
-            paddingBottom = style ? style.paddingBottom ? style.paddingBottom : 2 : 2;
-            paddingLeft = style ? style.paddingLeft ? style.paddingLeft : 15 : 15;
-            paddingRight = style ? style.paddingRight ? style.paddingRight : 15 : 15;
-            fontSize = style ? style.fontSize ? style.fontSize : 15 : 15;
-            lineHeight = style ? style.lineHeight ? style.lineHeight : 20 : 20;
-            return (
-                <View style={{ ...{ alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2 } : { display: 'flex', flexDirection: 'row', paddingTop: paddingTop, paddingBottom: paddingBottom, paddingLeft: paddingLeft, paddingRight: paddingRight, justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2 }}>
-                            <Text style={{ color: '#ffffff', fontSize: fontSize, lineHeight: lineHeight }}>{EDIT_LABEL}</Text>
-                        </View>
-                    </Pressable>
-                </View>
-            );
-            break;
-        case ACTION_CIRECLE_PLUS:
-            width = style ? style.width ? style.width : 30 : 30;
-            height = style ? style.height ? style.height : 30 : 30;
-            fontSize = style ? style.fontSize ? style.fontSize : width * 0.5 : width * 0.5;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPressIn={() => setClickFlag(true)} onPressOut={() => setClickFlag(false)} onPress={() => (onClick) && onClick(true)}>
-                        <View style={clickFlag ? { flexDirection: 'row', backgroundColor: '#4CD964', justifyContent: 'center', alignItems: 'center', borderRadius: height / 2, width: width, height: height } : { display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#2F2F31', alignItems: 'center', borderRadius: height / 2, width: width, height: height }}>
-                            <Text style={{ color: '#ffffff', fontSize: fontSize }}>+</Text>
-                        </View>
-                    </Pressable>
-                </View>
-            );
-            break;
         case ACTION_OPTION_BUTTON:
             width = style ? style.width ? style.width : 59 : 59;
             height = style ? style.height ? style.height : 59 : 59;
@@ -225,21 +180,6 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                         </View>
                     </Pressable >
                 </View>
-            );
-            break;
-        case ACTION_REC_SWITCH_BUTTON:
-            width = style ? style.width ? style.width : 42 : 42;
-            height = style ? style.height ? style.height : 36 : 36;
-            padding = height / 10;
-            borderRadius = height * 0.2;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { flexDirection: 'row', justifyContent: 'flex-end', backgroundColor: '#F1580C', borderRadius: borderRadius, padding: padding, width: width, height: height } : { display: 'flex', flexDirection: 'row', backgroundColor: '#6A6A6B', borderRadius: borderRadius, padding: padding, width: width, height: height }} >
-                            <View style={clickFlag ? { flex: 0.5, backgroundColor: '#ffffff', borderRadius: height * 0.8 * 0.2 } : { flex: 0.5, backgroundColor: '#ffffff', borderRadius: height * 0.8 * 0.2 }} />
-                        </View>
-                    </Pressable >
-                </View >
             );
             break;
         case ACTION_LAMP_STATUS:
@@ -295,28 +235,6 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                 </View>
             );
             break;
-        case ACTION_DISPLAY_STATUS:
-            width = style ? style.width ? style.width : 15.5 : 24;
-            height = style ? style.height ? style.height : 15.5 : 24;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { (onClick) && onClick() }}>
-                        <Image source={ImgDisplay} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
-                    </Pressable>
-                </View>
-            );
-            break;
-        case ACTION_ANALOGUE_VALUE_STATUS:
-            width = style ? style.width ? style.width : 24 : 24;
-            height = style ? style.height ? style.height : 24 : 24;
-            return (
-                <View style={{ ...{ width: width, height: height, alignItems: 'center', justifyContent: 'center' }, ...style }}>
-                    <Pressable onPress={() => { (onClick) && onClick() }}>
-                        <Image source={ImgAnalogue} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
-                    </Pressable>
-                </View>
-            );
-            break;
         case ACTION_CLOSE_BUTTON:
             width = style ? style.width ? style.width : 20 : 20;
             height = style ? style.height ? style.height : 20 : 20;
@@ -326,27 +244,6 @@ export default function ActionButton({ name, style, active, onClick, disabled })
                         <Image source={clickFlag ? ImgCloseActive : ImgClose} width={width} height={height} style={{ flex: 1, resizeMode: 'contain' }} />
                     </Pressable>
                 </View>
-            );
-            break;
-         case ACTION_SWITCH:
-            width = style ? style.width ? style.width : 42 : 42;
-            height = style ? style.height ? style.height : 36 : 36;
-            padding = height / 10;
-            borderRadius = height * 0.1;
-            return (
-                <View style={{ ...{ width: width, height: height, backgroundColor: 'rgba(248, 248, 248, 0.92)', borderRadius: borderRadius,  }, ...style }}>
-                    <Pressable onPress={() => { setClickFlag(!clickFlag); (onClick) && onClick() }}>
-                        <View style={clickFlag ? { top: 0, height: height * 2/3, backgroundColor: '#F1580C', borderRadius: borderRadius } : { top: height * 1/3, height: height * 2/3, backgroundColor: '#F1580C', borderRadius: borderRadius }} >
-                            <View style={{ height: height * 2/3, alignItems: 'center', justifyContent: 'space-between' }}>
-                                <View style={{ margin: 6, width: 30, height: 5, backgroundColor: '#FFFFFF', borderRadius: 5 }}></View>
-                                <View style={{ margin: 40 }}>
-                                    <Image source={ImgLampTop}></Image>
-                                    <Image source={ImgLampBottom} style={{ marginLeft: 6 }}></Image>
-                                </View>
-                            </View>
-                        </View>
-                    </Pressable >
-                </View >
             );
             break;
         default:

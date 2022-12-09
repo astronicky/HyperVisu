@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, ScrollView, Text, Button, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+// import WS from "react-native-websocket";
 import SettingItem from "../components/Common/SettingItem";
 import ConfigInfo from "../components/Common/ConfigInfo";
 import MainButton from "../components/Common/MainButton";
@@ -7,6 +8,14 @@ import Layout from "../components/Layout/Layout";
 import { DONE, LOGIN, CONFIGURATION, SERVER, CONFIG_DATA } from "../Constant";
 
 const ConfigScreen = ({ navigation }) => {
+    
+    const ws = useRef(new WebSocket('ws://192.168.106.65:9000')).current;
+    
+
+    useEffect(() => {
+        // ws.send("config");
+    }, []);
+
     return (
         <SafeAreaView style={styles.containerScroll}>
             <Layout header={true}>

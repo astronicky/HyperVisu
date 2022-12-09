@@ -28,10 +28,12 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-websocket": "^1.0.2",
     "react-native-wheel-color-picker": "^1.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
-    "rn-vertical-slider": "^2.0.2"
+    "rn-vertical-slider": "^2.0.2",
+    "ws": "^8.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

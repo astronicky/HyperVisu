@@ -8,10 +8,7 @@ import Layout from "../components/Layout/Layout";
 import { DONE, LOGIN, CONFIGURATION, SERVER, CONFIG_DATA } from "../Constant";
 
 const ConfigScreen = ({ navigation }) => {
-    
-    const ws = useRef(new WebSocket('ws://192.168.106.65:9000')).current;
-    
-
+        
     useEffect(() => {
         // ws.send("config");
     }, []);

@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
-import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView } from "react-native";
-import * as ScreenOrientation from 'expo-screen-orientation';
+import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView, TextInput } from "react-native";
+import axios from 'axios';
 import Logo from "../components/Common/Logo";
-import MainButton from "../components/Common/MainButton";
-import MainInput from "../components/Common/MainInput";
 import { CONNECT, HOME, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
 
 export default function LoginScreen({ navigation }) {
@@ -21,7 +19,13 @@ export default function LoginScreen({ navigation }) {
 
     //     return unsubscribe;
     // }, [navigation]);
+    const [usenName, setUserName] = useState();
+    const [userPwd, setUserPwd] = useState();
 
+    const loginClick = () => {
+
+        console.log("login", usenName, userPwd);
+    }
 
     return (
         <SafeAreaView style={styles.containerScroll}>
@@ -32,13 +36,21 @@ export default function LoginScreen({ navigation }) {
                         <Text style={styles.signinLabel}>{SINGIN_LABEL}</Text>
                         <View style={styles.bodyContainer}>
                             <Text style={styles.signinDescription}>{SINGIN_DESCIPTION}</Text>
-                            <MainInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
-                            <MainInput style={styles.input} secureTextEntry={true} placeholder={PLACEFOLDER_PASSWORD} label={PASSWORD_LABEL} />
+                            <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabelStyle}>{USER_LABEL}</Text>
+                                <TextInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} placeholderTextColor={styles.input.placeholderTextColor} onChangeText={value => setUserName(value)} />
+                            </View>
+                            <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabelStyle}>{PASSWORD_LABEL}</Text>
+                                <TextInput style={styles.input} placeholder={PLACEFOLDER_PASSWORD} placeholderTextColor={styles.input.placeholderTextColor} secureTextEntry={true} onChangeText={value => setUserPwd(value)} />
+                            </View>
                         </View>
                         <Pressable onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
                             <Text style={styles.passwordForgotten}>{PASSWORD_FORGOTTEN}</Text>
                         </Pressable>
-                        <MainButton {...{ style: styles.mainButton, title: LOGIN, path: HOME, navigation }} />
+                        <Pressable style={styles.loginButton} onPress={() => {loginClick()}}>
+                            <Text style={styles.buttonText}>{LOGIN}</Text>
+                        </Pressable>
                     </View>
                 </Layout>
             </ScrollView>
@@ -48,25 +60,18 @@ export default function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     containerScroll: {
-        paddingTop: 10,
-        paddingBottom: 10,
         height: '100%',
+        paddingVertical: 10,
         backgroundColor: 'black'
     },
     scrollView: {
         backgroundColor: 'black'
     },
     container: {
-        flexDirection: 'column',
-        height: '100%',
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'relative'
-    },
-    mainButton: {
-        width: '100%',
-        marginTop: 50,
-        width: 375
+        paddingHorizontal: 8
     },
     signinLabel: {
         fontWeight: 'bold',
@@ -77,13 +82,10 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     bodyContainer: {
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1C1C1E',
-        marginTop: 16,
-        marginLeft: 8,
-        marginRight: 8
+        marginTop: 16
     },
     signinDescription: {
         fontSize: 17,
@@ -91,8 +93,7 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         textAlign: 'center',
         paddingTop: 8,
-        paddingLeft: 75,
-        paddingRight: 75,
+        paddingHorizontal: 75,
         paddingBottom: 38,
         color: '#ffffff'
     },
@@ -100,5 +101,45 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#8E8E93',
         marginTop: 30
+    },
+    inputContainer: {
+        padding: 16,
+        backgroundColor: '#2F2F31',
+        placeholderTextColor: '#8E8E93',
+        borderColor: '#8E8E93',
+        borderWidth: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    inputLabelStyle: {
+        fontSize: 17,
+        lineHeight: 22,
+        color: '#ffffff',
+        marginRight: 8,
+        flex: 0.5
+    },
+    input: {
+        backgroundColor: '#2F2F31',
+        fontSize: 17,
+        lineHeight: 22,
+        color: '#ffffff',
+        placeholderTextColor: '#8E8E93',
+        flex: 1
+    },
+    loginButton: {
+        width: '100%',
+        marginTop: 50,
+        borderRadius: 12,
+        backgroundColor: '#F1580C'
+    },
+    buttonText: {
+        paddingVertical: 13,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 22,
+        color: '#FFFFFF'
     }
 });

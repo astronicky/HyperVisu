@@ -1,9 +1,8 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
-import { Text, ScrollView, SafeAreaView, View, StyleSheet } from "react-native";
+import { Text, ScrollView, SafeAreaView, View, StyleSheet, TextInput, Pressable } from "react-native";
 import Logo from "../components/Common/Logo";
 import MainButton from "../components/Common/MainButton";
-import MainInput from "../components/Common/MainInput";
 import { PLACEHOLDER_USERNAME, USER_LABEL, LOGIN, FORGOT_PASSWORD_LABEL, FORGOT_PASSWORD_DESCRIPTION, SEND_EMAIL, EMAIL, PLACEFOLDER_USEREMAIL } from "../Constant";
 
 export default function ForgotPasswordScreen({ navigation }) {
@@ -16,10 +15,18 @@ export default function ForgotPasswordScreen({ navigation }) {
                         <Text style={styles.forgotPasswordLabel}>{FORGOT_PASSWORD_LABEL}</Text>
                         <View style={styles.bodyContainer}>
                             <Text style={styles.forgotPasswordDescription}>{FORGOT_PASSWORD_DESCRIPTION}</Text>
-                            <MainInput placeholder={PLACEHOLDER_USERNAME} label={USER_LABEL} />
-                            <MainInput placeholder={PLACEFOLDER_USEREMAIL} label={EMAIL} />
+                            <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabelStyle}>{USER_LABEL}</Text>
+                                <TextInput style={styles.input} placeholder={PLACEHOLDER_USERNAME} placeholderTextColor={styles.input.placeholderTextColor} onChangeText={value => setUserName(value)} />
+                            </View>
+                            <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabelStyle}>{EMAIL}</Text>
+                                <TextInput style={styles.input} placeholder={PLACEFOLDER_USEREMAIL} placeholderTextColor={styles.input.placeholderTextColor} onChangeText={value => setUserPwd(value)} />
+                            </View>
                         </View>
-                        <MainButton {...{ style: styles.mainButton, title: SEND_EMAIL, path: LOGIN, navigation }} />
+                        <Pressable style={styles.loginButton} onPress={() => {}}>
+                            <Text style={styles.buttonText}>{SEND_EMAIL}</Text>
+                        </Pressable>
                     </View>
                 </Layout>
             </ScrollView>
@@ -29,26 +36,18 @@ export default function ForgotPasswordScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     containerScroll: {
-        paddingTop: 10,
-        paddingBottom: 10,
+        paddingVertical: 10,
         height: '100%',
-        backgroundColor: 'black'
+        backgroundColor: '#000000'
     },
     scrollView: {
-        backgroundColor: 'black'
+        backgroundColor: '#000000'
     },
     container: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'relative'
-    },
-    mainButton: {
-        width: '100%',
-        marginTop: 58,
-        width: 375
+        marginHorizontal: 8
     },
     forgotPasswordLabel: {
         fontWeight: 'bold',
@@ -57,17 +56,13 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         textAlign: 'center',
         marginTop: 30,
-        paddingLeft: 100,
-        paddingRight: 100
+        paddingHorizontal: 100
     },
     bodyContainer: {
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1C1C1E',
-        marginTop: 16,
-        marginLeft: 8,
-        marginRight: 8
+        marginTop: 16    
     },
     forgotPasswordDescription: {
         fontSize: 17,
@@ -75,9 +70,48 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         textAlign: 'center',
         paddingTop: 8,
-        paddingLeft: 40,
-        paddingRight: 40,
+        paddingHorizontal: 40,
         paddingBottom: 38,
         color: '#ffffff'
+    },
+    inputContainer: {
+        padding: 16,
+        backgroundColor: '#2F2F31',
+        placeholderTextColor: '#8E8E93',
+        borderColor: '#8E8E93',
+        borderWidth: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    inputLabelStyle: {
+        fontSize: 17,
+        lineHeight: 22,
+        color: '#ffffff',
+        marginRight: 8,
+        flex: 0.5
+    },
+    input: {
+        backgroundColor: '#2F2F31',
+        fontSize: 17,
+        lineHeight: 22,
+        color: '#ffffff',
+        placeholderTextColor: '#8E8E93',
+        flex: 1
+    },
+    loginButton: {
+        width: '100%',
+        marginTop: 50,
+        borderRadius: 12,
+        backgroundColor: '#F1580C'
+    },
+    buttonText: {
+        paddingVertical: 13,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 22,
+        color: '#FFFFFF'
     }
 });

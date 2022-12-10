@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
-import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView, TextInput } from "react-native";
+import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView, TextInput, ToastAndroid } from "react-native";
 import axios from 'axios';
 import Logo from "../components/Common/Logo";
 import { CONNECT, HOME, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
 
 export default function LoginScreen({ navigation }) {
 
-    // async function changeScreenOrientation() {
+    // const changeScreenOrientation = async () => {
     //     await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     // }; 
 
@@ -19,12 +19,29 @@ export default function LoginScreen({ navigation }) {
 
     //     return unsubscribe;
     // }, [navigation]);
-    const [usenName, setUserName] = useState();
+    const [userName, setUserName] = useState();
     const [userPwd, setUserPwd] = useState();
 
-    const loginClick = () => {
-
-        console.log("login", usenName, userPwd);
+    const loginClick = async () => {
+        console.log("login", userName, userPwd);
+        const res = await axios.post('http://192.168.106.65:9000/api/mobile/login',
+                        {
+                            "userName": userName,
+                            "userPwd": userPwd   
+                        },
+                        {
+                            "headers": {
+                                'accept': 'text/plain',
+                                'Content-Type': 'application/json'
+                            }
+                        }).then((res) => {
+                            const msg = "Login success";
+                            ToastAndroid.show(msg, ToastAndroid.SHORT);
+                            navigation.navigate(HOME);
+                        }).catch((error) => {
+                            const msg = "Network error";
+                            ToastAndroid.show(msg, ToastAndroid.SHORT);
+                        });
     }
 
     return (

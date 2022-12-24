@@ -24,24 +24,30 @@ export default function LoginScreen({ navigation }) {
 
     const loginClick = async () => {
         console.log("login", userName, userPwd);
-        const res = await axios.post('http://192.168.106.65:9000/api/mobile/login',
-                        {
-                            "userName": userName,
-                            "userPwd": userPwd   
-                        },
-                        {
-                            "headers": {
-                                'accept': 'text/plain',
-                                'Content-Type': 'application/json'
-                            }
-                        }).then((res) => {
-                            const msg = "Login success";
-                            ToastAndroid.show(msg, ToastAndroid.SHORT);
-                            navigation.navigate(HOME);
-                        }).catch((error) => {
-                            const msg = "Network error";
-                            ToastAndroid.show(msg, ToastAndroid.SHORT);
-                        });
+        await axios.post('http://192.168.106.65:9000/api/mobile/login',
+            {
+                "userName": userName,
+                "userPwd": userPwd   
+            },
+            {
+                "headers": {
+                    'accept': 'text/plain',
+                    'Content-Type': 'application/json'
+                }
+            }).then((res) => {
+                if(res.data.message === "success") {
+                    const msg = "Login success";
+                    ToastAndroid.show(msg, ToastAndroid.SHORT);
+                    navigation.navigate(HOME);
+                } else {
+                    const msg = "Username or password is wrong";
+                    ToastAndroid.show(msg, ToastAndroid.SHORT);
+                }
+                
+            }).catch((error) => {
+                const msg = "Network error";
+                ToastAndroid.show(msg, ToastAndroid.SHORT);
+            });
     }
 
     return (

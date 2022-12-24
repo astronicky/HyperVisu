@@ -19,11 +19,23 @@ export default function LoginScreen({ navigation }) {
 
     //     return unsubscribe;
     // }, [navigation]);
-    const [userName, setUserName] = useState();
-    const [userPwd, setUserPwd] = useState();
+    const [userName, setUserName] = useState("");
+    const [userPwd, setUserPwd] = useState("");
 
     const loginClick = async () => {
-        console.log("login", userName, userPwd);
+        if(userName === "" && userPwd === "") {
+            const msg = "Input username and userpassword.";
+            ToastAndroid.show(msg, ToastAndroid.SHORT);
+            return;
+        } else if (userName === "") {
+            const msg = "Input username.";
+            ToastAndroid.show(msg, ToastAndroid.SHORT);
+            return;
+        } else if (userPwd === "") {
+            const msg = "Input password.";
+            ToastAndroid.show(msg, ToastAndroid.SHORT);
+            return;
+        }
         await axios.post('http://192.168.106.65:9000/api/mobile/login',
             {
                 "userName": userName,
@@ -131,7 +143,6 @@ const styles = StyleSheet.create({
         placeholderTextColor: '#8E8E93',
         borderColor: '#8E8E93',
         borderWidth: 1,
-        display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'

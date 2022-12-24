@@ -167,8 +167,7 @@ const landscape = StyleSheet.create({
         borderRadius: 9
     },
     powerText: {
-        paddingTop: 30,
-        paddingBottom: 30,
+        paddingVertical: 30,
         flexDirection: 'row',
         justifyContent: 'flex-start'
     },

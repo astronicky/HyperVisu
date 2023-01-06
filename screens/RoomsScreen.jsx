@@ -1,11 +1,13 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView, Text, SafeAreaView, Pressable } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, ScrollView, Text, SafeAreaView, Pressable, ActivityIndicator, Dimensions } from 'react-native';
 import Layout from '../components/Layout/Layout';
 import DateBar from '../components/Common/DateBar';
 import FavoriteRoom from '../components/Common/FavoriteRoom';
 import RoomItem from '../components/Common/RoomItem';
 import { useOrientation } from '../hooks/useOrientation';
-import { ROOM, ROOMS_DATA, CATEGORIES, FAVORITE_ROOMS_DATA } from "../Constant";
+import { getFavoriteRooms } from '../apis/users';
+import { ROOM, ROOMS_CONFIGURATION, ROOMS_DATA } from "../Constant";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RoomsScreen = ({ navigation }) => {
 
@@ -14,54 +16,112 @@ const RoomsScreen = ({ navigation }) => {
 
     let count = orientation === 'PORTRAIT' ? 3 : 5;
 
+    const [favorRooms, setFavorRooms] = useState([]);
+    const [userInfo, setUserInfo] = useState({});
+
+    const [roomsConfig, setRoomsConfig] = useState({});
+    const [rooms, setRooms] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+	const windowHeight = Dimensions.get('window').height;
+
+    useEffect(() => {
+        AsyncStorage.getItem(ROOMS_CONFIGURATION)
+        .then((value) => {
+            value = JSON.parse(value);
+            setRoomsConfig(value);
+            setRooms(Object.keys(value));
+            return getFavoriteRooms();
+        })
+        .then((res) => {
+            const { data, user } = res;
+            setFavorRooms(data);
+            setUserInfo(user);
+            setIsLoading(false);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, []);
+
     return (
         <SafeAreaView style={portrait.containerScroll}>
             <Layout header={true}>
                 <ScrollView style={portrait.scrollView}>
-                    <View style={portrait.roomsContainer}>
-                        <DateBar flagButton={false}></DateBar>
-                        <Text style={portrait.mainTitle}>Rooms</Text>
-                        <Text style={portrait.subTitle}>You can control all your Smart Home{orientation === 'PORTRAIT' && "\n"}and enjoy Smart life</Text>
-                    </View>
-                    <View style={portrait.favoriteRooms}>
-                        <View style={portrait.favoriteTitle}>
-                            <View style={orientationStyle.favoriteRoomBar}>
-                                <Text style={orientationStyle.favoriteText}>Favorite Room</Text>
-                                <Pressable onPress={() => navigation.navigate(CATEGORIES)}>
-                                    <Text style={{...orientationStyle.favoriteText, color: '#F1580C'}}>See all</Text>
-                                </Pressable>
-                            </View>
-                            {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
+                {
+                    isLoading ? (
+                        <View style={{ marginTop: windowHeight / 2 - 100 }}>
+                            <ActivityIndicator size="large" color="#F1580C" />
                         </View>
-                        <View style={portrait.roomItems}>
-                            {orientation === 'LANDSCAPE' ? (<View style={{ flex:6, flexDirection: 'row', justifyContent: 'space-between'}}>
-                            {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
-                                return (
-                                    <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
-                                );
-                            })}
-                            </View>) : 
-                            (<>
-                                {FAVORITE_ROOMS_DATA?.slice(0, count).map(( data, index ) => {
+                    ) : (
+                    <>
+                        <View style={portrait.roomsContainer}>
+                            <DateBar flagButton={false}></DateBar>
+                            <Text style={portrait.mainTitle}>Rooms</Text>
+                            <Text style={portrait.subTitle}>You can control all your Smart Home{orientation === 'PORTRAIT' && "\n"}and enjoy Smart life</Text>
+                        </View>
+                        <View style={portrait.favoriteRooms}>
+                            <View style={portrait.favoriteTitle}>
+                                <View style={orientationStyle.favoriteRoomBar}>
+                                    <Text style={orientationStyle.favoriteText}>Favorite Room</Text>
+                                    {/* `<Pressable onPress={() => navigation.navigate(CATEGORIES)}>
+                                        <Text style={{...orientationStyle.favoriteText, color: '#F1580C'}}>See all</Text>
+                                    </Pressable>` */}
+                                </View>
+                                {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
+                            </View>
+                            <View style={portrait.roomItems}>
+                                {orientation === 'LANDSCAPE' ? (<View style={{ flex:6, flexDirection: 'row', justifyContent: 'space-between'}}>
+                                {favorRooms?.slice(0, count).map(( { id }, index ) => {
                                     return (
-                                        <FavoriteRoom key={index} {...{ room: data.room, imgUrl: data.imgUrl, bgColor: data.bgColor, textColor: data.textColor}}></FavoriteRoom>
+                                        <FavoriteRoom 
+                                            key={index} 
+                                            id={id}
+                                            configDict={roomsConfig}
+                                            bgColor={userInfo.widgets_background_color}
+                                            textColor={userInfo.text_color}
+                                        />
                                     );
                                 })}
-                            </> )}
-                            {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
-                        </View> 
-                    </View>
-                    <View style={portrait.roomAll}>
-                        <Text style={orientationStyle.favoriteText}>All</Text>
-                        {/* <Text style={{...portrait.favoriteText, color: '#F1580C'}}>See all</Text> */}
-                    </View>
-                    <View style={orientationStyle.roomsList}>    
-                        {ROOMS_DATA?.map((data, index) => {
-                        return (
-                            <RoomItem key={index} {...{ title: data.room, imgUrl: data.imgUrl, navigation, path: ROOM }}></RoomItem>
-                        );
-                        })}
-                    </View>
+                                </View>) : 
+                                (<>
+                                    {favorRooms?.slice(0, count).map(( { id }, index ) => {
+                                        return (
+                                            <FavoriteRoom 
+                                                key={index} 
+                                                id={id}
+                                                configDict={roomsConfig}
+                                                bgColor={userInfo.widgets_background_color}
+                                                textColor={userInfo.text_color}
+                                            />
+                                        );
+                                    })}
+                                </> )}
+                                {orientation === 'LANDSCAPE' && <View style={{ flex:6 }}></View>}
+                            </View> 
+                        </View>
+                        <View style={portrait.roomAll}>
+                            <Text style={orientationStyle.favoriteText}>All</Text>
+                            {/* <Text style={{...portrait.favoriteText, color: '#F1580C'}}>See all</Text> */}
+                        </View>
+                        <View style={orientationStyle.roomsList}>    
+                            {rooms?.map((id, index) => {
+                            return (
+                                <RoomItem 
+                                    key={index} 
+                                    id={id}
+                                    configDict={roomsConfig}
+                                    onClick={() => {
+                                        navigation.navigate(ROOM);
+                                    }}
+                                />
+                            );
+                            })}
+                        </View>
+                    </>
+                    )
+                }
                 </ScrollView>
             </Layout>
         </SafeAreaView>

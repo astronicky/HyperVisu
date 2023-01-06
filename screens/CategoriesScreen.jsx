@@ -1,31 +1,81 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text, SafeAreaView } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, SafeAreaView, Dimensions, ActivityIndicator } from 'react-native';
 import Layout from '../components/Layout/Layout';
 import RoomItem from '../components/Common/RoomItem';
 import DateBar from '../components/Common/DateBar';
 import { useOrientation } from '../hooks/useOrientation';
-import { CATEGORY_DATA } from "../Constant";
+import { CATEGORIES_CONFIGURATION, LOGINED_USER, CATEGORY } from "../Constant";
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
 
 const CategoriesScreen = ({ navigation }) => {
 
     const orientation = useOrientation();
+    const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
+    
+    const [userInfo, setUserInfo] = useState({});
+
+    const [categoriesConfig, setCategoriesConfig] = useState({});
+    const [categories, setCategories] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    const windowHeight = Dimensions.get('window').height;
+
+    useEffect(() => {
+        AsyncStorage.getItem(CATEGORIES_CONFIGURATION)
+        .then((value) => {
+            value = JSON.parse(value);
+            setCategoriesConfig(value);
+            setCategories(Object.keys(value));
+            return AsyncStorage.getItem(LOGINED_USER);
+        })
+        .then((value) => {
+            value = JSON.parse(value);
+            setUserInfo(value);
+            setIsLoading(false);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, []);
 
     return (
         <SafeAreaView style={portrait.containerScroll}>
             <Layout header={true}>
                 <ScrollView style={portrait.scrollView}>
-                    <View style={portrait.categoryContainer}>
-                        <DateBar flagButton={false}></DateBar>
-                        <Text style={portrait.mainTitle}>Categories</Text>
-                        <Text style={portrait.subTitle}>You can control all your Smart Home {orientation === 'PORTRAIT' && "\n" }and enjoy Smart life</Text>
-                    </View>
-                    <View style={orientation === 'PORTRAIT' ? portrait.category : landscape.category}>
-                        {CATEGORY_DATA?.map((data, index) => {
-                            return (
-                                <RoomItem key={index} {...{ title: data.title, imgUrl: data.imgUrl, path: data.path, navigation }}></RoomItem>
-                            );
-                        })}
-                    </View>
+                {
+                    isLoading ? (
+                        <View style={{ marginTop: windowHeight / 2 - 100 }}>
+                            <ActivityIndicator size="large" color="#F1580C" />
+                        </View>
+                    ) : (
+                    <>
+                        <View style={portrait.categoryContainer}>
+                            <DateBar flagButton={false}></DateBar>
+                            <Text style={portrait.mainTitle}>Categories</Text>
+                            <Text style={portrait.subTitle}>You can control all your Smart Home {orientation === 'PORTRAIT' && "\n" }and enjoy Smart life</Text>
+                        </View>
+                        <View style={orientation === 'PORTRAIT' ? portrait.category : landscape.category}>
+                            {categories?.map((id, index) => {
+                                return (
+                                    <RoomItem 
+                                        key={index} 
+                                        id={id}
+                                        configDict={categoriesConfig}
+                                        onClick={() => {
+                                            navigation.navigate(CATEGORY, {
+                                                categoryId: id
+                                            });
+                                        }}
+                                    />
+                                );
+                            })}
+                        </View>
+                    </>
+                    )
+                }
                 </ScrollView>
             </Layout>
         </SafeAreaView>

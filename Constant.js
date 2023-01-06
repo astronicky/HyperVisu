@@ -1,3 +1,10 @@
+// AsyncStorage
+export const SERVER_CONFIGURATION = "serverConfig";
+export const ROOMS_CONFIGURATION = "roomsConfig";
+export const CATEGORIES_CONFIGURATION = "categoriesConfig";
+export const WIDGETS_CONFIGURATION = "widgetsConfig";
+export const LOGINED_USER = "loginedUser";
+
 // screen
 export const HOME = "Home";
 export const ROOM = "Room";
@@ -6,15 +13,11 @@ export const CONFIG = "Configuration";
 export const CATEGORIES = "Categories";
 export const ROOMS = "Rooms";
 export const SMART_HOME = "SmartHome";
-export const SHUTTER = "Shutter";
-export const LIGHT = "Light";
-export const CAMERA = "Camera";
+export const CATEGORY = "Category";
 export const LOGIN = "Login";
 export const CONNECT = "Connect";
 export const FORGOT_PASSWORD = "Forgot";
 export const CLIMATE_DETAIL = "CliamteDetail";
-export const POWER = "Power";
-export const VIDEOPHONE = "videophone";
 export const ACTION_BUTTONS = "Buttons";
 // common
 export const LOGO_TITLE = "HYPERVISU";
@@ -101,209 +104,6 @@ export const SETTING_DATA = [
     },
 ];
 
-export const CONFIG_DATA = [
-    {
-        name: 'Server S/N',
-        info: 'XXXXXXXXXX'
-    },
-    {
-        name: 'Server Ver.',
-        info: '1.3.1'
-    },
-    {
-        name: 'Min. App. Ver.',
-        info: '1.0.0'
-    },
-    {
-        name: 'API Ver.',
-        info: '1.0.0'
-    }
-];
-
-export const CATEGORY_DATA = [
-    {
-        title: 'Access',
-        imgUrl: require('./assets/images/categories/access.png'),
-        path: SHUTTER
-    },
-    {
-        title: 'Audio',
-        imgUrl: require('./assets/images/categories/audio.png'),
-        path: VIDEOPHONE
-    },
-    {
-        title: 'Control',
-        imgUrl: require('./assets/images/categories/control.png'),
-        path: SHUTTER
-    },
-    {
-        title: 'Energy',
-        imgUrl: require('./assets/images/categories/energy.png'),
-        path: POWER
-    },
-    {
-        title: 'lightning',
-        imgUrl: require('./assets/images/categories/lightning.png'),
-        path: LIGHT
-    },
-    {
-        title: 'Shutter',
-        imgUrl: require('./assets/images/categories/shutter.png'),
-        path: SHUTTER
-    },
-    {
-        title: 'Climate',
-        imgUrl: require('./assets/images/categories/climate.png'),
-        path: SHUTTER
-    },
-    {
-        title: 'Camera/Monitoring',
-        imgUrl: require('./assets/images/categories/camera-monitoring.png'),
-        path: CAMERA
-    },
-    {
-        title: 'Alarm Clock',
-        imgUrl: require('./assets/images/categories/alarm-clock.png'),
-        path: SHUTTER
-    },
-    {
-        title: 'Safety & Security',
-        imgUrl: require('./assets/images/categories/alert.png'),
-        path: SHUTTER
-    },
-    {
-        title: 'News',
-        imgUrl: require('./assets/images/categories/news.png'),
-        path: SHUTTER
-    },
-];
-
-export const BEDROOM = "Bedroom";
-export const BATHROOM = "Bathroom";
-export const GARAGE = "Garage";
-export const KITCHEN = "Kitchen";
-export const STUDY = "Study";
-export const BASEMENT = "Basement";
-export const OUTSIDE = "Outside";
-export const HALLWAY = "Hallway";
-export const LIVING_ROOM = "Living Room";
-export const SARAH_DEDROOM = "Sarah Redroom";
-
-export const ROOMS_DATA = [
-    {
-        room: BEDROOM,
-        imgUrl: require('./assets/images/rooms/bedroom.png')
-    },
-    {
-        room: BATHROOM,
-        imgUrl: require('./assets/images/rooms/bathroom.png')
-    },
-    {
-        room: GARAGE,
-        imgUrl: require('./assets/images/rooms/garage.png')
-    },
-    {
-        room: KITCHEN,
-        imgUrl: require('./assets/images/rooms/kitchen.png')
-    },
-    {
-        room: STUDY,
-        imgUrl: require('./assets/images/rooms/study.png')
-    },
-    {
-        room: BASEMENT,
-        imgUrl: require('./assets/images/rooms/basement.png')
-    },
-    {
-        room: 'Outside',
-        imgUrl: require('./assets/images/rooms/outside.png')
-    },
-    {
-        room: 'Hallway',
-        imgUrl: require('./assets/images/rooms/hallway.png')
-    },
-    {
-        room: 'Living Room',
-        imgUrl: require('./assets/images/rooms/living-room.png')
-    },
-    {
-        room: 'Sarah Bedroom',
-        imgUrl: require('./assets/images/rooms/sarah-bedroom.png')
-    },
-];
-
-export const FAVORITE_ROOMS_DATA = [
-    {
-        room: 'Laundry',
-        imgUrl: require('./assets/images/laundry.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF'
-    },
-    {
-        room: 'Kitchen',
-        imgUrl: require('./assets/images/kitchen.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF'
-    },
-    {
-        room: 'Main Bedroom',
-        imgUrl: require('./assets/images/bed.png'),
-        bgColor: '#FFFFFF',
-        textColor: '#000000'
-    },
-    {
-        room: 'Laundry',
-        imgUrl: require('./assets/images/laundry.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF'
-    },
-    {
-        room: 'Kitchen',
-        imgUrl: require('./assets/images/kitchen.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF'
-    },
-];
-
-export const FAVORITE_CATEGORY_DATA = [
-    {
-        title: 'Lightning',
-        imgMainUrl: require('./assets/images/favorite_category/lamp.png'),
-        bgColor: '#FFFFFF',
-        textColor: '#000000',
-        imgUpUrl: '',
-    },
-    {
-        title: 'Climate',
-        imgMainUrl: require('./assets/images/favorite_category/thermometer.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/favorite_category/timer.png'),
-    },
-    {
-        title: 'Shutter',
-        imgMainUrl: require('./assets/images/favorite_category/blinds.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/favorite_category/uparrow.png'),
-        imgDownUrl: require('./assets/images/favorite_category/downarrow.png')
-    },
-    {
-        title: 'Lightning',
-        imgMainUrl: require('./assets/images/favorite_category/lamp.png'),
-        bgColor: '#FFFFFF',
-        textColor: '#000000',
-        imgUpUrl: '',
-    },
-    {
-        title: 'Climate',
-        imgMainUrl: require('./assets/images/favorite_category/thermometer.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/favorite_category/timer.png'),
-    }
-];
-
 export const SNOW = require('./assets/images/snow.png');
 export const CLOSE = require('./assets/images/close.png');
 export const CHECKBOX_WHITE = require('./assets/images/checkbox_white.png');
@@ -330,47 +130,6 @@ export const LAMP_WHITE = require('./assets/images/room/lamp.png');
 export const STAIRE = require('./assets/images/favorite_category/staire.png');
 export const DIMMER = require('./assets/images/room/dimmer.png');
 
-export const FAVORITE_DATA = [
-    {
-        title: 'Music',
-        imgMainUrl: require('./assets/images/room/music.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/room/plus.png'),
-        imgDownUrl: require('./assets/images/room/minus.png')
-    },
-    {
-        title: 'Climate',
-        imgMainUrl: require('./assets/images/room/climate.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/room/timer.png'),
-    },
-    {
-        title: 'Shutter',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/room/uparrow.png'),
-        imgDownUrl: require('./assets/images/room/downarrow.png')
-    },
-    {
-        title: 'Climate',
-        imgMainUrl: require('./assets/images/room/climate.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/room/timer.png'),
-    },
-    {
-        title: 'Shutter',
-        imgMainUrl: require('./assets/images/room/shutter.png'),
-        bgColor: '#2F2F31',
-        textColor: '#FFFFFF',
-        imgUpUrl: require('./assets/images/room/uparrow.png'),
-        imgDownUrl: require('./assets/images/room/downarrow.png')
-    }
-];
-
 // Screen Names for unavailable Footer
 export const HIDE_FOOTER_SCREENS = [CONNECT, LOGIN];
 
@@ -396,3 +155,7 @@ export const FOOTER_NAV_BAR = {
     //     tab: ACTION_BUTTONS
     // },
 }
+
+// Icon location type
+export const LOCATION_SERVER = 0;
+export const LOCATION_LOCAL = 1;

@@ -2,30 +2,30 @@ import React from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useOrientation } from '../../hooks/useOrientation';
+import { LOCATION_SERVER } from "../../Constant";
+import config from "../../config/config";
 
-const RoomItem = ({title, imgUrl, path, navigation}) => {
+const RoomItem = ({id, configDict, onClick}) => {
 
     const orientation = useOrientation();
-    const roomNameSave = async (roomName) => {
-        try {
-            await AsyncStorage.setItem('room_name', roomName);
-        } catch (e) {
-            // saving error
-        }
-    }
+	const orientationStyle = orientation === 'PORTRAIT' ? portrait : landscape;
+
+	const icon = configDict[id].icon;
+	const name = configDict[id].name;
 
     return (
-        <View style={orientation === 'PORTRAIT' ? portrait.container : landscape.container}>
+        <View style={orientationStyle.container}>
             <Pressable
-                style={portrait.baseButton}
-                onPress={() => { 
-                    roomNameSave(title) 
-                    navigation.navigate(path)
-                    }
-                }
+                style={orientationStyle.baseButton}
+                onPress={onClick}
             >
-                <View><Image source={imgUrl}></Image></View>
-                <View><Text style={portrait.categoryText}>{title}</Text></View>
+                <View>
+                    <Image 
+                        source={{ uri: icon.location === LOCATION_SERVER ? `${config.SERVER_URL}${icon.path}` : icon.path }}
+                        style={orientationStyle.image}
+                    />
+                </View>
+                <View><Text style={orientationStyle.categoryText}>{name}</Text></View>
             </Pressable>       
         </View>
     )
@@ -50,7 +50,11 @@ const portrait = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: '600',
         fontSize: 15
-    }
+    }, 
+	image: {
+		width: 38, 
+		height: 38, 
+	}, 
 });
 
 const landscape = StyleSheet.create({
@@ -61,7 +65,11 @@ const landscape = StyleSheet.create({
         backgroundColor: '#2F2F31',
         marginBottom: 15,
         marginLeft: 15
-    }
+    }, 
+	image: {
+		width: 38, 
+		height: 38, 
+	}, 
 });
 
 export default RoomItem;

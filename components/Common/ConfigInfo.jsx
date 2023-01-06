@@ -4,10 +4,10 @@ import { View, StyleSheet, Text } from "react-native";
 const ConfigInfo = ({name, info}) => {
     return (
         <View style={styles.container}>
-            <View style={{flex: 4}}>
+            <View style={{flex: 5}}>
                 <Text style = {styles.text}>{name}</Text>
             </View>
-            <View style={{flex: 8}}>
+            <View style={{flex: 5}}>
                 <Text style = {styles.subText}>{info}</Text>
             </View>
         </View> 

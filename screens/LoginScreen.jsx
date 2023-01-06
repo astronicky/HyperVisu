@@ -3,7 +3,11 @@ import Layout from "../components/Layout/Layout";
 import { Text, View, StyleSheet, Pressable, ScrollView, SafeAreaView, TextInput, ToastAndroid } from "react-native";
 import axios from 'axios';
 import Logo from "../components/Common/Logo";
-import { CONNECT, HOME, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD } from "../Constant";
+import { CONNECT, HOME, PLACEHOLDER_USERNAME, PLACEFOLDER_PASSWORD, USER_LABEL, PASSWORD_LABEL, SINGIN_DESCIPTION, SINGIN_LABEL, PASSWORD_FORGOTTEN, LOGIN, FORGOT_PASSWORD, LOGINED_USER } from "../Constant";
+import config from "../config/config";
+import requestAPI from "../utils/requestAPI";
+import { userLogin } from "../apis/users";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({ navigation }) {
 
@@ -19,47 +23,33 @@ export default function LoginScreen({ navigation }) {
 
     //     return unsubscribe;
     // }, [navigation]);
-    const [userName, setUserName] = useState("");
-    const [userPwd, setUserPwd] = useState("");
+    const [userName, setUserName] = useState('admin');
+    const [userPwd, setUserPwd] = useState('admin');
 
     const loginClick = async () => {
-        if(userName === "" && userPwd === "") {
-            const msg = "Input username and userpassword.";
+        if(!userName && !userPwd) {
+            const msg = "Input username and password";
             ToastAndroid.show(msg, ToastAndroid.SHORT);
             return;
-        } else if (userName === "") {
-            const msg = "Input username.";
+        } else if(!userName) {
+            const msg = "Input username";
             ToastAndroid.show(msg, ToastAndroid.SHORT);
             return;
-        } else if (userPwd === "") {
-            const msg = "Input password.";
+        } else if(!userPwd) {
+            const msg = "Input password";
             ToastAndroid.show(msg, ToastAndroid.SHORT);
             return;
         }
-        await axios.post('http://192.168.106.65:9000/api/mobile/login',
-            {
-                "userName": userName,
-                "userPwd": userPwd   
-            },
-            {
-                "headers": {
-                    'accept': 'text/plain',
-                    'Content-Type': 'application/json'
-                }
-            }).then((res) => {
-                if(res.data.message === "success") {
-                    const msg = "Login success";
-                    ToastAndroid.show(msg, ToastAndroid.SHORT);
-                    navigation.navigate(HOME);
-                } else {
-                    const msg = "Username or password is wrong";
-                    ToastAndroid.show(msg, ToastAndroid.SHORT);
-                }
-                
-            }).catch((error) => {
-                const msg = "Network error";
-                ToastAndroid.show(msg, ToastAndroid.SHORT);
-            });
+
+        try {
+            const data = await userLogin(userName, userPwd);
+            await AsyncStorage.setItem(LOGINED_USER, JSON.stringify(data.user));
+            
+            ToastAndroid.show("Login success", ToastAndroid.SHORT);
+            navigation.navigate(HOME);
+        } catch (error) {
+            console.log(error);
+        };
     }
 
     return (

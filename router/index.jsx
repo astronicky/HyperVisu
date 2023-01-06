@@ -12,18 +12,14 @@ import SettingScreen from '../screens/SettingScreen';
 import ConfigScreen from '../screens/ConfigScreen';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import RoomsScreen from '../screens/RoomsScreen';
-import SmartHOmeScreen from '../screens/SmartHomeScreen';
-import ShutterScreen from '../screens/ShutterScreen';
-import LightScreen from '../screens/LightScreen';
-import CameraScreen from '../screens/CameraScreen';
+import SmartHomeScreen from '../screens/SmartHomeScreen';
+import CategoryScreen from '../screens/CategoryScreen';
 import RoomScreen from '../screens/RoomScreen';
 import ClimateDetailScreen from '../screens/ClimateDetailScreen';
-import PowerScreen from '../screens/PowerScreen';
-import VideophoneScreen from '../screens/VideophoneScreen';
 import { LOGIN, CONNECT, CANCEL, FORGOT_PASSWORD, 
         ACTION_BUTTONS, SETTING, CONFIG, CATEGORIES, 
-        ROOMS, HOME, SHUTTER, LIGHT, CAMERA, ROOM,
-        CLIMATE_DETAIL, POWER, VIDEOPHONE } from '../Constant';
+        ROOMS, HOME, CATEGORY, ROOM,
+        CLIMATE_DETAIL } from '../Constant';
 import Footer from '../components/Layout/Footer';
 
 const Tab = createBottomTabNavigator();
@@ -99,18 +95,14 @@ export default function Router() {
                         </Pressable>
                     ),
                 })} />
-                <Tab.Screen name={HOME} component={SmartHOmeScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={HOME} component={SmartHomeScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={ROOMS} component={RoomsScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={CATEGORIES} component={CategoriesScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={SETTING} component={SettingScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={CONFIG} component={ConfigScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={SHUTTER} component={ShutterScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={LIGHT} component={LightScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={CAMERA} component={CameraScreen} options={{ headerShown: false }} />
+                <Tab.Screen name={CATEGORY} component={CategoryScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={ROOM} component={RoomScreen} options={{ headerShown: false }} />
                 <Tab.Screen name={CLIMATE_DETAIL} component={ClimateDetailScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={POWER} component={PowerScreen} options={{ headerShown: false }} />
-                <Tab.Screen name={VIDEOPHONE} component={VideophoneScreen} options={{ headerShown: false }} />
             </Tab.Navigator>
         </NavigationContainer>
     );
